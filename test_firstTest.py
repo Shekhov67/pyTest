@@ -18,13 +18,9 @@ def test_first(log):
 
     sheet = book.active
 
-    print(sheet['I3'].value)
-
     row = sheet.max_row
 
     print(f'{row} строк')
-
-
 
     driver = webdriver.Chrome()
 
@@ -34,7 +30,7 @@ def test_first(log):
 
     try:
 
-        driver.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing3')
+        driver.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing2')
 
         driver.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
@@ -47,7 +43,13 @@ def test_first(log):
 
         driver.find_element(By.XPATH, "//div[text()=' Администрирование ']").click()
 
-        for i in range(2, row):
+        # row - количество заполненых строк в эксель файле, от количества строк зависит количество циклов
+        for i in range(2, row+1):
+            # excel_date берет дату из файла эксель в формате 1994-01-21 00:00:00
+            excel_date = sheet[f'I{i}'].value
+            #new_date - переводит формат даты с 1994-01-21 00:00:00 в 22.01.1994, сделано для того,
+            # чтобы добавить дату рождения при создании сотрудника
+            new_date = excel_date.strftime('%d.%m.%Y')
 
             WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, "//div[text()='Новый сотрудник']")))
@@ -63,10 +65,9 @@ def test_first(log):
                 sheet[f'C{i}'].value)
             driver.find_element(By.XPATH, "//input[@placeholder='Введите фамилию сотрудника']").send_keys(
                 sheet[f'A{i}'].value)
-            time.sleep(4)
-            #Выводится не правильный формат даты из экселя
-            driver.find_element(By.XPATH, "//input[@placeholder='Выберите дату']").send_keys(
-                sheet[f'I{i}'].value)
+            #Формат даты из экселя перевожу в строку
+            driver.find_element(By.XPATH, "//input[@placeholder='Выберите дату']").send_keys(new_date)
+            ####
             driver.find_element(By.XPATH, "//input[@placeholder='Должность']").send_keys(
                 sheet[f'E{i}'].value)
             driver.find_element(By.XPATH, "(//input[@placeholder='Телефон'])[1]").send_keys(
@@ -79,9 +80,8 @@ def test_first(log):
                 sheet[f'D{i}'].value)
             driver.find_element(By.XPATH, "//input[@placeholder='Пароль']").send_keys('111111')
             driver.find_element(By.XPATH, "//input[@placeholder='Подтверждение пароля']").send_keys('111111')
-            time.sleep(1)
             driver.find_element(By.XPATH, "(//button[@class='ant-btn ant-btn-primary'])[2]").click()
-            time.sleep(3)
+            time.sleep(1)
 
 
     except:
