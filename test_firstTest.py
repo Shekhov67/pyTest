@@ -30,7 +30,7 @@ def test_first(log):
 
     try:
 
-        driver.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing2')
+        driver.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing4')
 
         driver.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
