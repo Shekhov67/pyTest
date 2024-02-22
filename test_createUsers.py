@@ -7,12 +7,13 @@ import pytest
 from openpyxl import Workbook, load_workbook
 
 
-@pytest.fixture()
-def log():
-    print("testFixture")
-    return "value"
 
-def test_first(log):
+
+def test_first():
+
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get("https://staging.connectable.site/login")
 
     book = load_workbook('ConnAutoTest.xlsx')
 
@@ -21,12 +22,6 @@ def test_first(log):
     row = sheet.max_row
 
     print(f'{row} строк')
-
-    driver = webdriver.Chrome()
-
-    driver.maximize_window()
-
-    driver.get("https://staging.connectable.site/login")
 
     try:
 
