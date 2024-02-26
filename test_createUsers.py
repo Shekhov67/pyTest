@@ -6,14 +6,18 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from openpyxl import Workbook, load_workbook
 
-
-
-
-def test_first():
-
+@pytest.fixture()
+def page():
+    ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get("https://staging.connectable.site/login")
+    return driver
+
+
+
+def test_first(page):
+    '''page это драйвер с уже запущенной старницей'''
 
     book = load_workbook('ConnAutoTest.xlsx')
 
@@ -25,18 +29,18 @@ def test_first():
 
     try:
 
-        driver.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing4')
+        page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing4')
 
-        driver.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
+        page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
-        driver.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
 
-        driver.find_element(By.XPATH, '//div[text()="Log in"]').click()
+        page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-        WebDriverWait(driver, 5).until(
+        WebDriverWait(page, 5).until(
             EC.presence_of_element_located((By.XPATH, "//div[text()=' Администрирование ']")))
 
-        driver.find_element(By.XPATH, "//div[text()=' Администрирование ']").click()
+        page.find_element(By.XPATH, "//div[text()=' Администрирование ']").click()
 
         # row - количество заполненых строк в эксель файле, от количества строк зависит количество циклов
         for i in range(2, row+1):
@@ -46,40 +50,40 @@ def test_first():
             # чтобы добавить дату рождения при создании сотрудника
             new_date = excel_date.strftime('%d.%m.%Y')
 
-            WebDriverWait(driver, 5).until(
+            WebDriverWait(page, 5).until(
                 EC.presence_of_element_located((By.XPATH, "//div[text()='Новый сотрудник']")))
 
-            driver.find_element(By.XPATH, "//div[text()='Новый сотрудник']").click()
+            page.find_element(By.XPATH, "//div[text()='Новый сотрудник']").click()
 
-            WebDriverWait(driver, 5).until(
+            WebDriverWait(page, 5).until(
                 EC.presence_of_element_located((By.XPATH, "//div[@class='ant-modal-body']")))
 
-            driver.find_element(By.XPATH, "//input[@placeholder='Введите имя сотрудника']").send_keys(
+            page.find_element(By.XPATH, "//input[@placeholder='Введите имя сотрудника']").send_keys(
                 sheet[f'B{i}'].value)
-            driver.find_element(By.XPATH, "//input[@placeholder='Введите отчество сотрудника']").send_keys(
+            page.find_element(By.XPATH, "//input[@placeholder='Введите отчество сотрудника']").send_keys(
                 sheet[f'C{i}'].value)
-            driver.find_element(By.XPATH, "//input[@placeholder='Введите фамилию сотрудника']").send_keys(
+            page.find_element(By.XPATH, "//input[@placeholder='Введите фамилию сотрудника']").send_keys(
                 sheet[f'A{i}'].value)
             #Формат даты из экселя перевожу в строку
-            driver.find_element(By.XPATH, "//input[@placeholder='Выберите дату']").send_keys(new_date)
+            page.find_element(By.XPATH, "//input[@placeholder='Выберите дату']").send_keys(new_date)
             ####
-            driver.find_element(By.XPATH, "//input[@placeholder='Должность']").send_keys(
+            page.find_element(By.XPATH, "//input[@placeholder='Должность']").send_keys(
                 sheet[f'E{i}'].value)
-            driver.find_element(By.XPATH, "(//input[@placeholder='Телефон'])[1]").send_keys(
+            page.find_element(By.XPATH, "(//input[@placeholder='Телефон'])[1]").send_keys(
                 sheet[f'G{i}'].value)
-            driver.find_element(By.XPATH, "(//input[@placeholder='Телефон'])[2]").send_keys(
+            page.find_element(By.XPATH, "(//input[@placeholder='Телефон'])[2]").send_keys(
                 sheet[f'F{i}'].value)
-            driver.find_element(By.XPATH, "//input[@placeholder='Кабинет']").send_keys(
+            page.find_element(By.XPATH, "//input[@placeholder='Кабинет']").send_keys(
                 sheet[f'H{i}'].value)
-            driver.find_element(By.XPATH, "//input[@placeholder='Введите e-mail']").send_keys(
+            page.find_element(By.XPATH, "//input[@placeholder='Введите e-mail']").send_keys(
                 sheet[f'D{i}'].value)
-            driver.find_element(By.XPATH, "//input[@placeholder='Пароль']").send_keys('111111')
-            driver.find_element(By.XPATH, "//input[@placeholder='Подтверждение пароля']").send_keys('111111')
-            driver.find_element(By.XPATH, "(//button[@class='ant-btn ant-btn-primary'])[2]").click()
+            page.find_element(By.XPATH, "//input[@placeholder='Пароль']").send_keys('111111')
+            page.find_element(By.XPATH, "//input[@placeholder='Подтверждение пароля']").send_keys('111111')
+            page.find_element(By.XPATH, "(//button[@class='ant-btn ant-btn-primary'])[2]").click()
             time.sleep(1)
 
 
     except:
         print('ERROR')
     finally:
-        driver.quit()
+        page.quit()
