@@ -15,6 +15,8 @@ def page():
 
 def test_createPostsNewsline(page):
 
+    #createText - переменная для ввода текста в создаваеммом посте
+
     createText = 'AutoPyTest1'
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing4')
