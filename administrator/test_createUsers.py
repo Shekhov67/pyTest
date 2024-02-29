@@ -19,7 +19,7 @@ def page():
 def test_first(page):
     '''page это драйвер с уже запущенной старницей'''
 
-    book = load_workbook('ConnAutoTest.xlsx')
+    book = load_workbook('../Data files/ConnAutoTest.xlsx')
 
     sheet = book.active
 
