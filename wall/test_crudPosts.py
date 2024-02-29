@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 
+
+
 @pytest.fixture()
 def page():
     ''' Переход на страницу портала '''
@@ -17,7 +19,7 @@ def test_createPostsNewsline(page):
 
     #createText - переменная для ввода текста в создаваеммом посте
 
-    createText = 'AutoPyTest1'
+    createText = 'AutoPyTest2'
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing4')
 
@@ -30,6 +32,8 @@ def test_createPostsNewsline(page):
     WebDriverWait(page, '5').until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
 
     page.find_element(By.XPATH, "//div[text()=' Стена ']").click()
+
+    WebDriverWait(page, '5').until(EC.presence_of_element_located((By.XPATH, "//div[text()='Лента событий']")))
 
     page.find_element(By.XPATH, "//div[text()='Лента событий']").click()
 
