@@ -4,6 +4,7 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
+from selenium.webdriver.common.keys import Keys
 
 
 
@@ -13,6 +14,7 @@ def page():
     driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get("https://staging.connectable.site/login")
+    driver.implicitly_wait(5)
     return driver
 
 def test_createPostsNewsline(page):
@@ -20,6 +22,8 @@ def test_createPostsNewsline(page):
     #createText - переменная для ввода текста в создаваеммом посте
 
     createText = 'AutoPyTest2'
+
+    updateText = 'updateTextPyTest'
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing4')
 
@@ -55,11 +59,27 @@ def test_createPostsNewsline(page):
 
     WebDriverWait(page, '5').until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{createText}']")))
 
-    time.sleep(2)
-
     gettext = page.find_element(By.XPATH, f"//div[text()='{createText}']").text
 
     assert gettext == createText, "Текст поста на стене != текст открытого поста"
+
+    page.find_element(By.XPATH, "(//div[contains(@class,'small')])[1]").click()
+
+    page.find_element(By.XPATH, "(//div[text()=' Редактировать '])[1]").click()
+
+    WebDriverWait(page, '5').until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-body']")))
+
+    WebDriverWait(page, '5').until(EC.presence_of_element_located((By.XPATH, "(//textarea)[2]")))
+
+    page.find_element(By.XPATH, "(//textarea)[2]").clear()
+
+    page.find_element(By.XPATH, "(//textarea)[2]").send_keys(updateText)
+
+    page.find_element(By.XPATH, "//div[text()=' Сохранить ']").click()
+
+    gettext2 = page.find_element(By.XPATH, f"//div[text()='{updateText}']").text
+
+    assert gettext2 == updateText, "Обновленный текст не совпадает"
 
     time.sleep(2)
 
