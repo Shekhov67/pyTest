@@ -79,7 +79,27 @@ def test_createPostsNewsline(page):
 
     gettext2 = page.find_element(By.XPATH, f"//div[text()='{updateText}']").text
 
+    WebDriverWait(page, "5").until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{updateText}']")))
+
+    time.sleep(2)
+
     assert gettext2 == updateText, "Обновленный текст не совпадает"
+
+    page.find_element(By.XPATH, "//div[text()='Назад в ленту']").click()
+
+    gettext3 = page.find_element(By.XPATH, f"//div[text()='{updateText}']").text
+
+    assert gettext3 == updateText, "Проверка обновленного поста на стене"
+
+    page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
+
+    page.find_element(By.XPATH, "(//div[text()=' Удалить '])[1]").click()
+
+    WebDriverWait(page, "5").until(EC.presence_of_element_located((By.XPATH, "//div[text()='Пост удален']")))
+
+    alertDeletedPost = page.find_element(By.XPATH, "//div[text()='Пост удален']").text
+
+    assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
 
     time.sleep(2)
 
