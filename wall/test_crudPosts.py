@@ -11,7 +11,7 @@ from random import randint
 def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
+    #driver.implicitly_wait(5)
     driver.maximize_window()
     driver.get("https://staging.connectable.site/login")
     return driver
@@ -112,7 +112,7 @@ def test_createPostsNewsline(page):
 
     page.find_element(By.XPATH, "//div[text()=' Сохранить ']").click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{updateText}']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{updateText}']")))
 
     gettext2 = page.find_element(By.XPATH, f"//div[text()='{updateText}']").text
 
