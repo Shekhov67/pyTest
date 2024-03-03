@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
+from random import randint
 
 
 
@@ -23,7 +24,9 @@ def test_createPostsNewsline(page):
 
     updateText = 'updateTextPyTest'
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing4')
+    wait = WebDriverWait(page, 5)
+
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing1')
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
@@ -31,11 +34,29 @@ def test_createPostsNewsline(page):
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
+
+    moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]').is_displayed()
+
+    print(moodBlock)
+
+    if moodBlock:
+
+        num = randint(1, 10)
+
+        print(f'Рандомное число для настроения {num}')
+
+        wait.until(EC.element_to_be_clickable(
+            (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
+
+        page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').click()
+
+    else:
+        print('Муд блок не появился')
 
     page.find_element(By.XPATH, "//div[text()=' Стена ']").click()
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, "//div[text()='Лента событий']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Лента событий']")))
 
     page.find_element(By.XPATH, "//div[text()='Лента событий']").click()
 
@@ -43,19 +64,21 @@ def test_createPostsNewsline(page):
 
     page.find_element(By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").send_keys(createText)
 
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Опубликовать']")))
+
     page.find_element(By.XPATH, "//div[text()='Опубликовать']").click()
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, f"(//div[text()= '{createText}'])[1]")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"(//div[text()= '{createText}'])[1]")))
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4']")))
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{createText}']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{createText}']")))
 
     gettext = page.find_element(By.XPATH, f"//div[text()='{createText}']").text
 
@@ -65,13 +88,12 @@ def test_createPostsNewsline(page):
 
     page.find_element(By.XPATH, "(//div[text()=' Редактировать '])[1]").click()
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-content']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-content']")))
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-body']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-body']")))
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, "(//textarea)[2]")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//textarea)[2]")))
 
-    wait = WebDriverWait(page, 5)
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='dropdown-menu show']")))
 
@@ -88,11 +110,11 @@ def test_createPostsNewsline(page):
 
     page.find_element(By.XPATH, "//div[text()=' Сохранить ']").click()
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{updateText}']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{updateText}']")))
 
     gettext2 = page.find_element(By.XPATH, f"//div[text()='{updateText}']").text
 
-    WebDriverWait(page, 5).until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{updateText}']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{updateText}']")))
 
     assert gettext2 == updateText, "Обновленный текст не совпадает"
 
