@@ -1,10 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
-from selenium.webdriver.common.keys import Keys
 
 
 
@@ -117,7 +115,7 @@ def test_createPostsNewsline(page):
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
 
-    time.sleep(2)
+
 
 
 
