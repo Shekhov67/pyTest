@@ -26,7 +26,7 @@ def test_createPostsNewsline(page):
 
     wait = WebDriverWait(page, 5)
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing1')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
@@ -36,22 +36,24 @@ def test_createPostsNewsline(page):
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
 
-    moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]').is_displayed()
+    try:
+        moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
-    print(moodBlock)
+        print(moodBlock)
 
-    if moodBlock:
+        if moodBlock:
 
-        num = randint(1, 10)
+            num = randint(1, 10)
 
-        print(f'Рандомное число для настроения {num}')
+            print(f'Рандомное число для оценки настроения {num}')
 
-        wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
+            wait.until(EC.element_to_be_clickable(
+                (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
 
-        page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').click()
+            page.find_element(By.XPATH,
+                              f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').click()
 
-    else:
+    except:
         print('Муд блок не появился')
 
     page.find_element(By.XPATH, "//div[text()=' Стена ']").click()
