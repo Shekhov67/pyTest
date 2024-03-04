@@ -80,7 +80,12 @@ def test_first(page):
             page.find_element(By.XPATH, "//input[@placeholder='Пароль']").send_keys('111111')
             page.find_element(By.XPATH, "//input[@placeholder='Подтверждение пароля']").send_keys('111111')
             page.find_element(By.XPATH, "(//button[@class='ant-btn ant-btn-primary'])[2]").click()
-            time.sleep(1)
+
+            WebDriverWait(page, 5).until(EC.element_to_be_clickable(
+                (By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']")))
+
+            page.find_element(By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']").click()
+
 
 
     except:
