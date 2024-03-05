@@ -340,13 +340,21 @@ def test_postGratitudeNewsLine(page):
 
     print(user)
 
-    print(page.find_element(By.XPATH, "//div[@class='post-wrapper-content']").text)
+    postNameUser = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']").text
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f"(//div[text()= '{user} {createText}'])[1]")))
+    print(postNameUser)
 
-    post = page.find_element(By.XPATH, f"(//div[text()= '{user} {createText}'])[1]")
+    postGratitudeUser = f"{user} {createText}"
+
+    print(postGratitudeUser)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, f"(//a[text()='{user}'])[1]")))
+
+    post = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']")
 
     print(post)
+
+    assert postNameUser == postGratitudeUser, "Текст в посте благодраности не совпадет"
 
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
@@ -354,13 +362,15 @@ def test_postGratitudeNewsLine(page):
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4 greeting']")))
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{createText}']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"(//a[text()='{user}'])[1]")))
 
-    gettext = page.find_element(By.XPATH, f"//div[text()='{createText}']").text
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='post-wrapper-content']")))
 
-    assert gettext == createText, "Текст поста на стене != текст открытого поста"
+    gettext = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']").text
+
+    assert gettext == postGratitudeUser, "Текст поста на стене != текст открытого поста"
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[1]").click()
 
@@ -381,7 +391,7 @@ def test_postGratitudeNewsLine(page):
 
     page.find_element(By.XPATH, "(//textarea)[2]").clear()
 
-    page.find_element(By.XPATH, "(//textarea)[2]").send_keys(updateText)
+    page.find_element(By.XPATH, "(//textarea)[2]").send_keys(f'{user}{updateText}')
 
     wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()=' Сохранить ']")))
 
@@ -389,17 +399,21 @@ def test_postGratitudeNewsLine(page):
 
     wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{updateText}']")))
 
-    gettext2 = page.find_element(By.XPATH, f"//div[text()='{updateText}']").text
+    gettext2 = page.find_element(By.XPATH, f"//div[@class='post-wrapper-content']").text
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{updateText}']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[@class='post-wrapper-content']")))
 
-    assert gettext2 == updateText, "Обновленный текст не совпадает"
+    #Обновленный текст
+
+    postGratitudeUser2 = f'{user}{updateText}'
+
+    assert gettext2 == postGratitudeUser2, "Обновленный текст не совпадает"
 
     page.find_element(By.XPATH, "//div[text()='Назад в ленту']").click()
 
-    gettext3 = page.find_element(By.XPATH, f"//div[text()='{updateText}']").text
+    gettext3 = page.find_element(By.XPATH, "(//div[@class='post-wrapper-content'])[1]").text
 
-    assert gettext3 == updateText, "Проверка обновленного поста на стене"
+    assert gettext3 == postGratitudeUser2, "Проверка обновленного поста на стене"
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
