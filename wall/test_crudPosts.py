@@ -18,7 +18,7 @@ def page():
     driver.get("https://staging.connectable.site/login")
     return driver
 
-def test_createPostsNewsline(page):
+def test_crudPostsNewsline(page):
 
     #createText - переменная для ввода текста в создаваеммом посте
 
@@ -141,10 +141,9 @@ def test_createPostsNewsline(page):
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
 
-def test_createPostsNewsCompany(page):
+def test_crudPostsNewsCompany(page):
 
     #createText - переменная для ввода текста в создаваеммом посте
-
     createText = 'AutoPyTest2NewsCompany'
 
     updateText = 'updateTextPyTestNewsCompany'
@@ -191,9 +190,13 @@ def test_createPostsNewsCompany(page):
 
     page.find_element(By.XPATH, "(//span[@class='ant-checkbox'])[2]").click()
 
-    page.find_element(By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").click()
+    (page.find_element(
+        By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").
+     click())
 
-    page.find_element(By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").send_keys(createText)
+    (page.find_element(
+        By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").
+     send_keys(createText))
 
     wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Опубликовать']")))
 
@@ -224,7 +227,6 @@ def test_createPostsNewsCompany(page):
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-body']")))
 
     wait.until(EC.presence_of_element_located((By.XPATH, "(//textarea)[2]")))
-
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='dropdown-menu show']")))
 
@@ -268,7 +270,7 @@ def test_createPostsNewsCompany(page):
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
 
-def test_postGratitudeNewsLine(page):
+def test_crudPostGratitudeNewsLine(page):
     # createText - переменная для ввода текста в создаваеммом посте
 
     createText = 'AutoPyTest2postGratitudeNewsLine'
@@ -338,21 +340,13 @@ def test_postGratitudeNewsLine(page):
 
     user = page.find_element(By.XPATH, "(//div[@class='post-wrapper-content']/div/a)[1]").text
 
-    print(user)
-
     postNameUser = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']").text
 
-    print(postNameUser)
-
     postGratitudeUser = f"{user} {createText}"
-
-    print(postGratitudeUser)
 
     wait.until(EC.presence_of_element_located((By.XPATH, f"(//a[text()='{user}'])[1]")))
 
     post = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']")
-
-    print(post)
 
     assert postNameUser == postGratitudeUser, "Текст в посте благодраности не совпадет"
 
@@ -403,8 +397,6 @@ def test_postGratitudeNewsLine(page):
 
     wait.until(EC.presence_of_element_located((By.XPATH, f"//div[@class='post-wrapper-content']")))
 
-    #Обновленный текст
-
     postGratitudeUser2 = f'{user}{updateText}'
 
     assert gettext2 == postGratitudeUser2, "Обновленный текст не совпадает"
@@ -428,7 +420,7 @@ def test_postGratitudeNewsLine(page):
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
 
-def test_postGratitudeNewsCompany(page):
+def test_crudPostGratitudeNewsCompany(page):
     # createText - переменная для ввода текста в создаваеммом посте
 
     createText = 'AutoPyTest2postGratitudeNewsLine'
@@ -502,21 +494,13 @@ def test_postGratitudeNewsCompany(page):
 
     user = page.find_element(By.XPATH, "(//div[@class='post-wrapper-content']/div/a)[1]").text
 
-    print(user)
-
     postNameUser = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']").text
 
-    print(postNameUser)
-
     postGratitudeUser = f"{user} {createText}"
-
-    print(postGratitudeUser)
 
     wait.until(EC.presence_of_element_located((By.XPATH, f"(//a[text()='{user}'])[1]")))
 
     post = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']")
-
-    print(post)
 
     assert postNameUser == postGratitudeUser, "Текст в посте благодраности не совпадет"
 
@@ -566,8 +550,6 @@ def test_postGratitudeNewsCompany(page):
     gettext2 = page.find_element(By.XPATH, f"//div[@class='post-wrapper-content']").text
 
     wait.until(EC.presence_of_element_located((By.XPATH, f"//div[@class='post-wrapper-content']")))
-
-    #Обновленный текст
 
     postGratitudeUser2 = f'{user}{updateText}'
 
