@@ -28,7 +28,7 @@ def test_crudPostsNewsline(page):
 
     workspace = 'testing4'
 
-    user = 't2@gmail.com'
+    userLog = 't2@gmail.com'
 
     password = '111111'
 
@@ -36,7 +36,7 @@ def test_crudPostsNewsline(page):
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{user}')
+    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
     page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
@@ -160,7 +160,7 @@ def test_crudPostsNewsCompany(page):
 
     workspace = 'testing4'
 
-    user = 't2@gmail.com'
+    userLog = 't2@gmail.com'
 
     password = '111111'
 
@@ -168,7 +168,7 @@ def test_crudPostsNewsCompany(page):
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{user}')
+    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
     page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
@@ -295,7 +295,7 @@ def test_crudPostGratitudeNewsLine(page):
 
     workspace = 'testing4'
 
-    user = 't2@gmail.com'
+    userLog = 't2@gmail.com'
 
     password = '111111'
 
@@ -303,7 +303,7 @@ def test_crudPostGratitudeNewsLine(page):
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{user}')
+    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
     page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
@@ -453,7 +453,7 @@ def test_crudPostGratitudeNewsCompany(page):
 
     workspace = 'testing4'
 
-    user = 't2@gmail.com'
+    userLog = 't2@gmail.com'
 
     password = '111111'
 
@@ -461,7 +461,7 @@ def test_crudPostGratitudeNewsCompany(page):
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{user}')
+    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
     page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
