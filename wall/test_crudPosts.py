@@ -318,14 +318,16 @@ def test_crudPostGratitudeNewsLine(page):
 
     page.find_element(By.XPATH, "(//span[@class='ant-checkbox'])[1]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//textarea[@placeholder ='Упомяните того, кого ходите отблагодарить']")))
+    wait.until(EC.element_to_be_clickable(
+        (By.XPATH, "//textarea[@placeholder ='Упомяните того, кого ходите отблагодарить']")))
 
     (page.find_element(By.XPATH, "//textarea[@placeholder ='Упомяните того, кого ходите отблагодарить']").
      send_keys('@'))
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-mentions-measure']")))
 
-    page.find_element(By.XPATH, "//div[@class='ant-mentions-dropdown  ant-mentions-dropdown-placement-bottomRight']/ul/li").click()
+    page.find_element(
+        By.XPATH, "//div[@class='ant-mentions-dropdown  ant-mentions-dropdown-placement-bottomRight']/ul/li").click()
 
     (page.find_element(By.XPATH, "//textarea[@placeholder ='Упомяните того, кого ходите отблагодарить']").
      send_keys(createText))
@@ -472,14 +474,16 @@ def test_crudPostGratitudeNewsCompany(page):
 
     page.find_element(By.XPATH, "(//span[@class='ant-checkbox'])[1]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//textarea[@placeholder ='Упомяните того, кого ходите отблагодарить']")))
+    wait.until(
+        EC.element_to_be_clickable((By.XPATH, "//textarea[@placeholder ='Упомяните того, кого ходите отблагодарить']")))
 
     (page.find_element(By.XPATH, "//textarea[@placeholder ='Упомяните того, кого ходите отблагодарить']").
      send_keys('@'))
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-mentions-measure']")))
 
-    page.find_element(By.XPATH, "//div[@class='ant-mentions-dropdown  ant-mentions-dropdown-placement-bottomRight']/ul/li").click()
+    page.find_element(
+        By.XPATH, "//div[@class='ant-mentions-dropdown  ant-mentions-dropdown-placement-bottomRight']/ul/li").click()
 
     (page.find_element(By.XPATH, "//textarea[@placeholder ='Упомяните того, кого ходите отблагодарить']").
      send_keys(createText))
