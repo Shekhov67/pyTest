@@ -26,13 +26,19 @@ def test_crudPostsNewsline(page):
 
     updateText = 'updateTextPyTest'
 
+    workspace = 'testing4'
+
+    user = 't2@gmail.com'
+
+    password = '111111'
+
     wait = WebDriverWait(page, 5)
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
+    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{user}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
@@ -64,9 +70,13 @@ def test_crudPostsNewsline(page):
 
     page.find_element(By.XPATH, "//div[text()='Лента событий']").click()
 
-    page.find_element(By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").click()
+    (page.find_element(
+        By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").
+     click())
 
-    page.find_element(By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").send_keys(createText)
+    (page.find_element(
+        By.XPATH, "//textarea[@placeholder ='Напишите текст сообщения. Используйте @, чтобы кого-то упомянуть']").
+     send_keys(createText))
 
     wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Опубликовать']")))
 
@@ -148,13 +158,19 @@ def test_crudPostsNewsCompany(page):
 
     updateText = 'updateTextPyTestNewsCompany'
 
+    workspace = 'testing4'
+
+    user = 't2@gmail.com'
+
+    password = '111111'
+
     wait = WebDriverWait(page, 5)
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
+    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{user}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
@@ -277,13 +293,19 @@ def test_crudPostGratitudeNewsLine(page):
 
     updateText = 'updateTextPyTestpostGratitudeNewsLine'
 
+    workspace = 'testing4'
+
+    user = 't2@gmail.com'
+
+    password = '111111'
+
     wait = WebDriverWait(page, 5)
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
+    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{user}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
@@ -429,13 +451,19 @@ def test_crudPostGratitudeNewsCompany(page):
 
     updateText = 'updateTextPyTestpostGratitudeNewsLine'
 
+    workspace = 'testing4'
+
+    user = 't2@gmail.com'
+
+    password = '111111'
+
     wait = WebDriverWait(page, 5)
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
+    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{user}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
