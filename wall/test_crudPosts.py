@@ -8,6 +8,18 @@ import pytest
 from random import randint
 
 
+@pytest.fixture()
+def workspace():
+    client = 'testing9'
+    return client
+@pytest.fixture()
+def userLog():
+    user = 't2@gmail.com'
+    return user
+@pytest.fixture()
+def password():
+    passw = '111111'
+    return passw
 
 @pytest.fixture()
 def page():
@@ -18,19 +30,18 @@ def page():
     driver.get("https://staging.connectable.site/login")
     return driver
 
-def test_crudPostsNewsline(page):
+def test_crudPostsNewsline(page, workspace, userLog, password):
 
     #createText - переменная для ввода текста в создаваеммом посте
-
     createText = 'AutoPyTest2'
 
     updateText = 'updateTextPyTest'
 
-    workspace = 'testing4'
+    #workspace = 'testing4'
 
-    userLog = 't2@gmail.com'
+    #userLog = 't2@gmail.com'
 
-    password = '111111'
+    #password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -87,6 +98,8 @@ def test_crudPostsNewsline(page):
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
@@ -150,19 +163,12 @@ def test_crudPostsNewsline(page):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
-
-def test_crudPostsNewsCompany(page):
+def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     #createText - переменная для ввода текста в создаваеммом посте
     createText = 'AutoPyTest2NewsCompany'
 
     updateText = 'updateTextPyTestNewsCompany'
-
-    workspace = 'testing4'
-
-    userLog = 't2@gmail.com'
-
-    password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -223,6 +229,8 @@ def test_crudPostsNewsCompany(page):
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
@@ -285,19 +293,12 @@ def test_crudPostsNewsCompany(page):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
-
-def test_crudPostGratitudeNewsLine(page):
+def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
     # createText - переменная для ввода текста в создаваеммом посте
 
     createText = 'AutoPyTest2postGratitudeNewsLine'
 
     updateText = 'updateTextPyTestpostGratitudeNewsLine'
-
-    workspace = 'testing4'
-
-    userLog = 't2@gmail.com'
-
-    password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -378,6 +379,8 @@ def test_crudPostGratitudeNewsLine(page):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
+
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4 greeting']")))
@@ -443,19 +446,12 @@ def test_crudPostGratitudeNewsLine(page):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
-
-def test_crudPostGratitudeNewsCompany(page):
+def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
     # createText - переменная для ввода текста в создаваеммом посте
 
     createText = 'AutoPyTest2postGratitudeNewsLine'
 
     updateText = 'updateTextPyTestpostGratitudeNewsLine'
-
-    workspace = 'testing4'
-
-    userLog = 't2@gmail.com'
-
-    password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -539,6 +535,8 @@ def test_crudPostGratitudeNewsCompany(page):
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
