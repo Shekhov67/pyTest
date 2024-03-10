@@ -8,18 +8,6 @@ import pytest
 from random import randint
 
 
-@pytest.fixture()
-def workspace():
-    client = 'testing9'
-    return client
-@pytest.fixture()
-def userLog():
-    user = 't2@gmail.com'
-    return user
-@pytest.fixture()
-def password():
-    passw = '111111'
-    return passw
 
 @pytest.fixture()
 def page():
@@ -30,12 +18,19 @@ def page():
     driver.get("https://staging.connectable.site/login")
     return driver
 
-def test_crudPostsNewsline(page, workspace, userLog, password):
+def test_crudPostsNewsline(page):
 
     #createText - переменная для ввода текста в создаваеммом посте
+
     createText = 'AutoPyTest2'
 
     updateText = 'updateTextPyTest'
+
+    workspace = 'testing4'
+
+    userLog = 't2@gmail.com'
+
+    password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -47,7 +42,7 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()=' Стена ']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
 
     try:
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
@@ -71,7 +66,7 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//div[text()=' Стена ']").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Лента событий']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Лента событий']")))
 
     page.find_element(By.XPATH, "//div[text()='Лента событий']").click()
 
@@ -87,19 +82,17 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//div[text()='Опубликовать']").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, f"(//div[text()= '{createText}'])[1]")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"(//div[text()= '{createText}'])[1]")))
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[contains(@class,'small')])[2]")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
-
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4']")))
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{createText}']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{createText}']")))
 
     gettext = page.find_element(By.XPATH, f"//div[text()='{createText}']").text
 
@@ -109,16 +102,17 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[text()=' Редактировать '])[1]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='ant-drawer-content']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-content']")))
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='ant-drawer-body']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-body']")))
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//textarea)[2]")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//textarea)[2]")))
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='dropdown-menu show']")))
 
-    wait.until(EC.element_to_be_clickable(
-        (By.CSS_SELECTOR, ".ant-drawer-header")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='dropdown-menu show']")))
+
+    wait.until(EC.presence_of_element_located(
+        (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
 
     page.find_element(By.XPATH, "//div[@class='input-wrapper f-align-center bg-white medium px2']").click()
 
@@ -134,7 +128,7 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     gettext2 = page.find_element(By.XPATH, f"//div[text()='{updateText}']").text
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{updateText}']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{updateText}']")))
 
     assert gettext2 == updateText, "Обновленный текст не совпадает"
 
@@ -156,12 +150,19 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
-def test_crudPostsNewsCompany(page, workspace, userLog, password):
+
+def test_crudPostsNewsCompany(page):
 
     #createText - переменная для ввода текста в создаваеммом посте
     createText = 'AutoPyTest2NewsCompany'
 
     updateText = 'updateTextPyTestNewsCompany'
+
+    workspace = 'testing4'
+
+    userLog = 't2@gmail.com'
+
+    password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -223,13 +224,11 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
-
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4']")))
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{createText}']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"//div[text()='{createText}']")))
 
     gettext = page.find_element(By.XPATH, f"//div[text()='{createText}']").text
 
@@ -286,11 +285,19 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
-def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
+
+def test_crudPostGratitudeNewsLine(page):
     # createText - переменная для ввода текста в создаваеммом посте
+
     createText = 'AutoPyTest2postGratitudeNewsLine'
 
     updateText = 'updateTextPyTestpostGratitudeNewsLine'
+
+    workspace = 'testing4'
+
+    userLog = 't2@gmail.com'
+
+    password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -371,8 +378,6 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
-
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4 greeting']")))
@@ -438,12 +443,19 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
-def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
+
+def test_crudPostGratitudeNewsCompany(page):
     # createText - переменная для ввода текста в создаваеммом посте
 
     createText = 'AutoPyTest2postGratitudeNewsLine'
 
-    updateText = 'updateTextPyTestPostGratitudeNewsLine'
+    updateText = 'updateTextPyTestpostGratitudeNewsLine'
+
+    workspace = 'testing4'
+
+    userLog = 't2@gmail.com'
+
+    password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -527,8 +539,6 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
-
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
 
