@@ -9,7 +9,7 @@ from random import randint
 
 @pytest.fixture()
 def workspace():
-    client = 'testing9'
+    client = 'testing1'
     return client
 @pytest.fixture()
 def userLog():
@@ -35,12 +35,6 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
     createText = 'AutoPyTest2'
 
     updateText = 'updateTextPyTest'
-
-    #workspace = 'testing4'
-
-    #userLog = 't2@gmail.com'
-
-    #password = '111111'
 
     wait = WebDriverWait(page, 5)
 
@@ -92,7 +86,7 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//div[text()='Опубликовать']").click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f"(//div[text()= '{createText}'])[1]")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, f"(//div[text()= '{createText}'])[1]")))
 
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
@@ -120,13 +114,12 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     wait.until(EC.presence_of_element_located((By.XPATH, "(//textarea)[2]")))
 
-
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='dropdown-menu show']")))
 
     wait.until(EC.presence_of_element_located(
         (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
 
-    page.find_element(By.XPATH, "//div[@class='input-wrapper f-align-center bg-white medium px2']").click()
+    page.find_element(By.CSS_SELECTOR, ".input-wrapper").click()
 
     page.find_element(By.XPATH, "(//textarea)[2]").clear()
 
@@ -256,7 +249,7 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
     wait.until(EC.presence_of_element_located(
         (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
 
-    page.find_element(By.XPATH, "//div[@class='input-wrapper f-align-center bg-white medium px2']").click()
+    page.find_element(By.CSS_SELECTOR, ".input-wrapper").click()
 
     page.find_element(By.XPATH, "(//textarea)[2]").clear()
 
@@ -407,7 +400,7 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
     wait.until(EC.presence_of_element_located(
         (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
 
-    page.find_element(By.XPATH, "//div[@class='input-wrapper f-align-center bg-white medium px2']").click()
+    page.find_element(By.CSS_SELECTOR, ".input-wrapper").click()
 
     page.find_element(By.XPATH, "(//textarea)[2]").clear()
 
@@ -564,7 +557,7 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
     wait.until(EC.presence_of_element_located(
         (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
 
-    page.find_element(By.XPATH, "//div[@class='input-wrapper f-align-center bg-white medium px2']").click()
+    page.find_element(By.CSS_SELECTOR, ".input-wrapper").click()
 
     page.find_element(By.XPATH, "(//textarea)[2]").clear()
 
