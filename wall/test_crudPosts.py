@@ -30,7 +30,6 @@ def page():
     return driver
 
 def test_crudPostsNewsline(page, workspace, userLog, password):
-
     #createText - переменная для ввода текста в создаваеммом посте
     createText = 'AutoPyTest2'
 
@@ -64,7 +63,6 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
             page.find_element(By.XPATH,
                               f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').click()
-
     except:
         print('Муд блок не появился')
 
@@ -86,11 +84,13 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//div[text()='Опубликовать']").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, f"(//div[text()= '{createText}'])[1]")))
+    wait.until(EC.presence_of_element_located((By.XPATH, f"(//div[text()= '{createText}'])[1]")))
 
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[@class='dropdown-item'])[1]")))
 
     wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
 
@@ -103,6 +103,8 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
     gettext = page.find_element(By.XPATH, f"//div[text()='{createText}']").text
 
     assert gettext == createText, "Текст поста на стене != текст открытого поста"
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[1]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[1]").click()
 
@@ -155,8 +157,8 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
-def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
+def test_crudPostsNewsCompany(page, workspace, userLog, password):
     #createText - переменная для ввода текста в создаваеммом посте
     createText = 'AutoPyTest2NewsCompany'
 
@@ -222,6 +224,8 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[@class='dropdown-item'])[1]")))
+
     wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
@@ -233,6 +237,8 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
     gettext = page.find_element(By.XPATH, f"//div[text()='{createText}']").text
 
     assert gettext == createText, "Текст поста на стене != текст открытого поста"
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[1]")))
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[1]").click()
 
@@ -285,9 +291,9 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
+
 def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
     # createText - переменная для ввода текста в создаваеммом посте
-
     createText = 'AutoPyTest2postGratitudeNewsLine'
 
     updateText = 'updateTextPyTestpostGratitudeNewsLine'
@@ -363,9 +369,9 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     wait.until(EC.presence_of_element_located((By.XPATH, f"(//a[text()='{user}'])[1]")))
 
-    post = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']")
-
     assert postNameUser == postGratitudeUser, "Текст в посте благодраности не совпадет"
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[1]")))
 
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
@@ -438,6 +444,7 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
     print(alertDeletedPost)
 
     assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
+
 def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
     # createText - переменная для ввода текста в создаваеммом посте
 
@@ -520,9 +527,9 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
 
     wait.until(EC.presence_of_element_located((By.XPATH, f"(//a[text()='{user}'])[1]")))
 
-    post = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']")
-
     assert postNameUser == postGratitudeUser, "Текст в посте благодраности не совпадет"
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[1]")))
 
     wait.until(EC.presence_of_element_located((By.XPATH, "(//div[contains(@class,'small')])[2]")))
 
