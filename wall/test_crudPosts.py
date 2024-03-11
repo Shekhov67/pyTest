@@ -9,7 +9,7 @@ from random import randint
 
 @pytest.fixture()
 def workspace():
-    client = 'testing1'
+    client = 'testing9'
     return client
 @pytest.fixture()
 def userLog():
@@ -90,8 +90,6 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[@class='dropdown-item'])[1]")))
-
     wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
@@ -120,6 +118,8 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     wait.until(EC.presence_of_element_located(
         (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
+
+    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".input-wrapper")))
 
     page.find_element(By.CSS_SELECTOR, ".input-wrapper").click()
 
@@ -224,8 +224,6 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[@class='dropdown-item'])[1]")))
-
     wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
 
     page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
@@ -254,6 +252,8 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     wait.until(EC.presence_of_element_located(
         (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
+
+    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".input-wrapper")))
 
     page.find_element(By.CSS_SELECTOR, ".input-wrapper").click()
 
@@ -405,6 +405,10 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     wait.until(EC.presence_of_element_located(
         (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
+
+    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".input-wrapper")))
+
+    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".input-wrapper")))
 
     page.find_element(By.CSS_SELECTOR, ".input-wrapper").click()
 
@@ -563,6 +567,8 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
 
     wait.until(EC.presence_of_element_located(
         (By.XPATH, "//div[@class='ant-drawer ant-drawer-right ant-drawer-open create-group-drawer']")))
+
+    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".input-wrapper")))
 
     page.find_element(By.CSS_SELECTOR, ".input-wrapper").click()
 
