@@ -57,8 +57,7 @@ def test_polls(page, workspace, userLog, password):
             wait.until(EC.element_to_be_clickable(
                 (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
 
-            (page.find_element(By.XPATH,
-                              f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').
+            (page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').
              click())
     except:
         print('Муд блок не появился')
