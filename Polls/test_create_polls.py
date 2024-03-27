@@ -63,9 +63,9 @@ def test_polls(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, '//div[text()=" Опросы "]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Опросы ']")))
 
-    page.find_element(By.XPATH, '//div[text()=" Опросы "]').click()
+    page.find_element(By.XPATH, "//div[text()=' Опросы ']").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Добавить опрос']")))
 
