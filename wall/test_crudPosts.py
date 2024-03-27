@@ -9,7 +9,7 @@ from random import randint
 
 @pytest.fixture()
 def workspace():
-    client = 'testing9'
+    client = 'testing3'
     return client
 @pytest.fixture()
 def userLog():
@@ -26,7 +26,7 @@ def page():
     driver = webdriver.Chrome()
     #driver.implicitly_wait(5)
     driver.maximize_window()
-    driver.get("https://staging.connectable.site/login")
+    driver.get("https://connectable.site/login")
     return driver
 
 def test_crudPostsNewsline(page, workspace, userLog, password):
