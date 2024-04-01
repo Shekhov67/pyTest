@@ -45,6 +45,8 @@ def test_polls(page, workspace, userLog, password, polls):
 
     pollsName = 'Питон опрос'
 
+    pollDescription = 'Это описание опроса на питонском автотесте'
+
     wait = WebDriverWait(page, 5)
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
@@ -87,4 +89,100 @@ def test_polls(page, workspace, userLog, password, polls):
 
     page.find_element(By.XPATH, "(//input)[1]").send_keys(pollsName)
 
-    time.sleep(5)
+    page.find_element(By.XPATH, "//textarea").clear()
+
+    page.find_element(By.XPATH, "//textarea").send_keys(pollDescription)
+
+    plus = page.find_element(By.XPATH, "//div[@class='abs']")
+
+    plus.click()
+
+    (page.find_element(By.XPATH,
+                      '//input[@class="ant-input empty-input"]').send_keys('Вопрос первый'))
+
+    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+
+    plus.click()
+
+    (page.find_element(By.XPATH,
+                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос второй'))
+
+    page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[2]").click()
+
+    page.find_element(By.XPATH, "//li[text()='Развернутый ответ текстом']").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+##Вопросы с диапазонами чисел
+    plus.click()
+
+    (page.find_element(By.XPATH,
+                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос третий'))
+
+    page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[3]").click()
+
+    page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[2]").click()
+
+    page.find_element(By.XPATH, "(//span[text()='от 1 до 5'])[1]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+
+    plus.click()
+
+    (page.find_element(By.XPATH,
+                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос четвертый'))
+
+    page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[4]").click()
+
+    page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[3]").click()
+
+    page.find_element(By.XPATH, "(//span[text()='от 1 до 10'])[2]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+
+    plus.click()
+
+    (page.find_element(By.XPATH,
+                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос пятый'))
+
+    page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[5]").click()
+
+    page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[4]").click()
+
+    page.find_element(By.XPATH, "(//span[text()='от 1 до 100'])[3]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+
+    plus.click()
+
+    variant = "(//span[text()='Добавить вариант ответа'])[1]"
+
+    (page.find_element(By.XPATH,
+                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос шестой'))
+
+    page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[6]").click()
+
+    page.find_element(By.XPATH, "(//li[text()='Один вариант из списка'])[5]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", variant)
+
+    page.find_element(By.XPATH, "(//span[text()='Добавить вариант ответа'])[1]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", variant)
+
+    page.find_element(By.XPATH, "(//span[text()='Добавить вариант ответа'])[1]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", variant)
+
+    page.find_element(By.XPATH, "(//span[text()='Добавить вариант ответа'])[1]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", variant)
+
+    page.find_element(By.XPATH, "(//span[text()='Добавить вариант ответа'])[1]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", variant)
+
+    page.find_element(By.XPATH, "(//span[text()='Добавить вариант ответа'])[1]").click()
+
+    page.execute_script("arguments[0].scrollIntoView(true);", variant)
+
+    time.sleep(2)
