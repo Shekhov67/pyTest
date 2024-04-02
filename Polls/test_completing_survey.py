@@ -1,6 +1,5 @@
 import random
 import time
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -111,7 +110,7 @@ def test_complet_poll(page, workspace, userLog, password, polls):
 
     nxt.click()
 
-    ##page.find_element(By.XPATH, '//div[@class="ant-slider-step"]').
+    page.find_element(By.XPATH, '//div[@class="ant-slider-step"]')
 
     page.find_element(By.XPATH, '//div[@class="ant-slider-step"]').click()
 
