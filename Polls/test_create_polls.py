@@ -94,7 +94,7 @@ def test_open_poll(page, workspace, userLog, password, polls):
     page.find_element(By.XPATH, "//textarea").clear()
 
     page.find_element(By.XPATH, "//textarea").send_keys(pollDescription)
-##Кнопка добавления вопроса
+##Кнопка добавления вопроса1
     plus = page.find_element(By.XPATH, "//div[@class='abs']")
 
     plus.click()
