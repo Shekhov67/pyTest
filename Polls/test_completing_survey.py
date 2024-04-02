@@ -115,6 +115,6 @@ def test_complet_poll(page, workspace, userLog, password, polls):
 
     page.find_element(By.XPATH, '//div[@class="ant-slider-step"]').click()
 
-    #nxt.click()1
+    #nxt.click()
 
     time.sleep(3)
