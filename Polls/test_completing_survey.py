@@ -26,7 +26,7 @@ def workspace():
     return client
 @pytest.fixture()
 def userLog():
-    user = 't24@gmail.com'
+    user = 't26@gmail.com'
     return user
 @pytest.fixture()
 def password():
@@ -80,7 +80,9 @@ def test_completing_poll_open(page, workspace, userLog, password, polls):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f'//*[@d="{polls}"]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, '//*[@clip-path="url(#clip0_2208_4701)"]')))
+
+    ##page.find_element(By.XPATH, '//*[@clip-path="url(#clip0_2208_4701)"]').click()
 
     page.find_element(By.XPATH, '//*[@id="menu-container"]/div[12]/div[1]').click()
 
