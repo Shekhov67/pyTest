@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 @pytest.fixture()
@@ -110,9 +111,13 @@ def test_complet_poll(page, workspace, userLog, password, polls):
 
     nxt.click()
 
-    page.find_element(By.XPATH, '//div[@class="ant-slider-step"]')
+    action = ActionChains(page)
 
-    page.find_element(By.XPATH, '//div[@class="ant-slider-step"]').click()
+    point = page.find_element(By.XPATH, '//div[@role="slider"]')
+
+    num = randint(1, 338)
+
+    action.click_and_hold(point).move_by_offset(num, 0).click().perform()
 
     #nxt.click()
 
