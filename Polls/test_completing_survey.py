@@ -26,7 +26,7 @@ def workspace():
     return client
 @pytest.fixture()
 def userLog():
-    user = 't33@gmail.com'
+    user = 't24@gmail.com'
     return user
 @pytest.fixture()
 def password():
