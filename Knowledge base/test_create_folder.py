@@ -1,5 +1,4 @@
 import time
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -24,7 +23,7 @@ def password():
 def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
+    #driver.implicitly_wait(5)
     driver.maximize_window()
     driver.get("https://staging.connectable.site/")
     return driver
@@ -59,9 +58,15 @@ def test_create(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
+    wait.until(EC.presence_of_element_located((By.XPATH, '(//div[@class="f-grow-1"])[7]')))
+
     page.find_element(By.XPATH, '(//div[@class="f-grow-1"])[7]').click()
 
-    for i in range(100):
+    for i in range(20):
+
+        wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Добавить']")))
+
+        wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Добавить']")))
 
         page.find_element(By.XPATH, "//div[text()='Добавить']").click()
 
@@ -69,8 +74,18 @@ def test_create(page, workspace, userLog, password):
 
         page.find_element(By.XPATH, '//input[@placeholder="Добавьте название"]').send_keys(f'Питонская папка {i}')
 
-        page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+        window_folder = page.find_element(By.XPATH, '//div[@class="ant-modal-content"]')
 
-        page.refresh()
+        try:
+            wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="ant-modal-content"]')))
 
-        #time.sleep(5)
+            wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Сохранить']")))
+
+            page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+        except:
+            print('not button')
+
+        if window_folder:
+            page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+        else:
+            page.delete_all_cookies()
