@@ -62,7 +62,7 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '(//div[@class="f-grow-1"])[7]').click()
 
-    for i in range(20):
+    for i in range(100):
 
         wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Добавить']")))
 
@@ -85,7 +85,14 @@ def test_create(page, workspace, userLog, password):
         except:
             print('not button')
 
-        if window_folder:
             page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+        if window_folder:
+
+            wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Сохранить']")))
+
+            page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+            page.delete_all_cookies()
         else:
             page.delete_all_cookies()
