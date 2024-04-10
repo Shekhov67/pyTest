@@ -22,11 +22,11 @@ def polls():
 
 @pytest.fixture()
 def workspace():
-    client = 'testing9'
+    client = 'pytest'
     return client
 @pytest.fixture()
 def userLog():
-    user = 't33@gmail.com'
+    user = 'py1@gmail.com'
     return user
 @pytest.fixture()
 def password():
