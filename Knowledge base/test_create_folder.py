@@ -61,9 +61,7 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '(//div[@class="f-grow-1"])[7]').click()
 
-    for i in range(10):
-
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Добавить']")))
+    for i in range(100):
 
         page.find_element(By.XPATH, "//div[text()='Добавить']").click()
 
@@ -73,4 +71,6 @@ def test_create(page, workspace, userLog, password):
 
         page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
-        #time.sleep(1)
+        page.refresh()
+
+        #time.sleep(5)
