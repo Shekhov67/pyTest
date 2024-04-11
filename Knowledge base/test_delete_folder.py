@@ -72,6 +72,8 @@ def test_create(page, workspace, userLog, password):
 
     for i in range(int(num_folder)):
 
+        page.refresh()
+
         wait.until(EC.presence_of_element_located((By.XPATH,
                                                    '(//div[@class="item pointer relative p1 radius2 folder"])[1]')))
 
@@ -97,4 +99,6 @@ def test_create(page, workspace, userLog, password):
 
         page.find_element(By.XPATH, '//button[@class="ant-btn ant-btn-danger"]').click()
 
-        #Добавить ожидание когда пропадает окно подтверждения
+        wait.until_not(EC.presence_of_element_located((By.XPATH, '//div[@class="ant-modal-body"]')))
+
+        page.delete_all_cookies()
