@@ -10,7 +10,7 @@ from random import randint
 
 @pytest.fixture()
 def workspace():
-    client = 'testing9'
+    client = 'pytest'
     return client
 @pytest.fixture()
 def userLog():

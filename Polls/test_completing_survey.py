@@ -1,3 +1,5 @@
+import random
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -20,11 +22,11 @@ def polls():
 
 @pytest.fixture()
 def workspace():
-    client = 'pytest'
+    client = 'testing9'
     return client
 @pytest.fixture()
 def userLog():
-    user = 'py1@gmail.com'
+    user = 't26@gmail.com'
     return user
 @pytest.fixture()
 def password():
@@ -39,6 +41,14 @@ def page():
     driver.maximize_window()
     driver.get("https://staging.connectable.site/")
     return driver
+
+def end_test(page):
+
+    page.close()
+
+    pass
+
+    print('Test close')
 
 def test_completing_poll_open(page, workspace, userLog, password, polls):
 
