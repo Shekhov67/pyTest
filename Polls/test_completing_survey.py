@@ -96,7 +96,7 @@ def test_completing_poll_open(page, workspace, userLog, password, polls):
 
     except:
         print(f"Пользователь {userLog} проходил опрос")
-        end_test(page)
+        page.close()
 
     ##Кнопка следующий вопрос
 
