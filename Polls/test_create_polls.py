@@ -5,18 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
 
-
-@pytest.fixture()
-def polls():
-    poll = ("M14.1399 10.5934C13.7158 11.5964 13.0525 "
-            "12.4802 12.2079 13.1676C11.3633 13.855 10.3631 "
-            "14.325 9.2949 14.5366C8.22668 14.7481 7.12289 14.6948 "
-            "6.08004 14.3813C5.03719 14.0677 4.08703 13.5034 3.31262 "
-            "12.7378C2.53822 11.9722 1.96315 11.0286 1.6377 9.98935C1.31225 8.95015 "
-            "1.24632 7.84704 1.44568 6.77647C1.64503 5.70591 2.10361 4.70047 2.78131 3.84807C3.45901"
-            " 2.99567 4.3352 2.32226 5.33328 1.88672")
-    return poll
-
 @pytest.fixture()
 def workspace():
     client = 'pytest'
@@ -39,7 +27,7 @@ def page():
     driver.get("https://staging.connectable.site/")
     return driver
 
-def test_open_poll(page, workspace, userLog, password, polls):
+def test_open_poll(page, workspace, userLog, password):
 
     pollsName = 'Питон опрос открытый'
 
@@ -73,9 +61,9 @@ def test_open_poll(page, workspace, userLog, password, polls):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f'//*[@d="{polls}"]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-    page.find_element(By.XPATH, '//*[@id="menu-container"]/div[12]/div[1]').click()
+    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Добавить опрос']")))
 
@@ -222,7 +210,7 @@ def test_open_poll(page, workspace, userLog, password, polls):
 
     btn_save.click()
 
-def test_close_poll(page, workspace, userLog, password, polls):
+def test_close_poll(page, workspace, userLog, password):
 
     pollsName = 'Питон опрос закрытый'
 
@@ -256,9 +244,9 @@ def test_close_poll(page, workspace, userLog, password, polls):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f'//*[@d="{polls}"]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-    page.find_element(By.XPATH, '//*[@id="menu-container"]/div[12]/div[1]').click()
+    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Добавить опрос']")))
 
@@ -405,7 +393,7 @@ def test_close_poll(page, workspace, userLog, password, polls):
 
     btn_save.click()
 
-def test_anonim_poll(page, workspace, userLog, password, polls):
+def test_anonim_poll(page, workspace, userLog, password):
 
     pollsName = 'Питон опрос анонимный'
 
@@ -439,9 +427,9 @@ def test_anonim_poll(page, workspace, userLog, password, polls):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f'//*[@d="{polls}"]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-    page.find_element(By.XPATH, '//*[@id="menu-container"]/div[12]/div[1]').click()
+    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Добавить опрос']")))
 

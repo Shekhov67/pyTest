@@ -29,9 +29,9 @@ def test_first(page):
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
     WebDriverWait(page, 5).until(
-        EC.presence_of_element_located((By.XPATH, '(//div[@class="f-grow-1"])[16]')))
+        EC.presence_of_element_located((By.XPATH, "//*[contains(text(), ' Администрирование')]")))
 
-    page.find_element(By.XPATH, '(//div[@class="f-grow-1"])[16]').click()
+    page.find_element(By.XPATH, "//*[contains(text(), ' Администрирование')]").click()
 
     for i in range(100):
 
