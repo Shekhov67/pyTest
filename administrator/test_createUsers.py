@@ -38,9 +38,9 @@ def test_first(page):
         page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
         WebDriverWait(page, 5).until(
-            EC.presence_of_element_located((By.XPATH, '//*[@clip-path="url(#clip0_2208_4728)"]')))
+            EC.presence_of_element_located((By.XPATH, "//*[contains(text(), ' Администрирование')]")))
 
-        page.find_element(By.XPATH, '(//*[@class="f-grow-1"])[16]').click()
+        page.find_element(By.XPATH, "//*[contains(text(), ' Администрирование')]").click()
 
         # row - количество заполненых строк в эксель файле, от количества строк зависит количество циклов
         for i in range(2, row+1):
