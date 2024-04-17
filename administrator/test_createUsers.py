@@ -29,7 +29,7 @@ def test_first(page):
 
     try:
 
-        page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing4')
+        page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('pytest')
 
         page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
@@ -38,9 +38,9 @@ def test_first(page):
         page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
         WebDriverWait(page, 5).until(
-            EC.presence_of_element_located((By.XPATH, "//div[text()=' Администрирование ']")))
+            EC.presence_of_element_located((By.XPATH, '//*[@clip-path="url(#clip0_2208_4728)"]')))
 
-        page.find_element(By.XPATH, "//div[text()=' Администрирование ']").click()
+        page.find_element(By.XPATH, '(//*[@class="f-grow-1"])[16]').click()
 
         # row - количество заполненых строк в эксель файле, от количества строк зависит количество циклов
         for i in range(2, row+1):
@@ -85,9 +85,6 @@ def test_first(page):
                 (By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']")))
 
             page.find_element(By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']").click()
-
-
-
     except:
         print('ERROR')
     finally:
