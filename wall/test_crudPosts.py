@@ -24,7 +24,7 @@ def password():
 def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
+    #driver.implicitly_wait(5)
     driver.maximize_window()
     driver.get("https://staging.connectable.site/login")
     return driver
@@ -91,9 +91,9 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'13.707Z')]")))
 
-    page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
+    page.find_element(By.XPATH, "//*[contains(@d,'13.707Z')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4']")))
 
@@ -107,7 +107,11 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[1]").click()
 
-    page.find_element(By.XPATH, "(//div[text()=' Редактировать '])[1]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'8.31003Z')]")))
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'8.31003Z')]")))
+
+    page.find_element(By.XPATH, "//*[contains(@d,'8.31003Z')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-content']")))
 
@@ -128,9 +132,9 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//textarea)[2]").send_keys(updateText)
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()=' Сохранить ']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="btn f-centered pointer primary text-center"]')))
 
-    page.find_element(By.XPATH, "//div[text()=' Сохранить ']").click()
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer primary text-center"]').click()
 
     wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{updateText}']")))
 
@@ -148,7 +152,11 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    page.find_element(By.XPATH, "(//div[text()=' Удалить '])[1]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+
+    page.find_element(By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]").click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
@@ -225,9 +233,9 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'13.707Z')]")))
 
-    page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
+    page.find_element(By.XPATH, "//*[contains(@d,'13.707Z')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4']")))
 
@@ -241,7 +249,11 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[1]").click()
 
-    page.find_element(By.XPATH, "(//div[text()=' Редактировать '])[1]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'8.31003Z')]")))
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'8.31003Z')]")))
+
+    page.find_element(By.XPATH, "//*[contains(@d,'8.31003Z')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-content']")))
 
@@ -262,9 +274,9 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//textarea)[2]").send_keys(updateText)
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()=' Сохранить ']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="btn f-centered pointer primary text-center"]')))
 
-    page.find_element(By.XPATH, "//div[text()=' Сохранить ']").click()
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer primary text-center"]').click()
 
     wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{updateText}']")))
 
@@ -282,7 +294,9 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    page.find_element(By.XPATH, "(//div[text()=' Удалить '])[1]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+
+    page.find_element(By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]").click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
@@ -378,9 +392,9 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'13.707Z')]")))
 
-    page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
+    page.find_element(By.XPATH, "//*[contains(@d,'13.707Z')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4 greeting']")))
 
@@ -394,7 +408,11 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[1]").click()
 
-    page.find_element(By.XPATH, "(//div[text()=' Редактировать '])[1]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'8.31003Z')]")))
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'8.31003Z')]")))
+
+    page.find_element(By.XPATH, "//*[contains(@d,'8.31003Z')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-content']")))
 
@@ -417,9 +435,9 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//textarea)[2]").send_keys(f'{user}{updateText}')
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()=' Сохранить ']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="btn f-centered pointer primary text-center"]')))
 
-    page.find_element(By.XPATH, "//div[text()=' Сохранить ']").click()
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer primary text-center"]').click()
 
     wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{updateText}']")))
 
@@ -439,7 +457,9 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    page.find_element(By.XPATH, "(//div[text()=' Удалить '])[1]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+
+    page.find_element(By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]").click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
@@ -540,9 +560,9 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()=' Открыть '])[1]")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'13.707Z')]")))
 
-    page.find_element(By.XPATH, "(//div[text()=' Открыть '])[1]").click()
+    page.find_element(By.XPATH, "//*[contains(@d,'13.707Z')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4 greeting']")))
 
@@ -556,7 +576,11 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[1]").click()
 
-    page.find_element(By.XPATH, "(//div[text()=' Редактировать '])[1]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'8.31003Z')]")))
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'8.31003Z')]")))
+
+    page.find_element(By.XPATH, "//*[contains(@d,'8.31003Z')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='ant-drawer-content']")))
 
@@ -577,9 +601,9 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//textarea)[2]").send_keys(f'{user}{updateText}')
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()=' Сохранить ']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="btn f-centered pointer primary text-center"]')))
 
-    page.find_element(By.XPATH, "//div[text()=' Сохранить ']").click()
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer primary text-center"]').click()
 
     wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[text()='{updateText}']")))
 
@@ -599,7 +623,9 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    page.find_element(By.XPATH, "(//div[text()=' Удалить '])[1]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+
+    page.find_element(By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]").click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
