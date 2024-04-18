@@ -165,7 +165,7 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     print(alertDeletedPost)
 
-    assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста "
+    assert alertDeletedPost == "Пост удален", " Проверка алерта удаления поста  "
 
 def test_crudPostsNewsCompany(page, workspace, userLog, password):
     #createText - переменная для ввода текста в создаваеммом посте
