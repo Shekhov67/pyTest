@@ -9,7 +9,7 @@ from random import randint
 
 @pytest.fixture()
 def workspace():
-    client = 'testing3'
+    client = 'pytest'
     return client
 @pytest.fixture()
 def userLog():
@@ -24,9 +24,9 @@ def password():
 def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
-    #driver.implicitly_wait(5)
+    driver.implicitly_wait(5)
     driver.maximize_window()
-    driver.get("https://connectable.site/login")
+    driver.get("https://staging.connectable.site/login")
     return driver
 
 def test_crudPostsNewsline(page, workspace, userLog, password):
@@ -44,8 +44,6 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
-
-    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
 
     try:
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
@@ -66,7 +64,10 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
-    page.find_element(By.XPATH, "//div[text()=' Стена ']").click()
+    WebDriverWait(page, 5).until(
+        EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Стена')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Стена')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Лента событий']")))
 

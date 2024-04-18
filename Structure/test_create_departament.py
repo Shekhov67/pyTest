@@ -61,9 +61,9 @@ def test_create(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, '(//div[@class="f-grow-1"])[4]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Структура')]")))
 
-    page.find_element(By.XPATH, '(//div[@class="f-grow-1"])[4]').click()
+    page.find_element(By.XPATH, "//*[contains(text(), 'Структура')]").click()
 
     for i in range(200):
 

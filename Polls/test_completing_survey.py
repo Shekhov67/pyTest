@@ -1,5 +1,3 @@
-import random
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,25 +6,13 @@ import pytest
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
 
-
-@pytest.fixture()
-def polls():
-    poll = ("M14.1399 10.5934C13.7158 11.5964 13.0525 "
-            "12.4802 12.2079 13.1676C11.3633 13.855 10.3631 "
-            "14.325 9.2949 14.5366C8.22668 14.7481 7.12289 14.6948 "
-            "6.08004 14.3813C5.03719 14.0677 4.08703 13.5034 3.31262 "
-            "12.7378C2.53822 11.9722 1.96315 11.0286 1.6377 9.98935C1.31225 8.95015 "
-            "1.24632 7.84704 1.44568 6.77647C1.64503 5.70591 2.10361 4.70047 2.78131 3.84807C3.45901"
-            " 2.99567 4.3352 2.32226 5.33328 1.88672")
-    return poll
-
 @pytest.fixture()
 def workspace():
-    client = 'testing9'
+    client = 'pytest'
     return client
 @pytest.fixture()
 def userLog():
-    user = 't26@gmail.com'
+    user = 'py6@gmail.com'
     return user
 @pytest.fixture()
 def password():
@@ -42,15 +28,7 @@ def page():
     driver.get("https://staging.connectable.site/")
     return driver
 
-def end_test(page):
-
-    page.close()
-
-    pass
-
-    print('Test close')
-
-def test_completing_poll_open(page, workspace, userLog, password, polls):
+def test_completing_poll_open(page, workspace, userLog, password):
 
     wait = WebDriverWait(page, 5)
 
@@ -80,11 +58,9 @@ def test_completing_poll_open(page, workspace, userLog, password, polls):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, '//*[@clip-path="url(#clip0_2208_4701)"]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-    ##page.find_element(By.XPATH, '//*[@clip-path="url(#clip0_2208_4701)"]').click()
-
-    page.find_element(By.XPATH, '//*[@id="menu-container"]/div[12]/div[1]').click()
+    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
     page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('открытый')
 
@@ -153,7 +129,7 @@ def test_completing_poll_open(page, workspace, userLog, password, polls):
 
     page.find_element(By.XPATH, "//div[text()='Завершить']").click()
 
-def test_completing_poll_close(page, workspace, userLog, password, polls):
+def test_completing_poll_close(page, workspace, userLog, password):
 
     wait = WebDriverWait(page, 5)
 
@@ -183,9 +159,9 @@ def test_completing_poll_close(page, workspace, userLog, password, polls):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f'//*[@d="{polls}"]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-    page.find_element(By.XPATH, '//*[@id="menu-container"]/div[12]/div[1]').click()
+    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
     page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('закрытый')
 
@@ -253,7 +229,7 @@ def test_completing_poll_close(page, workspace, userLog, password, polls):
 
     page.find_element(By.XPATH, "//div[text()='Завершить']").click()
 
-def test_completing_poll_anonim(page, workspace, userLog, password, polls):
+def test_completing_poll_anonim(page, workspace, userLog, password):
 
     wait = WebDriverWait(page, 5)
 
@@ -283,9 +259,9 @@ def test_completing_poll_anonim(page, workspace, userLog, password, polls):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, f'//*[@d="{polls}"]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-    page.find_element(By.XPATH, '//*[@id="menu-container"]/div[12]/div[1]').click()
+    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
     page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('анонимный')
 
