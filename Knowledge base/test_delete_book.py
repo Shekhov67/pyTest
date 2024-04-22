@@ -43,6 +43,8 @@ def test_create(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
     try:
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
         print(moodBlock)

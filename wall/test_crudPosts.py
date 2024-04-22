@@ -46,6 +46,8 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
     try:
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
         print(moodBlock)
@@ -152,11 +154,11 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
 
-    page.find_element(By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]").click()
+    page.find_element(By.XPATH, "(//*[contains(@d, '8.1046')])[1]").click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
@@ -186,6 +188,8 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
 
     try:
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
         print(moodBlock)
@@ -326,6 +330,8 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
 
     try:
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
         print(moodBlock)
@@ -490,6 +496,8 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
 
     try:
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
         print(moodBlock)

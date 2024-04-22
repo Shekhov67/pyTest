@@ -41,6 +41,8 @@ def test_completing_poll_open(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
     try:
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
         print(moodBlock)
@@ -142,6 +144,8 @@ def test_completing_poll_close(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
     try:
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
         print(moodBlock)
@@ -242,6 +246,8 @@ def test_completing_poll_anonim(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
     try:
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+
         moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
         print(moodBlock)
