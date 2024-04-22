@@ -1,3 +1,4 @@
+import time
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -154,11 +155,13 @@ def test_crudPostsNewsline(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
+    icon_delete = page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[5]')
+
     wait.until(EC.presence_of_element_located((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
 
     wait.until(EC.element_to_be_clickable((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
 
-    page.find_element(By.XPATH, "(//*[contains(@d, '8.1046')])[1]").click()
+    icon_delete.click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
@@ -185,8 +188,6 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
-
     try:
         wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
 
@@ -209,7 +210,10 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
-    page.find_element(By.XPATH, "//div[text()=' Стена ']").click()
+    WebDriverWait(page, 5).until(
+        EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Стена')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Стена')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Новости компании']")))
 
@@ -298,9 +302,13 @@ def test_crudPostsNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+    icon_delete = page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[5]')
 
-    page.find_element(By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
+
+    icon_delete.click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
@@ -327,8 +335,6 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
-
     try:
         wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
 
@@ -350,7 +356,10 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
-    page.find_element(By.XPATH, "//div[text()=' Стена ']").click()
+    WebDriverWait(page, 5).until(
+        EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Стена')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Стена')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Лента событий']")))
 
@@ -463,9 +472,13 @@ def test_crudPostGratitudeNewsLine(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+    icon_delete = page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[5]')
 
-    page.find_element(By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
+
+    icon_delete.click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
@@ -493,8 +506,6 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()=' Стена ']")))
-
     try:
         wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
 
@@ -516,7 +527,10 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
-    page.find_element(By.XPATH, "//div[text()=' Стена ']").click()
+    WebDriverWait(page, 5).until(
+        EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Стена')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Стена')]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Новости компании']")))
 
@@ -631,9 +645,13 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[contains(@class,'small')])[2]").click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]")))
+    icon_delete = page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[5]')
 
-    page.find_element(By.XPATH, "//*[contains(@d,'18H9V9H11V18Z')]").click()
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//*[contains(@d, '8.1046')])[1]")))
+
+    icon_delete.click()
 
     wait.until(EC.element_to_be_clickable
                ((By.XPATH, '//div[@class="ant-notification-notice-message"]')))
