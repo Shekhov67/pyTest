@@ -72,7 +72,7 @@ def test_create(page, workspace, userLog, password):
 
     page.execute_script("arguments[0].scrollIntoView(true);", materials)
 
-    num_materials = page.find_element(By.XPATH, '(//div[@class="badge ml2 text-12 secondary wide bold"])[2]').text
+    num_materials = page.find_element(By.XPATH, '(//div[@class="badge ml2 text-12 secondary wide bold"])[1]').text
 
     print(num_materials)
 
@@ -86,9 +86,9 @@ def test_create(page, workspace, userLog, password):
 
         material_mouse.move_to_element(material).perform()
 
-        #найти веб элемент(метериалы) по несколькоим xpath
+        time.sleep(3)
 
-        wait.until(EC.presence_of_all_elements_located((By.XPATH, '')))
+        wait.until(EC.presence_of_element_located((By.XPATH, '(//*[@class="svg-icon grey"])[1]')))
 
         page.find_element(By.XPATH, '(//*[@class="svg-icon grey"])[1]').click()
 
@@ -96,4 +96,14 @@ def test_create(page, workspace, userLog, password):
 
         page.find_element(By.XPATH, '(//div[@class="dropdown-item text-red"])[1]').click()
 
-        time.sleep(3)
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="ant-modal-body"]')))
+
+        wait.until(EC.presence_of_element_located((By.XPATH, "//span[text()='Да']")))
+
+        wait.until(EC.element_to_be_clickable((By.XPATH, "//span[text()='Да']")))
+
+        page.find_element(By.XPATH, '//button[@class="ant-btn ant-btn-danger"]').click()
+
+        wait.until_not(EC.presence_of_element_located((By.XPATH, '//div[@class="ant-modal-body"]')))
+
+        page.delete_all_cookies()
