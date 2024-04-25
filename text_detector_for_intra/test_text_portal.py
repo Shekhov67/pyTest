@@ -85,8 +85,12 @@ def test_text(page, workspace, userLog, password):
 
         detect_language = detect(list_text[i])
 
+        #ошибка на тексте с цифрами
+
         print(list_text[i])
 
         if detect_language == 'ru':
             print(f'Текст на русском языке: {list_text[i]}')
+
+
 
