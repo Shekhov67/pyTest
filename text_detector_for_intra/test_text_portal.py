@@ -75,21 +75,17 @@ def test_text(page, workspace, userLog, password):
 
     text_detection = page.find_element(By.XPATH, "//html").text
 
-    print(text_detection)
-
     list_text = text_detection.split()
 
     print(list_text)
-
-    print(len(list_text))
-
-    print(detect(list_text[1]))
 
     for i in range(len(list_text)):
 
         time.sleep(1)
 
         detect_language = detect(list_text[i])
+
+        print(list_text[i])
 
         if detect_language == 'ru':
             print(f'Текст на русском языке: {list_text[i]}')
