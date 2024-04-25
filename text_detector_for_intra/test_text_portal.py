@@ -1,6 +1,7 @@
 import time
 from langdetect import detect, DetectorFactory
 from selenium.webdriver.common.action_chains import ActionChains
+import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -69,7 +70,7 @@ def test_text(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Company data')]").click()
 
-    time.sleep(3)
+    #time.sleep(3)
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//html")))
 
@@ -77,20 +78,28 @@ def test_text(page, workspace, userLog, password):
 
     list_text = text_detection.split()
 
-    print(list_text)
-
     for i in range(len(list_text)):
 
-        time.sleep(1)
+        string_list = list_text[i]
 
-        detect_language = detect(list_text[i])
+        new_string_list = re.sub(r'[^А-Яа-я]', '', string_list)
 
-        #ошибка на тексте с цифрами
+        if new_string_list == '':
+            continue
 
-        print(list_text[i])
+        else:
 
-        if detect_language == 'ru':
-            print(f'Текст на русском языке: {list_text[i]}')
+            detect_language = detect(new_string_list.lower())
+
+            a = detect('Телефон')
+
+            print(a)
+
+            #print(detect_language)
+
+            if detect_language == 'ru' or detect_language == 'bg':
+                print(f'Текст на русском языке: {new_string_list}')
+
 
 
 
