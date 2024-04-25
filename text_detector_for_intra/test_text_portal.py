@@ -91,13 +91,10 @@ def test_text(page, workspace, userLog, password):
 
             detect_language = detect(new_string_list.lower())
 
-            a = detect('Телефон')
-
-            print(a)
-
-            #print(detect_language)
+            print(detect_language)
 
             if detect_language == 'ru' or detect_language == 'bg':
+
                 print(f'Текст на русском языке: {new_string_list}')
 
 
