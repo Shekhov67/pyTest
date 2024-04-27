@@ -1,13 +1,10 @@
-import time
-from langdetect import detect, DetectorFactory
-from selenium.webdriver.common.action_chains import ActionChains
-import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
+from method_scan_ru_text import scan_ru_text
 
 @pytest.fixture()
 def workspace():
@@ -66,36 +63,20 @@ def test_text(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Administration')]").click()
 
+    #Поиск русских слов на странице
+    scan_ru_text(page, wait)
+
     wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Company data')]")))
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Company data')]").click()
 
-    #time.sleep(3)
+    scan_ru_text(page, wait)
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//html")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Rights and roles')]")))
 
-    text_detection = page.find_element(By.XPATH, "//html").text
+    page.find_element(By.XPATH, "//*[contains(text(), 'Rights and roles')]").click()
 
-    list_text = text_detection.split()
-
-    for i in range(len(list_text)):
-
-        string_list = list_text[i]
-
-        new_string_list = re.sub(r'[^А-Яа-я]', '', string_list)
-
-        if new_string_list == '':
-            continue
-
-        else:
-
-            detect_language = detect(new_string_list.lower())
-
-            print(detect_language)
-
-            if detect_language == 'ru' or detect_language == 'bg':
-
-                print(f'Текст на русском языке: {new_string_list}')
+    scan_ru_text(page, wait)
 
 
 
