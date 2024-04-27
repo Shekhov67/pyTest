@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 def scan_ru_text(page, wait):
 
+    #Ожидание появления текста на странице
     time.sleep(1)
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//html")))
