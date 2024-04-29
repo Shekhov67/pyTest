@@ -179,6 +179,54 @@ def test_text(page, workspace, userLog, password):
 
     scan_ru_text(page, wait)
 
+    page.find_element(By.XPATH, "//*[contains(text(), 'Adaptation')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[2]')))
+
+    page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[2]').click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Scenario')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Scenario')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Participants')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Participants')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Polls')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Polls')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, '//*[@class="text-mid-grey"]')))
+
+    page.find_element(By.XPATH, '//*[@class="text-mid-grey"]').click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, '(//*[@class="btn f-centered pointer primary full text-center"])[1]')))
+
+    page.find_element(By.XPATH, '(//*[@class="btn f-centered pointer primary full text-center"])[1]').click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Table')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Table')]").click()
+
+    scan_ru_text(page, wait)
+
+
+
 
 
 
