@@ -225,6 +225,22 @@ def test_text(page, workspace, userLog, password):
 
     scan_ru_text(page, wait)
 
+    page.find_element(By.XPATH, "//*[contains(text(), 'Shop')]").click()
+
+    scan_ru_text(page, wait)
+
+    page.find_element(By.XPATH, "(//*[contains(text(), 'Add')])[2]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Achievement')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Achievement')]").click()
+
+    scan_ru_text(page, wait)
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Achievement')]").click()
+
 
 
 
