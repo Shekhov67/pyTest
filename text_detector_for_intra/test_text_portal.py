@@ -1,4 +1,7 @@
+import time
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -75,6 +78,104 @@ def test_text(page, workspace, userLog, password):
     wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Rights and roles')]")))
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Rights and roles')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Mood statistic')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Mood statistic')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Other settings')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Other settings')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Notifications')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Notifications')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Notification settings')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Notification settings')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Notification templates')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'Notification templates')]").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='New employee']")))
+
+    page.find_element(By.XPATH, "//div[text()='New employee']").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='About']")))
+
+    page.find_element(By.XPATH, "//div[text()='About']").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Social networks']")))
+
+    page.find_element(By.XPATH, "//div[text()='Social networks']").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Personnel documents']")))
+
+    page.find_element(By.XPATH, "//div[text()='Personnel documents']").click()
+
+    scan_ru_text(page, wait)
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Files for HR']")))
+
+    page.find_element(By.XPATH, "//div[text()='Files for HR']").click()
+
+    scan_ru_text(page, wait)
+
+    page.find_element(By.XPATH, '//button[@class="ant-btn"]').click()
+
+    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'All employees')]")))
+
+    page.find_element(By.XPATH, "//*[contains(text(), 'All employees')]").click()
+
+    wait.until(EC.presence_of_element_located((By.XPATH, '//i[@aria-label="icon: edit"]')))
+
+    time.sleep(2)
+
+    action = ActionChains(page)
+
+    edit = page.find_element(By.XPATH, '//i[@aria-label="icon: edit"]')
+
+    action.click_and_hold(edit).move_by_offset(5, 0).click().perform()
+
+    scan_ru_text(page, wait)
+
+    page.find_element(By.XPATH, "//div[text()='Social networks']").click()
+
+    scan_ru_text(page, wait)
+
+    page.find_element(By.XPATH, "(//div[text()='Notifications'])[2]").click()
+
+    scan_ru_text(page, wait)
+
+    page.find_element(By.XPATH, "//div[text()='Personnel info']").click()
+
+    scan_ru_text(page, wait)
+
+    page.find_element(By.XPATH, "//div[text()='HR files']").click()
+
+    scan_ru_text(page, wait)
+
+    page.find_element(By.XPATH, "//div[text()='Cancel']").click()
 
     scan_ru_text(page, wait)
 
