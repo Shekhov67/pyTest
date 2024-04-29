@@ -239,7 +239,7 @@ def test_text(page, workspace, userLog, password):
 
     scan_ru_text(page, wait)
 
-    page.find_element(By.XPATH, "//*[contains(text(), 'Achievement')]").click()
+    page.quit()
 
 
 
