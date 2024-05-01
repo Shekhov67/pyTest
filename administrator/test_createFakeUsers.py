@@ -40,6 +40,7 @@ def test_first(page):
         job = faker.job()
         name = faker.first_name_male()
         last_name = faker.last_name_male()
+        middle_name = faker.middle_name_male()
 
         WebDriverWait(page, 5).until(
             EC.element_to_be_clickable((By.XPATH, "//div[text()='Новый сотрудник']")))
@@ -49,11 +50,11 @@ def test_first(page):
         WebDriverWait(page, 5).until(
             EC.element_to_be_clickable((By.XPATH, "//div[@class='ant-modal-body']")))
 
-        page.find_element(By.XPATH, "//input[@placeholder='Введите имя сотрудника']").send_keys(f'{name}')
-        page.find_element(By.XPATH, "//input[@placeholder='Введите отчество сотрудника']").send_keys('Питонович')
-        page.find_element(By.XPATH, "//input[@placeholder='Введите фамилию сотрудника']").send_keys(f'{last_name}')
-        page.find_element(By.XPATH, "//input[@placeholder='Должность']").send_keys(f'{job}')
-        page.find_element(By.XPATH, "//input[@placeholder='Введите e-mail']").send_keys(f'{email}')
+        page.find_element(By.XPATH, "//input[@placeholder='Введите имя сотрудника']").send_keys(name)
+        page.find_element(By.XPATH, "//input[@placeholder='Введите отчество сотрудника']").send_keys(middle_name)
+        page.find_element(By.XPATH, "//input[@placeholder='Введите фамилию сотрудника']").send_keys(last_name)
+        page.find_element(By.XPATH, "//input[@placeholder='Должность']").send_keys(job)
+        page.find_element(By.XPATH, "//input[@placeholder='Введите e-mail']").send_keys(email)
         page.find_element(By.XPATH, "//input[@placeholder='Пароль']").send_keys('111111')
         page.find_element(By.XPATH, "//input[@placeholder='Подтверждение пароля']").send_keys('111111')
         page.find_element(By.XPATH, "(//button[@class='ant-btn ant-btn-primary'])[2]").click()
