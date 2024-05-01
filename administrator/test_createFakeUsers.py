@@ -20,7 +20,7 @@ def page():
 def test_first(page):
     '''page это драйвер с уже запущенной старницей'''
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('pytest')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing2')
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
