@@ -62,6 +62,8 @@ def test_text(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
+    print('РАЗДЕЛ АДМИНИСТРИРОВАНИЕ /////////////////////////////////////////////////////')
+
     wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Administration')]")))
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Administration')]").click()
@@ -111,6 +113,8 @@ def test_text(page, workspace, userLog, password):
 
     scan_ru_text(page, wait)
 
+    print('СОЗДАНИЕ НОВОГО ПОЛЬЗОВАТЕЛЯ //////////////////////////////////////////////')
+
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='New employee']")))
 
     page.find_element(By.XPATH, "//div[text()='New employee']").click()
@@ -140,6 +144,8 @@ def test_text(page, workspace, userLog, password):
     page.find_element(By.XPATH, "//div[text()='Files for HR']").click()
 
     scan_ru_text(page, wait)
+
+    print('РЕДАКТИРОВАНИЕ ПОЛЬЗОВАТЕЛЯ //////////////////////////////////////////////')
 
     page.find_element(By.XPATH, '//button[@class="ant-btn"]').click()
 
@@ -178,6 +184,8 @@ def test_text(page, workspace, userLog, password):
     page.find_element(By.XPATH, "//div[text()='Cancel']").click()
 
     scan_ru_text(page, wait)
+
+    print('РАЗДЕЛ АДАПТАЦИЯ //////////////////////////////////////////////')
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Adaptation')]").click()
 
@@ -219,11 +227,15 @@ def test_text(page, workspace, userLog, password):
 
     scan_ru_text(page, wait)
 
+    print('РАЗДЕЛ ОПРОСЫ //////////////////////////////////////////////')
+
     wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Table')]")))
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Table')]").click()
 
     scan_ru_text(page, wait)
+
+    print('РАЗДЕЛ МАГАЗИН //////////////////////////////////////////////')
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Shop')]").click()
 
