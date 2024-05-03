@@ -1,10 +1,11 @@
+
+from faker import Faker
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
-from openpyxl import Workbook, load_workbook
-from faker import Faker
+
 
 @pytest.fixture()
 def page():
@@ -30,16 +31,16 @@ def test_first(page):
 
     page.find_element(By.XPATH, "//*[contains(text(), ' Администрирование')]").click()
 
-    for i in range(5):
+    for i in range(20):
         #sex = 'female'
-        fake = Faker('UK')
-        print(fake.name_male())
-        email = f'sss{i}@gmail.com'
+        fake = Faker('uk_UA')
+        email = f'ka{i}@gmail.com'
         job = fake.job()
         first_name = fake.first_name_male()
         last_name = fake.last_name_male()
-        #midd_name = fake.middle_name_male()
+        midd_name = fake.middle_name_male()
         phone = fake.phone_number()
+        print(first_name, midd_name, last_name, email)
 
         WebDriverWait(page, 5).until(
             EC.element_to_be_clickable((By.XPATH, "//div[text()='Новый сотрудник']")))
@@ -50,7 +51,7 @@ def test_first(page):
             EC.element_to_be_clickable((By.XPATH, "//div[@class='ant-modal-body']")))
 
         page.find_element(By.XPATH, "//input[@placeholder='Введите имя сотрудника']").send_keys(first_name)
-        #.find_element(By.XPATH, "//input[@placeholder='Введите отчество сотрудника']").send_keys(midd_name)
+        page.find_element(By.XPATH, "//input[@placeholder='Введите отчество сотрудника']").send_keys(midd_name)
         page.find_element(By.XPATH, "//input[@placeholder='Введите фамилию сотрудника']").send_keys(last_name)
         page.find_element(By.XPATH, "//input[@placeholder='Должность']").send_keys(job)
         page.find_element(By.XPATH, "(//input[@placeholder='Телефон'])[1]").send_keys(phone)
