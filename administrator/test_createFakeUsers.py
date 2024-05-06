@@ -34,7 +34,7 @@ def test_first(page):
     for i in range(20):
         #sex = 'female'
         fake = Faker('uk_UA')
-        email = f'ka{i}@gmail.com'
+        email = f'k6a{i}@gmail.com'
         job = fake.job()
         first_name = fake.first_name_male()
         last_name = fake.last_name_male()
