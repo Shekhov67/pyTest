@@ -67,7 +67,7 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Структура')]").click()
 
-    for i in range(200):
+    for i in range(50):
 
         count_dep = '//div[@class="new-dept btn f-centered pointer text-center secondary icon"]'
 

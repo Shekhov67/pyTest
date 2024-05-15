@@ -31,10 +31,10 @@ def test_first(page):
 
     page.find_element(By.XPATH, "//*[contains(text(), ' Администрирование')]").click()
 
-    for i in range(50):
+    for i in range(2):
         #sex = 'female'
         fake = Faker('uk_UA')
-        email = f'uwsr{i}@gmail.com'
+        email = f'uwsмывапr{i}@gmail.com'
         job = fake.job()
         first_name = fake.first_name_male()
         last_name = fake.last_name_male()
