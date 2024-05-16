@@ -191,9 +191,9 @@ def test_text(page, workspace, userLog, password):
 
     scan_ru_text(page, wait)
 
-    wait.until(EC.presence_of_element_located((By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[2]')))
+    wait.until(EC.presence_of_element_located((By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[3]')))
 
-    page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[2]').click()
+    page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[3]').click()
 
     scan_ru_text(page, wait)
 
