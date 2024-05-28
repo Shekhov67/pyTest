@@ -12,13 +12,14 @@ def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
     driver.maximize_window()
-    driver.get("https://intranetable.team/")
+    #driver.get("https://intranetable.team/")
+    driver.get("https://staging.connectable.site/")
     #driver.implicitly_wait(5)
     return driver
 def test_first(page):
     '''page это драйвер с уже запущенной старницей'''
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('ukr')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
@@ -31,7 +32,7 @@ def test_first(page):
 
     page.find_element(By.XPATH, "//*[contains(text(), ' Администрирование')]").click()
 
-    for i in range(20):
+    for i in range(5):
         #sex = 'female'
         fake = Faker('uk_UA')
         email = f'usцsr{i}@gmail.com'
