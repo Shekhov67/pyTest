@@ -11,7 +11,7 @@ def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
     driver.maximize_window()
-    driver.get("https://staging.connectable.site/articles")
+    driver.get("https://connectable.site/articles")
     driver.implicitly_wait(5)
     return driver
 
@@ -29,7 +29,7 @@ def test_first(page):
     print(f'{row} строк')
 
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('')
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
