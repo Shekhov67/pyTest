@@ -19,7 +19,7 @@ def page():
 def test_first(page):
     '''page это драйвер с уже запущенной старницей'''
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('pytest')
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
@@ -32,10 +32,10 @@ def test_first(page):
 
     page.find_element(By.XPATH, "//*[contains(text(), ' Администрирование')]").click()
 
-    for i in range(5):
+    for i in range(1000):
         #sex = 'female'
-        fake = Faker('uk_UA')
-        email = f'usцsr{i}@gmail.com'
+        fake = Faker('ru_RU')
+        email = f'i{i}@gmail.com'
         job = fake.job()
         first_name = fake.first_name_male()
         last_name = fake.last_name_male()

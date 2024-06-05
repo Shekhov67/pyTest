@@ -26,7 +26,7 @@ def password():
 def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
-    #driver.implicitly_wait(5)
+    driver.implicitly_wait(5)
     driver.maximize_window()
     driver.get("https://staging.connectable.site/")
     return driver
@@ -67,7 +67,9 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Структура')]").click()
 
-    for i in range(50):
+    time.sleep(5)
+
+    for i in range(150):
 
         count_dep = '//div[@class="new-dept btn f-centered pointer text-center secondary icon"]'
 
@@ -95,13 +97,13 @@ def test_create(page, workspace, userLog, password):
 
         wait.until(EC.element_to_be_clickable((By.XPATH, '//input')))
 
-        page.find_element(By.XPATH, '//input').send_keys(f'Питонский отдел {i}')
+        page.find_element(By.XPATH, '//input').send_keys(f'Отдел проектный {i}')
 
         wait.until(EC.presence_of_element_located((By.XPATH, '//textarea')))
 
         wait.until(EC.element_to_be_clickable((By.XPATH, '//textarea')))
 
-        page.find_element(By.XPATH, '//textarea').send_keys(f'Это питонский отдел {i} созданный с помощью автотестов')
+        page.find_element(By.XPATH, '//textarea').send_keys(f'Это проектный отдел {i} созданный с помощью автотестов')
 
         wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Сохранить']")))
 

@@ -11,7 +11,8 @@ def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
     driver.maximize_window()
-    driver.get("https://connectable.site/articles")
+    driver.get("https://staging.connectable.site/")
+    #driver.get("https://connectable.site/")
     driver.implicitly_wait(5)
     return driver
 
