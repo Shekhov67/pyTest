@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.common import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
 import time
 from selenium.webdriver.support.ui import WebDriverWait
@@ -29,8 +30,7 @@ def test_first(page):
 
     print(f'{row} строк')
 
-
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('pytest')
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
@@ -113,5 +113,24 @@ def test_first(page):
 
         WebDriverWait(page, 5).until(EC.element_to_be_clickable(
             (By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']")))
-
         page.find_element(By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']").click()
+
+
+""""
+        try:
+            WebDriverWait(page, 5).until(EC.element_to_be_clickable((By.XPATH, "//span[text()= 'Ошибка при сохранении сотрудника']")))
+            page.find_element(By.XPATH, "//span[text()= 'Ошибка при сохранении сотрудника']")
+            errText = page.find_element(By.XPATH, '//div[@class="ant-modal-confirm-content"]').text
+            print(errText)
+            WebDriverWait(page, 5).until(EC.element_to_be_clickable((By.XPATH, '(//button[@class="ant-btn ant-btn-primary"])[3]')))
+            page.find_element(By.XPATH, '(//button[@class="ant-btn ant-btn-primary"])[3]').click()
+            WebDriverWait(page, 5).until(EC.element_to_be_clickable((By.XPATH, '//button[@class="ant-btn"]')))
+            page.find_element(By.XPATH, '//button[@class="ant-btn"]').click()
+        except (TimeoutException, NoSuchElementException):
+            page.find_element(By.XPATH, "//span[text()= 'Ошибка при сохранении сотрудника']").is_enabled()
+            print(f"Сотрудник {i} создан")
+            WebDriverWait(page, 5).until(EC.element_to_be_clickable(
+                (By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']")))
+            page.find_element(By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']").click()
+
+"""
