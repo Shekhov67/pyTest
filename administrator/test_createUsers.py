@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from openpyxl import Workbook, load_workbook
 
+
 @pytest.fixture()
 def page():
     ''' Переход на страницу портала '''
@@ -107,30 +108,26 @@ def test_first(page):
         else:
             page.find_element(By.XPATH, '//input[@placeholder="Введите e-mail"]').send_keys(
                 sheet[f'D{i}'].value)
+
         page.find_element(By.XPATH, "//input[@placeholder='Пароль']").send_keys('111111')
         page.find_element(By.XPATH, "//input[@placeholder='Подтверждение пароля']").send_keys('111111')
         page.find_element(By.XPATH, "(//button[@class='ant-btn ant-btn-primary'])[2]").click()
 
-        WebDriverWait(page, 5).until(EC.element_to_be_clickable(
-            (By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']")))
-        page.find_element(By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']").click()
-
-
-""""
         try:
-            WebDriverWait(page, 5).until(EC.element_to_be_clickable((By.XPATH, "//span[text()= 'Ошибка при сохранении сотрудника']")))
-            page.find_element(By.XPATH, "//span[text()= 'Ошибка при сохранении сотрудника']")
-            errText = page.find_element(By.XPATH, '//div[@class="ant-modal-confirm-content"]').text
-            print(errText)
-            WebDriverWait(page, 5).until(EC.element_to_be_clickable((By.XPATH, '(//button[@class="ant-btn ant-btn-primary"])[3]')))
-            page.find_element(By.XPATH, '(//button[@class="ant-btn ant-btn-primary"])[3]').click()
-            WebDriverWait(page, 5).until(EC.element_to_be_clickable((By.XPATH, '//button[@class="ant-btn"]')))
-            page.find_element(By.XPATH, '//button[@class="ant-btn"]').click()
-        except (TimeoutException, NoSuchElementException):
-            page.find_element(By.XPATH, "//span[text()= 'Ошибка при сохранении сотрудника']").is_enabled()
-            print(f"Сотрудник {i} создан")
             WebDriverWait(page, 5).until(EC.element_to_be_clickable(
                 (By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']")))
             page.find_element(By.XPATH, "//*[@class= 'anticon anticon-close ant-notification-close-icon']").click()
+            print(f"Сотрудник под номером строки {i} создан")
+            print(f"\033[0;32m {sheet[f'A{i}'].value}\033[0m\n")
+        except:
+            element = page.find_element(By.XPATH, '//div[@class="ant-modal-confirm-content"]')
+            if element.is_displayed():
+                print(f"Сотрудник под номером строки {i} не создан")
+                errText = page.find_element(By.XPATH, '//div[@class="ant-modal-confirm-content"]').text
+                print(f"\033[0;31m {errText} \033[0m\n")
+                WebDriverWait(page, 5).until(EC.element_to_be_clickable((By.XPATH, '(//button[@class="ant-btn ant-btn-primary"])[3]')))
+                page.find_element(By.XPATH, '(//button[@class="ant-btn ant-btn-primary"])[3]').click()
+                WebDriverWait(page, 5).until(EC.element_to_be_clickable((By.XPATH, '//button[@class="ant-btn"]')))
+                page.find_element(By.XPATH, '//button[@class="ant-btn"]').click()
 
-"""
+    page.close()
