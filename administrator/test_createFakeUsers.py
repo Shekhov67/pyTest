@@ -13,7 +13,8 @@ def page():
     driver = webdriver.Chrome()
     driver.maximize_window()
     #driver.get("https://intranetable.team/")
-    driver.get("https://staging.connectable.site/")
+    driver.get("https://connectable.site/")
+   #driver.get("https://staging.connectable.site/")
     #driver.implicitly_wait(5)
     return driver
 def test_first(page):
@@ -32,7 +33,7 @@ def test_first(page):
 
     page.find_element(By.XPATH, "//*[contains(text(), ' Администрирование')]").click()
 
-    for i in range(1000):
+    for i in range(100):
         #sex = 'female'
         fake = Faker('ru_RU')
         email = f'i{i}@gmail.com'
