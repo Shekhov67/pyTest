@@ -66,7 +66,7 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//*[contains(text(), 'База знаний')]").click()
 
-    for i in range(10):
+    for i in range(25):
 
         try:
             wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Добавить']")))

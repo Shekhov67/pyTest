@@ -24,8 +24,8 @@ def page():
     driver = webdriver.Chrome()
     driver.implicitly_wait(5)
     driver.maximize_window()
-    driver.get("https://connectable.site/")
-    # driver.get("https://staging.connectable.site/")
+    #driver.get("https://connectable.site/")
+    driver.get("https://staging.connectable.site/")
     return driver
 
 def test_open_poll(page, workspace, userLog, password):

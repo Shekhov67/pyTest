@@ -69,7 +69,7 @@ def test_create(page, workspace, userLog, password):
 
     time.sleep(5)
 
-    for i in range(150):
+    for i in range(50):
 
         count_dep = '//div[@class="new-dept btn f-centered pointer text-center secondary icon"]'
 
