@@ -12,7 +12,7 @@ def workspace():
     return client
 @pytest.fixture()
 def userLog():
-    user = 'i2@gmail.com'
+    user = 'i1@gmail.com'
     return user
 @pytest.fixture()
 def password():
@@ -29,310 +29,330 @@ def page():
     driver.get("https://staging.connectable.site/")
     return driver
 
-def test_completing_poll_open(page, workspace, userLog, password):
+    def test_completing_poll_open(page, workspace, password):
 
-    wait = WebDriverWait(page, 5)
+        wait = WebDriverWait(page, 5)
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
+        page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
+        #page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'i{i}@gmail.com')
 
-    page.find_element(By.XPATH, '//div[text()="Log in"]').click()
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
-    try:
-        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+        page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-        moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
+        try:
+            wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
 
-        print(moodBlock)
+            moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
-        if moodBlock:
-            num = randint(1, 10)
+            print(moodBlock)
 
-            print(f'Рандомное число для оценки настроения {num}')
+            if moodBlock:
+                num = randint(1, 10)
 
-            wait.until(EC.element_to_be_clickable(
-                (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
+                print(f'Рандомное число для оценки настроения {num}')
 
-            (page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').
-             click())
-    except:
-        print('Муд блок не появился')
+                wait.until(EC.element_to_be_clickable(
+                    (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
+                (page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').
+                 click())
+        except:
+            print('Муд блок не появился')
 
-    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
+        wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-    page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('открытый')
+        page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
-    page.find_element(By.XPATH, "(//a[@class=''])[1]").click()
+        page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('открытый')
 
-    try:
+        page.find_element(By.XPATH, "(//a[@class=''])[1]").click()
 
-        page.find_element(By.XPATH, "//div[text()='Пройти опрос']").click()
+        try:
 
-    except:
-        print(f"Пользователь {userLog} проходил опрос")
-        page.close()
+            page.find_element(By.XPATH, "//div[text()='Пройти опрос']").click()
 
-    ##Кнопка следующий вопрос
+        except:
+            print(f"Пользователь {userLog} проходил опрос")
+            page.close()
 
-    nxt = page.find_element(By.XPATH, "//div[text()='Следующий вопрос']")
+        ##Кнопка следующий вопрос
 
-    (page.find_element(By.XPATH, "//input[@type='text']").
-     send_keys(f"Ответ на первый вопрос. Отвечал {userLog}"))
+        nxt = page.find_element(By.XPATH, "//div[text()='Следующий вопрос']")
 
-    nxt.click()
+        (page.find_element(By.XPATH, "//input[@type='text']").
+         send_keys(f"Ответ на первый вопрос. Отвечал {userLog}"))
 
-    (page.find_element(By.XPATH, '//textarea[@class="ant-input"]').
-     send_keys(f"Ответ на второй вопрос.Отвечал {userLog}"))
+        nxt.click()
 
-    nxt.click()
+        (page.find_element(By.XPATH, '//textarea[@class="ant-input"]').
+         send_keys(f"Ответ на второй вопрос.Отвечал {userLog}"))
 
-    num = randint(1, 5)
+        nxt.click()
 
-    page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
+        num = randint(1, 5)
 
-    nxt.click()
+        page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
 
-    num = randint(1, 10)
+        nxt.click()
 
-    page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
+        num = randint(1, 10)
 
-    nxt.click()
+        page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
 
-    action = ActionChains(page)
+        nxt.click()
 
-    point = page.find_element(By.XPATH, '//div[@role="slider"]')
+        action = ActionChains(page)
 
-    num = randint(1, 338)
+        point = page.find_element(By.XPATH, '//div[@role="slider"]')
 
-    action.click_and_hold(point).move_by_offset(num, 0).click().perform()
+        num = randint(1, 338)
 
-    nxt.click()
+        action.click_and_hold(point).move_by_offset(num, 0).click().perform()
 
-    num = randint(1, 5)
+        nxt.click()
 
-    page.find_element(By.XPATH, f'(//input[@type="radio"])[{num}]').click()
+        num = randint(1, 5)
 
-    nxt.click()
+        page.find_element(By.XPATH, f'(//input[@type="radio"])[{num}]').click()
 
-    num = randint(1, 5)
+        nxt.click()
 
-    num2 = randint(1, 5)
+        num = randint(1, 5)
 
-    while num == num2:
         num2 = randint(1, 5)
 
-    page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num}]').click()
+        while num == num2:
+            num2 = randint(1, 5)
 
-    page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num2}]').click()
+        page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num}]').click()
 
-    page.find_element(By.XPATH, "//div[text()='Завершить']").click()
+        page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num2}]').click()
 
-def test_completing_poll_close(page, workspace, userLog, password):
+        page.find_element(By.XPATH, "//div[text()='Завершить']").click()
 
-    wait = WebDriverWait(page, 5)
+        page.find_element(By.XPATH, "//*[@d='M12.0002 15.713L18.0102 9.70296L16.5972 8.28796L12.0002 12.888L7.40423 8.28796L5.99023 9.70196L12.0002 15.713Z']").click()
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
+        page.find_element(By.XPATH, "//div[text()='Выйти']").click()
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
+    def test_completing_poll_close(page, workspace, userLog, password, i):
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
+        wait = WebDriverWait(page, 5)
 
-    page.find_element(By.XPATH, '//div[text()="Log in"]').click()
+        page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    try:
-        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+        # page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
-        moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'i{i}@gmail.com')
 
-        print(moodBlock)
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
-        if moodBlock:
-            num = randint(1, 10)
 
-            print(f'Рандомное число для оценки настроения {num}')
 
-            wait.until(EC.element_to_be_clickable(
-                (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
+        page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-            (page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').
-             click())
-    except:
-        print('Муд блок не появился')
+        try:
+            wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
+            moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
-    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
+            print(moodBlock)
 
-    page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('закрытый')
+            if moodBlock:
+                num = randint(1, 10)
 
-    page.find_element(By.XPATH, "(//a[@class=''])[1]").click()
+                print(f'Рандомное число для оценки настроения {num}')
 
-    try:
+                wait.until(EC.element_to_be_clickable(
+                    (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
 
-        page.find_element(By.XPATH, "//div[text()='Пройти опрос']").click()
+                (page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').
+                 click())
+        except:
+            print('Муд блок не появился')
 
-    except:
-        print(f"Пользователь {userLog} проходил опрос")
-        page.close()
-    ##Кнопка следующий вопрос
+        wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-    nxt = page.find_element(By.XPATH, "//div[text()='Следующий вопрос']")
+        page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
-    (page.find_element(By.XPATH, "//input[@type='text']").
-     send_keys(f"Ответ на первый вопрос. Отвечал {userLog}"))
+        page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('закрытый')
 
-    nxt.click()
+        page.find_element(By.XPATH, "(//a[@class=''])[1]").click()
 
-    (page.find_element(By.XPATH, '//textarea[@class="ant-input"]').
-     send_keys(f"Ответ на второй вопрос.Отвечал {userLog}"))
+        try:
 
-    nxt.click()
+            page.find_element(By.XPATH, "//div[text()='Пройти опрос']").click()
 
-    num = randint(1, 5)
+        except:
+            print(f"Пользователь {userLog} проходил опрос")
+            page.close()
+        ##Кнопка следующий вопрос
 
-    page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
+        nxt = page.find_element(By.XPATH, "//div[text()='Следующий вопрос']")
 
-    nxt.click()
+        (page.find_element(By.XPATH, "//input[@type='text']").
+         send_keys(f"Ответ на первый вопрос. Отвечал {userLog}"))
 
-    num = randint(1, 10)
+        nxt.click()
 
-    page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
+        (page.find_element(By.XPATH, '//textarea[@class="ant-input"]').
+         send_keys(f"Ответ на второй вопрос.Отвечал {userLog}"))
 
-    nxt.click()
+        nxt.click()
 
-    action = ActionChains(page)
+        num = randint(1, 5)
 
-    point = page.find_element(By.XPATH, '//div[@role="slider"]')
+        page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
 
-    num = randint(1, 338)
+        nxt.click()
 
-    action.click_and_hold(point).move_by_offset(num, 0).click().perform()
+        num = randint(1, 10)
 
-    nxt.click()
+        page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
 
-    num = randint(1, 5)
+        nxt.click()
 
-    page.find_element(By.XPATH, f'(//input[@type="radio"])[{num}]').click()
+        action = ActionChains(page)
 
-    nxt.click()
+        point = page.find_element(By.XPATH, '//div[@role="slider"]')
 
-    num = randint(1, 5)
+        num = randint(1, 338)
 
-    num2 = randint(1, 5)
+        action.click_and_hold(point).move_by_offset(num, 0).click().perform()
 
-    while num == num2:
+        nxt.click()
+
+        num = randint(1, 5)
+
+        page.find_element(By.XPATH, f'(//input[@type="radio"])[{num}]').click()
+
+        nxt.click()
+
+        num = randint(1, 5)
+
         num2 = randint(1, 5)
 
-    page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num}]').click()
+        while num == num2:
+            num2 = randint(1, 5)
 
-    page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num2}]').click()
+        page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num}]').click()
 
-    page.find_element(By.XPATH, "//div[text()='Завершить']").click()
+        page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num2}]').click()
 
-def test_completing_poll_anonim(page, workspace, userLog, password):
+        page.find_element(By.XPATH, "//div[text()='Завершить']").click()
 
-    wait = WebDriverWait(page, 5)
+        page.find_element(By.XPATH, "//*[@d='M12.0002 15.713L18.0102 9.70296L16.5972 8.28796L12.0002 12.888L7.40423 8.28796L5.99023 9.70196L12.0002 15.713Z']").click()
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
+        page.find_element(By.XPATH, "//div[text()='Выйти']").click()
 
-    page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
+    def test_completing_poll_anonim(page, workspace, userLog, password, i):
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
+        wait = WebDriverWait(page, 5)
 
-    page.find_element(By.XPATH, '//div[text()="Log in"]').click()
+        page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
-    try:
-        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
+        page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
-        moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
+        #page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
 
-        print(moodBlock)
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'i{i}@gmail.com')
 
-        if moodBlock:
-            num = randint(1, 10)
+        page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
-            print(f'Рандомное число для оценки настроения {num}')
+        try:
+            wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="page-block mood-block col"]')))
 
-            wait.until(EC.element_to_be_clickable(
-                (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
+            moodBlock = page.find_element(By.XPATH, '//div[@class="page-block mood-block col"]')
 
-            (page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').
-             click())
-    except:
-        print('Муд блок не появился')
+            print(moodBlock)
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
+            if moodBlock:
+                num = randint(1, 10)
 
-    page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
+                print(f'Рандомное число для оценки настроения {num}')
 
-    page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('анонимный')
+                wait.until(EC.element_to_be_clickable(
+                    (By.XPATH, '(//div[@class="rate-cell text-16 semibold f-centered pointer"])[10]')))
 
-    page.find_element(By.XPATH, "(//a[@class=''])[1]").click()
+                (page.find_element(By.XPATH, f'(//div[@class="rate-cell text-16 semibold f-centered pointer"])[{num}]').
+                 click())
+        except:
+            print('Муд блок не появился')
 
-    try:
+        wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Опросы')]")))
 
-        page.find_element(By.XPATH, "//div[text()='Пройти опрос']").click()
+        page.find_element(By.XPATH, "//*[contains(text(), 'Опросы')]").click()
 
-    except:
-        print(f"Пользователь {userLog} проходил опрос")
-        page.close()
+        page.find_element(By.XPATH, "//input[@placeholder='Искать']").send_keys('анонимный')
 
-    ##Кнопка следующий вопрос
+        page.find_element(By.XPATH, "(//a[@class=''])[1]").click()
 
-    nxt = page.find_element(By.XPATH, "//div[text()='Следующий вопрос']")
+        try:
 
-    (page.find_element(By.XPATH, "//input[@type='text']").
-     send_keys(f"Ответ на первый вопрос. Отвечал {userLog}"))
+            page.find_element(By.XPATH, "//div[text()='Пройти опрос']").click()
 
-    nxt.click()
+        except:
+            print(f"Пользователь {userLog} проходил опрос")
+            page.close()
 
-    (page.find_element(By.XPATH, '//textarea[@class="ant-input"]').
-     send_keys(f"Ответ на второй вопрос.Отвечал {userLog}"))
+        ##Кнопка следующий вопрос
 
-    nxt.click()
+        nxt = page.find_element(By.XPATH, "//div[text()='Следующий вопрос']")
 
-    num = randint(1, 5)
+        (page.find_element(By.XPATH, "//input[@type='text']").
+         send_keys(f"Ответ на первый вопрос. Отвечал {userLog}"))
 
-    page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
+        nxt.click()
 
-    nxt.click()
+        (page.find_element(By.XPATH, '//textarea[@class="ant-input"]').
+         send_keys(f"Ответ на второй вопрос.Отвечал {userLog}"))
 
-    num = randint(1, 10)
+        nxt.click()
 
-    page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
+        num = randint(1, 5)
 
-    nxt.click()
+        page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
 
-    action = ActionChains(page)
+        nxt.click()
 
-    point = page.find_element(By.XPATH, '//div[@role="slider"]')
+        num = randint(1, 10)
 
-    num = randint(1, 338)
+        page.find_element(By.XPATH, f'//div[@aria-posinset="{num}"]').click()
 
-    action.click_and_hold(point).move_by_offset(num, 0).click().perform()
+        nxt.click()
 
-    nxt.click()
+        action = ActionChains(page)
 
-    num = randint(1, 5)
+        point = page.find_element(By.XPATH, '//div[@role="slider"]')
 
-    page.find_element(By.XPATH, f'(//input[@type="radio"])[{num}]').click()
+        num = randint(1, 338)
 
-    nxt.click()
+        action.click_and_hold(point).move_by_offset(num, 0).click().perform()
 
-    num = randint(1, 5)
+        nxt.click()
 
-    num2 = randint(1, 5)
+        num = randint(1, 5)
 
-    while num == num2:
+        page.find_element(By.XPATH, f'(//input[@type="radio"])[{num}]').click()
+
+        nxt.click()
+
+        num = randint(1, 5)
+
         num2 = randint(1, 5)
 
-    page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num}]').click()
+        while num == num2:
+            num2 = randint(1, 5)
 
-    page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num2}]').click()
+        page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num}]').click()
 
-    page.find_element(By.XPATH, "//div[text()='Завершить']").click()
+        page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num2}]').click()
+
+        page.find_element(By.XPATH, "//div[text()='Завершить']").click()
+
+        page.find_element(By.XPATH, "//*[@d='M12.0002 15.713L18.0102 9.70296L16.5972 8.28796L12.0002 12.888L7.40423 8.28796L5.99023 9.70196L12.0002 15.713Z']").click()
+
+        page.find_element(By.XPATH, "//div[text()='Выйти']").click()
