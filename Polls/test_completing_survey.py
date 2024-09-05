@@ -12,7 +12,7 @@ def workspace():
     return client
 @pytest.fixture()
 def userLog():
-    user = 'py6@gmail.com'
+    user = 'i1@gmail.com'
     return user
 @pytest.fixture()
 def password():
@@ -25,6 +25,7 @@ def page():
     driver = webdriver.Chrome()
     driver.implicitly_wait(5)
     driver.maximize_window()
+    #driver.get("https://connectable.site/")
     driver.get("https://staging.connectable.site/")
     return driver
 
@@ -73,6 +74,7 @@ def test_completing_poll_open(page, workspace, userLog, password):
         page.find_element(By.XPATH, "//div[text()='Пройти опрос']").click()
 
     except:
+
         print(f"Пользователь {userLog} проходил опрос")
         page.close()
 
