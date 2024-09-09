@@ -7,15 +7,21 @@ import pytest
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
 
+url = "https://connectable.site/"
+#url = "https://staging.connectable.site/"
+'''num_polls - количество циклов прохождений опроса'''
+num_polls = 30
 
 def test_completing_poll_open():
+    global num_polls
 
-    for i in range(1, 10):
+    for i in range(1, num_polls):
 
+        global url
         driver = webdriver.Chrome()
         driver.implicitly_wait(5)
         driver.maximize_window()
-        driver.get("https://connectable.site/")
+        driver.get(url)
         #driver.get("https://staging.connectable.site/")
 
         page = driver
@@ -126,13 +132,16 @@ def test_completing_poll_open():
 
 
 def test_completing_poll_close():
+    global num_polls
 
-    for i in range(1, 10):
+    for i in range(1, num_polls):
+
+        global url
 
         driver = webdriver.Chrome()
         driver.implicitly_wait(5)
         driver.maximize_window()
-        driver.get("https://connectable.site/")
+        driver.get(url)
         #driver.get("https://staging.connectable.site/")
 
         page = driver
@@ -243,13 +252,15 @@ def test_completing_poll_close():
 
 
 def test_completing_poll_anonym():
-    for i in range(1, 10):
+    global num_polls
+    for i in range(1, num_polls):
+        global url
 
         driver = webdriver.Chrome()
         driver.implicitly_wait(5)
         driver.maximize_window()
-        #driver.get("https://connectable.site/")
-        driver.get("https://staging.connectable.site/")
+        driver.get(url)
+        #driver.get("https://staging.connectable.site/")
 
         page = driver
 

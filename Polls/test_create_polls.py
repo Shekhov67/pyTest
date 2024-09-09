@@ -4,7 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
-
+#url = 'https://staging.connectable.site/'
+url = 'https://connectable.site/'
 @pytest.fixture()
 def workspace():
     client = 'pytest'
@@ -20,11 +21,12 @@ def password():
 
 @pytest.fixture()
 def page():
+    global url
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
     driver.implicitly_wait(5)
     driver.maximize_window()
-    driver.get("https://connectable.site/")
+    driver.get(url)
     #driver.get("https://staging.connectable.site/")
     return driver
 
