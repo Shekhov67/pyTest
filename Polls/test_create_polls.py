@@ -4,8 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
-#url = 'https://staging.connectable.site/'
-url = 'https://connectable.site/'
+url = 'https://staging.connectable.site/'
+#url = 'https://connectable.site/'
 @pytest.fixture()
 def workspace():
     client = 'pytest'
