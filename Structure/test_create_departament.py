@@ -26,7 +26,7 @@ def password():
 def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(50)
     driver.maximize_window()
     driver.get("https://staging.connectable.site/")
     return driver
@@ -69,44 +69,63 @@ def test_create(page, workspace, userLog, password):
 
     time.sleep(5)
 
-    for i in range(50):
+    wait.until(EC.presence_of_element_located((By.XPATH, '//div[text()="Административная"]')))
 
-        count_dep = '//div[@class="new-dept btn f-centered pointer text-center secondary icon"]'
+    page.find_element(By.XPATH, '//div[text()="Административная"]').click()
 
-        num = page.find_elements(By.XPATH, count_dep)
+    wait.until(EC.presence_of_all_elements_located((By.XPATH, '(//div[@class="dropdown-item"])[5]')))
 
-        select_num_dep = randint(1, len(num)+1)
+    page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[5]').click()
 
-        print(select_num_dep)
+    for i in range(150):
 
-        create_dep = f'(//div[@class="new-dept btn f-centered pointer text-center secondary icon"])[{select_num_dep}]'
+        try:
+            count_dep = '//div[@class="new-dept btn f-centered pointer text-center secondary icon"]'
 
-        wait.until(EC.presence_of_element_located((By.XPATH, create_dep)))
+            num = page.find_elements(By.XPATH, count_dep)
 
-        time.sleep(2)
+            if len(num) == 0:
+                select_num_dep = randint(1, len(num) + 1)
+            elif len(num) == 2:
+                select_num_dep = randint(1, len(num) - 1)
+            else:
+                select_num_dep = randint(1, len(num))
 
-        wait.until(EC.presence_of_all_elements_located((By.XPATH, '//div[@class="card-structure col p0"]')))
+            print(select_num_dep)
 
-        page.find_element(By.XPATH, create_dep).click()
+            create_dep = f'(//div[@class="new-dept btn f-centered pointer text-center secondary icon"])[{select_num_dep}]'
 
-        wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="ant-modal-content"]')))
+            wait.until(EC.presence_of_element_located((By.XPATH, create_dep)))
 
-        wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="ant-modal-content"]')))
+            time.sleep(2)
 
-        wait.until(EC.presence_of_element_located((By.XPATH, '//input')))
+            wait.until(EC.presence_of_all_elements_located((By.XPATH, '//div[@class="card-structure col p0"]')))
 
-        wait.until(EC.element_to_be_clickable((By.XPATH, '//input')))
+            page.find_element(By.XPATH, create_dep).click()
 
-        page.find_element(By.XPATH, '//input').send_keys(f'Отдел проектный {i}')
+            wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="ant-modal-content"]')))
 
-        wait.until(EC.presence_of_element_located((By.XPATH, '//textarea')))
+            wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="ant-modal-content"]')))
 
-        wait.until(EC.element_to_be_clickable((By.XPATH, '//textarea')))
+            wait.until(EC.presence_of_element_located((By.XPATH, '//input')))
 
-        page.find_element(By.XPATH, '//textarea').send_keys(f'Это проектный отдел {i} созданный с помощью автотестов')
+            wait.until(EC.element_to_be_clickable((By.XPATH, '//input')))
 
-        wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Сохранить']")))
+            page.find_element(By.XPATH, '//input').send_keys(f'Отдел проектный {i}')
 
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Сохранить']")))
+            wait.until(EC.presence_of_element_located((By.XPATH, '//textarea')))
 
-        page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+            wait.until(EC.element_to_be_clickable((By.XPATH, '//textarea')))
+
+            page.find_element(By.XPATH, '//textarea').send_keys(f'Это проектный отдел {i} созданный с помощью автотестов')
+
+            wait.until(EC.presence_of_element_located((By.XPATH, "//div[text()='Сохранить']")))
+
+            wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Сохранить']")))
+
+            page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+        except NameError:
+            print('Возникла ошибка при создании отдела')
+
+

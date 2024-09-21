@@ -7,8 +7,8 @@ import pytest
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
 
-#url = "https://connectable.site/"
-url = "https://staging.connectable.site/"
+url = "https://connectable.site/"
+#url = "https://staging.connectable.site/"
 '''num_polls - количество циклов прохождений опроса'''
 num_polls = 50
 
