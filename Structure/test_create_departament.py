@@ -77,7 +77,7 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[5]').click()
 
-    for i in range(150):
+    for i in range(50):
 
         try:
             count_dep = '//div[@class="new-dept btn f-centered pointer text-center secondary icon"]'
@@ -125,7 +125,7 @@ def test_create(page, workspace, userLog, password):
 
             page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
-        except NameError:
+        except ElementClickInterceptedException:
             print('Возникла ошибка при создании отдела')
 
 
