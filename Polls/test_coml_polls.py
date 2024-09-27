@@ -11,6 +11,7 @@ url = "https://staging.connectable.site/"
 '''num_polls - количество циклов прохождений опроса'''
 num_polls = 30
 
+
 def test_completing_poll_open():
     global num_polls
 
@@ -132,7 +133,6 @@ def test_completing_poll_open():
 
 def test_completing_poll_close():
     global num_polls
-
     for i in range(1, num_polls):
 
         global url
