@@ -203,6 +203,10 @@ class TestCreatePolls:
 
         page.close()
 
+    #def test_delete_poll(self):
+
+
+
 
 
 open_polls = TestCreatePolls('1', 'Открытый опрос', 'Это описание открытого опроса на питонском автотесте')
