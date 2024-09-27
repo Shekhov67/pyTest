@@ -9,7 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 #url = "https://connectable.site/"
 url = "https://staging.connectable.site/"
 '''num_polls - количество циклов прохождений опроса'''
-num_polls = 10
+num_polls = 31
 
 class Polls:
     def __init__(self, type_polls):
