@@ -4,9 +4,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
-#url = 'https://staging.connectable.site/'
+url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
-url = 'https://intranetable.team/'
+#url = 'https://intranetable.team/'
 class TestCreatePolls:
 
     def __init__(self, type_polls, name_polls, polls_description):

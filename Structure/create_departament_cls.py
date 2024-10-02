@@ -9,8 +9,9 @@ from random import randint
 
 workspace = "pytest"
 userLog = "t2@gmail.com"
-url = "https://staging.connectable.site/"
-
+#url = 'https://staging.connectable.site/'
+#url = 'https://connectable.site/'
+url = 'https://intranetable.team/'
 class TestCreateDepartament:
     def __init__(self, type_dep, name_dep):
         self.type = type_dep
@@ -78,7 +79,7 @@ class TestCreateDepartament:
 
         page.find_element(By.XPATH, f'(//div[@class="dropdown-item"])[{self.type}]').click()
 
-        for i in range(100):
+        for i in range(50):
 
             try:
                 count_dep = '//div[@class="new-dept btn f-centered pointer text-center secondary icon"]'

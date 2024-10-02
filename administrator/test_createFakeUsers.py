@@ -12,15 +12,15 @@ def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
     driver.maximize_window()
-    #driver.get("https://intranetable.team/")
+    driver.get("https://intranetable.team/")
     #driver.get("https://connectable.site/")
-    driver.get("https://staging.connectable.site/")
+    #driver.get("https://staging.connectable.site/")
     #driver.implicitly_wait(5)
     return driver
 def test_first(page):
     '''page это драйвер с уже запущенной старницей'''
 
-    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('testing9')
+    page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys('pytest')
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
@@ -33,16 +33,16 @@ def test_first(page):
 
     page.find_element(By.XPATH, "//*[contains(text(), ' Администрирование')]").click()
 
-    for i in range(50):
+    for i in range(100):
         #sex = 'female'
-        fake = Faker('ru_RU')
-        email = f'ii{i}@gmail.com'
+        fake = Faker('en_US')
+        email = f'i{i}@gmail.com'
         job = fake.job()
         first_name = fake.first_name_male()
         last_name = fake.last_name_male()
-        midd_name = fake.middle_name_male()
+        #midd_name = fake.middle_name_male()
         phone = fake.phone_number()
-        print(first_name, midd_name, last_name, email)
+        print(first_name, last_name, email)
 
         WebDriverWait(page, 5).until(
             EC.element_to_be_clickable((By.XPATH, "//div[text()='Новый сотрудник']")))
@@ -53,7 +53,7 @@ def test_first(page):
             EC.element_to_be_clickable((By.XPATH, "//div[@class='ant-modal-body']")))
 
         page.find_element(By.XPATH, "//input[@placeholder='Введите имя сотрудника']").send_keys(first_name)
-        page.find_element(By.XPATH, "//input[@placeholder='Введите отчество сотрудника']").send_keys(midd_name)
+        #page.find_element(By.XPATH, "//input[@placeholder='Введите отчество сотрудника']").send_keys(midd_name)
         page.find_element(By.XPATH, "//input[@placeholder='Введите фамилию сотрудника']").send_keys(last_name)
         page.find_element(By.XPATH, "//input[@placeholder='Должность']").send_keys(job)
         page.find_element(By.XPATH, "(//input[@placeholder='Телефон'])[1]").send_keys(phone)
