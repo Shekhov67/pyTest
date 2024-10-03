@@ -98,6 +98,17 @@ def test_create_notification(page):
 
     ############## end translate
 
+#####EN text add
     page.find_element(By.XPATH, "(//div[text()='EN'])[1]").click()
+
+    inp_eng = page.find_element(By.XPATH, '(input)[7]')
+
+    visib_inp = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(input)[7]')))
+
+    visib_inp.clear()
+
+    inp_eng.send_keys(inp_trans_text_1_eng.text)
+
+    time.sleep(15)
 
     page.quit()

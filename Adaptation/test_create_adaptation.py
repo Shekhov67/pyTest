@@ -1,5 +1,4 @@
 import time
-
 from selenium.common import ElementClickInterceptedException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
@@ -26,7 +25,7 @@ def password():
 def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(50)
     driver.maximize_window()
     driver.get("https://staging.connectable.site/")
     return driver
@@ -63,7 +62,7 @@ def test_create(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Адаптация')]")))
+    #wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Адаптация')]")))
 
     page.find_element(By.XPATH, "//*[contains(text(), 'Адаптация')]").click()
 
@@ -100,12 +99,28 @@ def test_create(page, workspace, userLog, password):
 
     num = randint(1, 100)
 
-    user_checkbox = page.find_element(By.XPATH, '(//input[@type = "checkbox"])[90]')
+    user_checkbox_1 = page.find_element(By.XPATH, '(//input[@type = "checkbox"])[1]')
 
-    page.execute_script("arguments[0].scrollIntoView(true);", user_checkbox)
+    user_checkbox_1.click()
 
-    user_mouse = ActionChains(page)
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
-    user_mouse.click(user_checkbox).perform()
+    page.find_element(By.XPATH, '//button[@class="ant-modal-close"]').click()
 
-    time.sleep(3)
+    page.find_element(By.XPATH, "(//div[@class='btn f-centered pointer secondary icon text-center'])[1]").click()
+
+    page.find_element(By.XPATH, "//div[text()='HR-специалисты']").click()
+
+    page.find_element(By.XPATH, "(//div[text() = 'Выберите сотрудников'])[2]").click()
+
+    user_checkbox_2 = page.find_element(By.XPATH, '(//input[@type = "checkbox"])[2]')
+
+    user_checkbox_2.click()
+
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+    page.find_element(By.XPATH, '//button[@class="ant-modal-close"]').click()
+
+    page.find_elements(By.XPATH, '//div[@class="w-100 col f-grow-1 relative p4"]')[1].find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[3]').click()
+
+    time.sleep(10)
