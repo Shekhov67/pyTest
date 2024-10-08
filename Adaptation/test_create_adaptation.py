@@ -121,6 +121,24 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '//button[@class="ant-modal-close"]').click()
 
-    page.find_elements(By.XPATH, '//div[@class="w-100 col f-grow-1 relative p4"]')[1].find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[3]').click()
+    page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[3]').click()
+
+    page.find_element(By.XPATH, "(//div[text()='Выберите из списка'])[1]").click()
+
+    page.find_element(By.XPATH, '//li[@class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active"]').click()
+
+    page.find_element(By.XPATH, "(//div[text()='Выберите из списка'])[2]").click()
+
+    page.find_element(By.XPATH, '//li[@class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active"]').click()
+
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+    page.find_element(By.XPATH, "//div[text()='Сценарий']").click()
+
+    page.find_element(By.XPATH, "//div[text()='Добавить этап']").click()
+
+    page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys('Первый этап новичка')
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
     time.sleep(10)

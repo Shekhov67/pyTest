@@ -9,9 +9,9 @@ from random import randint
 
 workspace = "pytest"
 userLog = "t2@gmail.com"
-#url = 'https://staging.connectable.site/'
+url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
-url = 'https://intranetable.team/'
+#url = 'https://intranetable.team/'
 class TestCreateDepartament:
     def __init__(self, type_dep, name_dep):
         self.type = type_dep
@@ -53,7 +53,7 @@ class TestCreateDepartament:
             print(moodBlock)
 
             if moodBlock:
-                num = randint(1, 10)
+                num = randint(1, 1)
 
                 print(f'Рандомное число для оценки настроения {num}')
 
@@ -79,7 +79,7 @@ class TestCreateDepartament:
 
         page.find_element(By.XPATH, f'(//div[@class="dropdown-item"])[{self.type}]').click()
 
-        for i in range(50):
+        for i in range(150):
 
             try:
                 count_dep = '//div[@class="new-dept btn f-centered pointer text-center secondary icon"]'
