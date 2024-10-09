@@ -134,11 +134,81 @@ def test_create(page, workspace, userLog, password):
     page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
     page.find_element(By.XPATH, "//div[text()='Сценарий']").click()
-
+    ######Создание этапов и шагов сценария новичка
     page.find_element(By.XPATH, "//div[text()='Добавить этап']").click()
 
     page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys('Первый этап новичка')
 
     page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.refresh()
+
+    page.find_element(By.XPATH, "//div[text()='Добавить этап']").click()
+
+    page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys('Второй этап новичка')
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.refresh()
+
+    page.find_element(By.XPATH, "//div[text()='Добавить этап']").click()
+
+    page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys('Третий этап новичка')
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.refresh()
+##ШАГИ
+    page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[1]").click()
+
+    page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Первый шаг новичка(увед. вкл.)')
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.refresh()
+
+    page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[1]").click()
+
+    page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Первый шаг новичка(увед. выкл.)')
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[2]').click()
+
+    page.find_element(By.XPATH, '//input[@type="checkbox"]').click()
+
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+    page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[2]").click()
+
+    page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Второй шаг новичка(увед. вкл.)')
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.find_element(By.XPATH, "//div[text()='Второй шаг новичка(увед. вкл.)']").click()
+
+    page.find_element(By.XPATH, '(//div[@class="one-line text-link pointer"])[3]').click()
+
+    time.sleep(10)
+
+    page.find_element(By.XPATH, "//div[text()='Изменить']").click()
+
+    page.find_element(By.XPATH, "//div[text()='Сроки']").click()
+
+    page.find_element(By.XPATH, '//input[@role="spinbutton"]').clear()
+
+    page.find_element(By.XPATH, '//input[@role="spinbutton"]').send_keys('1')
+
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+    page.refresh()
+
+    page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[3]").click()
+
+    page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Третий шаг новичка(увед. вкл.)')
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.refresh()
 
     time.sleep(10)
