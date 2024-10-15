@@ -6,11 +6,11 @@ import pytest
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
 
-url = 'https://staging.connectable.site/'
-#url = 'https://connectable.site/'
+#url = 'https://staging.connectable.site/'
+url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
 '''num_polls - количество циклов прохождений опроса'''
-num_polls = 31
+num_polls = 11
 
 class Polls:
     def __init__(self, type_polls):

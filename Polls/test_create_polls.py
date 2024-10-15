@@ -6,7 +6,7 @@ import pytest
 from random import randint
 #url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
-url = 'https://intranetable.team/'
+#url = 'https://intranetable.team/'
 @pytest.fixture()
 def workspace():
     client = 'pytest'

@@ -1,5 +1,6 @@
 import time
 from selenium.common import ElementClickInterceptedException
+from selenium.webdriver import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -184,23 +185,23 @@ def test_create(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Второй шаг новичка(увед. вкл.)')
 
     page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
-
+# Выставить срок задачи на 1 день
     page.find_element(By.XPATH, "//div[text()='Второй шаг новичка(увед. вкл.)']").click()
 
     page.find_element(By.XPATH, '(//div[@class="one-line text-link pointer"])[3]').click()
 
-    time.sleep(10)
+    wait.until(EC.invisibility_of_element((By.XPATH, "//span[text()='Шаг добавлен успешно']")))
 
     page.find_element(By.XPATH, "//div[text()='Изменить']").click()
 
     page.find_element(By.XPATH, "//div[text()='Сроки']").click()
 
-    page.find_element(By.XPATH, '//input[@role="spinbutton"]').clear()
+    page.find_element(By.XPATH, '//span[@class="ant-input-number-handler ant-input-number-handler-down "]').click()
 
-    page.find_element(By.XPATH, '//input[@role="spinbutton"]').send_keys('1')
+    page.find_element(By.XPATH, '//span[@class="ant-input-number-handler ant-input-number-handler-down "]').click()
 
     page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
-
+###
     page.refresh()
 
     page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[3]").click()
@@ -210,5 +211,36 @@ def test_create(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
     page.refresh()
+
+    page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[3]").click()
+
+    page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Третий шаг новичка(увед. выкл.)')
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.refresh()
+
+    page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[5]').click()
+
+    page.find_element(By.XPATH, '//input[@type="checkbox"]').click()
+
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+# Выставить срок задачи на 1 день
+
+    page.find_element(By.XPATH, '(//div[@class="one-line text-link pointer"])[5]').click()
+
+    wait.until(EC.invisibility_of_element((By.XPATH, "//span[text()='Шаг добавлен успешно']")))
+
+    page.find_element(By.XPATH, "//div[text()='Изменить']").click()
+
+    page.find_element(By.XPATH, "//div[text()='Сроки']").click()
+
+    page.find_element(By.XPATH, '//span[@class="ant-input-number-handler ant-input-number-handler-down "]').click()
+
+    page.find_element(By.XPATH, '//span[@class="ant-input-number-handler ant-input-number-handler-down "]').click()
+
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+ ###
 
     time.sleep(10)
