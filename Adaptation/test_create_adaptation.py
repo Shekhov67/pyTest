@@ -29,6 +29,7 @@ def page():
     driver.implicitly_wait(50)
     driver.maximize_window()
     driver.get("https://staging.connectable.site/")
+    #driver.get("https://connectable.site/")
     return driver
 
 def test_create(page, workspace, userLog, password):
@@ -226,6 +227,8 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
+    page.refresh()
+
 # Выставить срок задачи на 1 день
 
     page.find_element(By.XPATH, '(//div[@class="one-line text-link pointer"])[5]').click()
@@ -239,8 +242,29 @@ def test_create(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//span[@class="ant-input-number-handler ant-input-number-handler-down "]').click()
 
     page.find_element(By.XPATH, '//span[@class="ant-input-number-handler ant-input-number-handler-down "]').click()
+##save
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer primary full text-center"]').click()
+
+    page.find_element(By.XPATH, '//button[@class="ant-modal-close"]').click()
+
+ ###.
+    ###Добавление награды
+    edit = page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[1]')
+
+    edit.click()
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[3]').click()##нажать на награду в выпадающем меню
+
+    page.find_element(By.XPATH, '//input[@class="ant-input-number-input"]').send_keys('100')
+
+    page.find_element(By.XPATH, '(//div[@class="ant-select-selection__rendered"])[2]').click()
+
+    page.find_element(By.XPATH, '//li[@class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active"]').click()
+
+    page.find_element(By.XPATH, "(//div[text()='Сохранить'])[2]").click()
 
     page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
- ###
 
     time.sleep(10)
