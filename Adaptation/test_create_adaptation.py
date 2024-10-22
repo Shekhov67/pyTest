@@ -248,10 +248,10 @@ def test_create(page, workspace, userLog, password):
     page.find_element(By.XPATH, '//button[@class="ant-modal-close"]').click()
 
  ###.
-    ###Добавление награды
-    edit = page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[1]')
+    ###Добавление награды(монеты и ачивка)
+    edit_1 = page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[1]')
 
-    edit.click()
+    edit_1.click()
 
     page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
@@ -266,5 +266,45 @@ def test_create(page, workspace, userLog, password):
     page.find_element(By.XPATH, "(//div[text()='Сохранить'])[2]").click()
 
     page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+    page.refresh()
+
+    ###Добавление награды(монеты)
+    edit_2 = page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[2]')
+
+    edit_2.click()
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[3]').click()  ##нажать на награду в выпадающем меню
+
+    page.find_element(By.XPATH, '//input[@class="ant-input-number-input"]').send_keys('100')
+
+    page.find_element(By.XPATH, "(//div[text()='Сохранить'])[2]").click()
+
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+    page.refresh()
+
+    time.sleep(10)
+
+    ###Добавление награды(ачивки)
+    edit_3 = page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[3]')
+
+    edit_3.click()
+
+    page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
+
+    page.find_element(By.XPATH, '(//div[@class="dropdown-item"])[3]').click()  ##нажать на награду в выпадающем меню
+
+    page.find_element(By.XPATH, '(//div[@class="ant-select-selection__rendered"])[2]').click()
+
+    page.find_element(By.XPATH, '//li[@class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active"]').click()
+
+    page.find_element(By.XPATH, "(//div[text()='Сохранить'])[2]").click()
+
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
+    page.refresh()
 
     time.sleep(10)
