@@ -64,8 +64,6 @@ def test_create(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
-    #wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Адаптация')]")))
-
     page.find_element(By.XPATH, "//*[contains(text(), 'Адаптация')]").click()
 
     btn_create = page.find_element(By.XPATH, "//div[text()='Добавить трек']")
@@ -98,8 +96,6 @@ def test_create(page, workspace, userLog, password):
     assert window_setting_adaptation.is_displayed()
 
     page.find_element(By.XPATH, "(//div[text() = 'Выберите сотрудников'])[1]").click()
-
-    num = randint(1, 100)
 
     user_checkbox_1 = page.find_element(By.XPATH, '(//input[@type = "checkbox"])[1]')
 
@@ -285,8 +281,6 @@ def test_create(page, workspace, userLog, password):
     page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
     page.refresh()
-
-    time.sleep(10)
 
     ###Добавление награды(ачивки)
     edit_3 = page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[3]')
