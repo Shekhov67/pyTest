@@ -10,21 +10,20 @@ import pytest
 from random import randint
 
 class TestAdaptation():
-    def __init__(self):
+    def __init__(self, type_role):
         self.client = 'pytest'
         self.user = 't2@gmail.com'
         self.passw = '111111'
-        self.typeSteps = 'Новичок'
+        self.role = type_role
+        self.driver = webdriver.Chrome()
+        self.driver.implicitly_wait(50)
+        self.driver.maximize_window()
+        self.driver.get("https://staging.connectable.site/")
+        # self.driver.get("https://connectable.site/")
 
     def test_create(self):
 
-        driver = webdriver.Chrome()
-        driver.implicitly_wait(50)
-        driver.maximize_window()
-        driver.get("https://staging.connectable.site/")
-        # driver.get("https://connectable.site/")
-
-        page = driver
+        page = self.driver
 
         wait = WebDriverWait(page, 5)
 
@@ -123,45 +122,74 @@ class TestAdaptation():
 
         page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
+        page.quit()
+    def create_steps(self):
+
+        page = self.driver
+
+        wait = WebDriverWait(page, 10)
+
+        page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(self.client)
+
+        page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
+
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+
+        page.find_element(By.XPATH, '//div[text()="Log in"]').click()
+
+        page.find_element(By.XPATH, "//*[contains(text(), 'Адаптация')]").click()
+
+        page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center"])[3]').click()
+
         page.find_element(By.XPATH, "//div[text()='Сценарий']").click()
 
-        page.find_element(By.XPATH, f"//div[text()='{self.typeSteps}']").click()
+        time.sleep(10)
+
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
         ######Создание этапов и шагов сценария новичка
         page.find_element(By.XPATH, "//div[text()='Добавить этап']").click()
 
-        page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys('Первый этап новичка')
+        page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys(f'Первый этап {self.role}')
 
         page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
         page.refresh()
+
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
 
         page.find_element(By.XPATH, "//div[text()='Добавить этап']").click()
 
-        page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys('Второй этап новичка')
+        page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys(f'Второй этап {self.role}')
 
         page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
         page.refresh()
+
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
 
         page.find_element(By.XPATH, "//div[text()='Добавить этап']").click()
 
-        page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys('Третий этап новичка')
+        page.find_element(By.XPATH, '//input[@placeholder="Введите название этапа сценария"]').send_keys(f'Третий этап {self.role}')
 
         page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
         page.refresh()
+
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
         ##ШАГИ
         page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[1]").click()
 
-        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Первый шаг новичка(увед. вкл.)')
+        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys(f'Первый шаг {self.role}(увед. вкл.)')
 
         page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
         page.refresh()
 
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
+
         page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[1]").click()
 
-        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Первый шаг новичка(увед. выкл.)')
+        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys(f'Первый шаг {self.role}(увед. выкл.)')
 
         page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
@@ -173,11 +201,11 @@ class TestAdaptation():
 
         page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[2]").click()
 
-        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Второй шаг новичка(увед. вкл.)')
+        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys(f'Второй шаг {self.role}(увед. вкл.)')
 
         page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
         # Выставить срок задачи на 1 день
-        page.find_element(By.XPATH, "//div[text()='Второй шаг новичка(увед. вкл.)']").click()
+        page.find_element(By.XPATH, f"//div[text()='Второй шаг {self.role}(увед. вкл.)']").click()
 
         page.find_element(By.XPATH, '(//div[@class="one-line text-link pointer"])[3]').click()
 
@@ -195,21 +223,27 @@ class TestAdaptation():
         ###
         page.refresh()
 
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
+
         page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[3]").click()
 
-        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Третий шаг новичка(увед. вкл.)')
+        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys(f'Третий шаг {self.role}(увед. вкл.)')
 
         page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
         page.refresh()
 
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
+
         page.find_element(By.XPATH, "(//div[text()='Добавить шаг'])[3]").click()
 
-        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys('Третий шаг новичка(увед. выкл.)')
+        page.find_element(By.XPATH, '//input[@placeholder="Новый шаг"]').send_keys(f'Третий шаг {self.role}(увед. выкл.)')
 
         page.find_element(By.XPATH, '//div[@class="btn f-centered pointer secondary icon text-center"]').click()
 
         page.refresh()
+
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
 
         page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[5]').click()
 
@@ -218,6 +252,8 @@ class TestAdaptation():
         page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
         page.refresh()
+
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
 
         # Выставить срок задачи на 1 день
 
@@ -259,6 +295,8 @@ class TestAdaptation():
 
         page.refresh()
 
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
+
         ###Добавление награды(монеты)
         edit_2 = page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[2]')
 
@@ -275,6 +313,8 @@ class TestAdaptation():
         page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
 
         page.refresh()
+
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
 
         ###Добавление награды(ачивки)
         edit_3 = page.find_element(By.XPATH, '(//div[@class="btn f-centered pointer secondary icon text-center small"])[3]')
@@ -295,8 +335,15 @@ class TestAdaptation():
 
         page.refresh()
 
-        time.sleep(10)
+        page.find_element(By.XPATH, f"//div[text()='{self.role}']").click()
 
-
-stepsNewUser = TestAdaptation()
+stepsNewUser = TestAdaptation('Новичок')
 stepsNewUser.test_create()
+stepsNewUser = TestAdaptation('Новичок')
+stepsNewUser.create_steps()
+
+stepsMenthorUser = TestAdaptation('Наставник')
+stepsMenthorUser.create_steps()
+
+stepsBossUser = TestAdaptation('Руководитель')
+stepsBossUser.create_steps()
