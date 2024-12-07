@@ -38,33 +38,35 @@ def test_create_notification(page):
 
     page.find_element(By.XPATH, "//div[text()='Настройки оповещений']").click()
 
-    element = page.find_element(By.XPATH, '(//div[@class="ant-collapse-header"])[46]')
+    element = page.find_element(By.XPATH, '(//div[@class="ant-collapse-header"])[1]')# выбор уведомления для перевода
 
     element.execute_script("arguments[0].scrollIntoView(true);", element)
 
     element.click()
 
-    inp_element_1 = page.find_element(By.XPATH, '(//input)[3]')
+    inp_element_3 = page.find_element(By.XPATH, '(//input)[3]') #Заголовок
 
-    text_1 = inp_element_1.get_attribute('value')
+    text_3 = inp_element_3.get_attribute('value')
 
-    text_area_1 = page.find_element(By.XPATH, '(//textarea)[1]')
+    text_area_1 = page.find_element(By.XPATH, '(//textarea)[1]')# Текст краткого шаблона
 
     area_element_1 = text_area_1.get_attribute('value')
 
-    text_area_2 = page.find_element(By.XPATH, '(//textarea)[2]')
+    text_area_2 = page.find_element(By.XPATH, '(//textarea)[2]')# Текст полного шаблона
 
     area_element_2 = text_area_2.get_attribute('value')
 
-    inp_element_2 = page.find_element(By.XPATH, '(//input)[4]')
+    inp_element_4 = page.find_element(By.XPATH, '(//input)[4]')# Параметры
 
-    text_2 = inp_element_2.get_attribute('value')
+    text_4 = inp_element_4.get_attribute('value')
+
 ###########  EN
+
     translator = Translator()
 
-    inp_trans_text_1_eng = translator.translate(text_1, src='ru', dest='en')
+    inp_trans_text_3_eng = translator.translate(text_3, src='ru', dest='en')
 
-    print(inp_trans_text_1_eng.text)
+    print(inp_trans_text_3_eng.text)
 
     area_trans_text_1_eng = translator.translate(area_element_1, src='ru', dest='en')
 
@@ -74,15 +76,15 @@ def test_create_notification(page):
 
     print(area_trans_text_2_eng.text)
 
-    inp_trans_text_2_eng = translator.translate(text_2, src='ru', dest='en')
+    inp_trans_text_4_eng = translator.translate(text_4, src='ru', dest='en')
 
-    print(inp_trans_text_2_eng.text)
+    print(inp_trans_text_4_eng.text)
 
     ##################UK
 
-    inp_trans_text_1_uk = translator.translate(text_1, src='ru', dest='uk')
+    inp_trans_text_3_uk = translator.translate(text_3, src='ru', dest='uk')
 
-    print(inp_trans_text_1_uk.text)
+    print(inp_trans_text_3_uk.text)
 
     area_trans_text_1_uk = translator.translate(area_element_1, src='ru', dest='uk')
 
@@ -92,22 +94,40 @@ def test_create_notification(page):
 
     print(area_trans_text_2_uk.text)
 
-    inp_trans_text_2_uk = translator.translate(text_2, src='ru', dest='uk')
+    inp_trans_text_4_uk = translator.translate(text_4, src='ru', dest='uk')
 
-    print(inp_trans_text_2_uk.text)
+    print(inp_trans_text_4_uk.text)
 
     ############## end translate
 
 #####EN text add
+    page.refresh()
+
+    page.find_element(By.XPATH, "//div[text()='Settings of notifications']").click()
+
+    element = page.find_element(By.XPATH, '(//div[@class="ant-collapse-header"])[1]')  # выбор уведомления для перевода
+
+    element.execute_script("arguments[0].scrollIntoView(true);", element)
+
+    element.click()
+
     page.find_element(By.XPATH, "(//div[text()='EN'])[1]").click()
 
-    inp_eng = page.find_element(By.XPATH, '(input)[7]')
+    inp_eng5 = page.find_element(By.XPATH, '(//input)[5]')
 
-    visib_inp = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(input)[7]')))
+    visib_inp1 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[5]')))
 
-    visib_inp.clear()
+    visib_inp1.clear()
 
-    inp_eng.send_keys(inp_trans_text_1_eng.text)
+    inp_eng5.send_keys(inp_trans_text_3_eng.text)
+########
+    area_eng2 = page.find_element(By.XPATH, '(//textarea)[3]')
+
+    visib_area3 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[3]')))
+
+    visib_area3.clear()
+
+    area_eng2.send_keys(area_trans_text_1_eng.text)
 
     time.sleep(15)
 
