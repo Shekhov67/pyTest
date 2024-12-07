@@ -22,8 +22,6 @@ def page():
 
 def test_create_notification(page):
 
-    i = 2
-
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('w.project.portal3@gmail.com')
 
     page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111')
@@ -40,178 +38,184 @@ def test_create_notification(page):
 
     page.find_element(By.XPATH, "//div[text()='Настройки оповещений']").click()
 
-    element = page.find_element(By.XPATH, f'(//div[@class="ant-collapse-header"])[{i}]')  # выбор уведомления для перевода
+    for i in range(1, 5):
 
-    element.execute_script("arguments[0].scrollIntoView(true);", element)
+        element = page.find_element(By.XPATH, f'(//div[@class="ant-collapse-header"])[{i}]')  # выбор уведомления для перевода
 
-    element.click()
+        element.execute_script("arguments[0].scrollIntoView(true);", element)
 
-    inp_element_3 = page.find_element(By.XPATH, '(//input)[3]') #Заголовок
+        element.click()
 
-    text_3 = inp_element_3.get_attribute('value')
+        inp_element_3 = page.find_element(By.XPATH, '(//input)[3]') #Заголовок
 
-    text_area_1 = page.find_element(By.XPATH, '(//textarea)[1]')# Текст краткого шаблона
+        text_3 = inp_element_3.get_attribute('value')
 
-    area_element_1 = text_area_1.get_attribute('value')
+        text_area_1 = page.find_element(By.XPATH, '(//textarea)[1]')# Текст краткого шаблона
 
-    text_area_2 = page.find_element(By.XPATH, '(//textarea)[2]')# Текст полного шаблона
+        area_element_1 = text_area_1.get_attribute('value')
 
-    area_element_2 = text_area_2.get_attribute('value')
+        text_area_2 = page.find_element(By.XPATH, '(//textarea)[2]')# Текст полного шаблона
 
-    inp_element_4 = page.find_element(By.XPATH, '(//input)[4]')# Параметры
+        area_element_2 = text_area_2.get_attribute('value')
 
-    text_4 = inp_element_4.get_attribute('value')
+        inp_element_4 = page.find_element(By.XPATH, '(//input)[4]')# Параметры
 
-########### translate  EN
+        text_4 = inp_element_4.get_attribute('value')
 
-    translator = Translator()
+    ########### translate  EN
 
-    inp_trans_text_3_eng = translator.translate(text_3, src='ru', dest='en')
+        translator = Translator()
 
-    print(inp_trans_text_3_eng.text)
+        inp_trans_text_3_eng = translator.translate(text_3, src='ru', dest='en')
 
-    area_trans_text_1_eng = translator.translate(area_element_1, src='ru', dest='en')
+        print(inp_trans_text_3_eng.text)
 
-    print(area_trans_text_1_eng.text)
+        area_trans_text_1_eng = translator.translate(area_element_1, src='ru', dest='en')
 
-    area_trans_text_2_eng = translator.translate(area_element_2, src='ru', dest='en')
+        print(area_trans_text_1_eng.text)
 
-    print(area_trans_text_2_eng.text)
+        area_trans_text_2_eng = translator.translate(area_element_2, src='ru', dest='en')
 
-    inp_trans_text_4_eng = translator.translate(text_4, src='ru', dest='en')
+        print(area_trans_text_2_eng.text)
 
-    print(inp_trans_text_4_eng.text)
+        inp_trans_text_4_eng = translator.translate(text_4, src='ru', dest='en')
 
-    ################## translate UK
+        print(inp_trans_text_4_eng.text)
 
-    inp_trans_text_3_uk = translator.translate(text_3, src='ru', dest='uk')
+        ################## translate UK
 
-    print(inp_trans_text_3_uk.text)
+        inp_trans_text_3_uk = translator.translate(text_3, src='ru', dest='uk')
 
-    area_trans_text_1_uk = translator.translate(area_element_1, src='ru', dest='uk')
+        print(inp_trans_text_3_uk.text)
 
-    print(area_trans_text_1_uk.text)
+        area_trans_text_1_uk = translator.translate(area_element_1, src='ru', dest='uk')
 
-    area_trans_text_2_uk = translator.translate(area_element_2, src='ru', dest='uk')
+        print(area_trans_text_1_uk.text)
 
-    print(area_trans_text_2_uk.text)
+        area_trans_text_2_uk = translator.translate(area_element_2, src='ru', dest='uk')
 
-    inp_trans_text_4_uk = translator.translate(text_4, src='ru', dest='uk')
+        print(area_trans_text_2_uk.text)
 
-    print(inp_trans_text_4_uk.text)
+        inp_trans_text_4_uk = translator.translate(text_4, src='ru', dest='uk')
 
-    ############## end translate
+        print(inp_trans_text_4_uk.text)
 
-#####EN text add
-    page.refresh()
+        ############## end translate
 
-    page.find_element(By.XPATH, "//div[text()='Settings of notifications']").click()
+    #####EN text add
+        page.refresh()
 
-    element = page.find_element(By.XPATH, f'(//div[@class="ant-collapse-header"])[{i}]')  # выбор уведомления для перевода
+        page.find_element(By.XPATH, "//div[text()='Settings of notifications']").click()
 
-    element.execute_script("arguments[0].scrollIntoView(true);", element)
+        element = page.find_element(By.XPATH, f'(//div[@class="ant-collapse-header"])[{i}]')  # выбор уведомления для перевода
 
-    element.click()
+        element.execute_script("arguments[0].scrollIntoView(true);", element)
 
-    page.find_element(By.XPATH, "(//div[text()='EN'])[1]").click()
+        element.click()
 
-#####Добавление "Заголовка"
-
-    inp_eng5 = page.find_element(By.XPATH, '(//input)[5]')
-
-    visib_inp5 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[5]')))
-
-    visib_inp5.clear()
-
-    inp_eng5.send_keys(inp_trans_text_3_eng.text)
-
-######## Добавление "Текст краткого шаблона"
-
-    area_eng3 = page.find_element(By.XPATH, '(//textarea)[3]')
-
-    visib_area3 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[3]')))
-
-    visib_area3.clear()
-
-    area_eng3.send_keys(area_trans_text_1_eng.text)
-
-######## Добавление "Текст полного шаблона"
-
-    area_eng4 = page.find_element(By.XPATH, '(//textarea)[4]')
-
-    visib_area4 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[4]')))
-
-    visib_area4.clear()
-
-    area_eng4.send_keys(area_trans_text_1_eng.text)
-
-#####Добавление "Заголовка"
-
-    inp_eng6 = page.find_element(By.XPATH, '(//input)[6]')
-
-    visib_inp6 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[6]')))
-
-    visib_inp6.clear()
-
-    inp_eng6.send_keys(inp_trans_text_4_eng.text)
-
-    page.find_element(By.XPATH, "//div[text()='Save']").click()
-
-    #####UK text add
-    page.refresh()
-
-    page.find_element(By.XPATH, "//div[text()='Settings of notifications']").click()
-
-    element = page.find_element(By.XPATH, f'(//div[@class="ant-collapse-header"])[{i}]')  # выбор уведомления для перевода
-
-    element.execute_script("arguments[0].scrollIntoView(true);", element)
-
-    element.click()
-
-    page.find_element(By.XPATH, "(//div[text()='UA'])[1]").click()
+        page.find_element(By.XPATH, "(//div[text()='EN'])[1]").click()
 
     #####Добавление "Заголовка"
 
-    inp_uk5 = page.find_element(By.XPATH, '(//input)[5]')
+        inp_eng5 = page.find_element(By.XPATH, '(//input)[5]')
 
-    visib_inp5 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[5]')))
+        visib_inp5 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[5]')))
 
-    visib_inp5.clear()
+        visib_inp5.clear()
 
-    inp_uk5.send_keys(inp_trans_text_3_uk.text)
+        inp_eng5.send_keys(inp_trans_text_3_eng.text)
 
     ######## Добавление "Текст краткого шаблона"
 
-    area_uk3 = page.find_element(By.XPATH, '(//textarea)[3]')
+        area_eng3 = page.find_element(By.XPATH, '(//textarea)[3]')
 
-    visib_area3 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[3]')))
+        visib_area3 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[3]')))
 
-    visib_area3.clear()
+        visib_area3.clear()
 
-    area_uk3.send_keys(area_trans_text_1_uk.text)
+        area_eng3.send_keys(area_trans_text_1_eng.text)
 
     ######## Добавление "Текст полного шаблона"
 
-    area_uk4 = page.find_element(By.XPATH, '(//textarea)[4]')
+        area_eng4 = page.find_element(By.XPATH, '(//textarea)[4]')
 
-    visib_area4 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[4]')))
+        visib_area4 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[4]')))
 
-    visib_area4.clear()
+        visib_area4.clear()
 
-    area_uk4.send_keys(area_trans_text_1_uk.text)
+        area_eng4.send_keys(area_trans_text_1_eng.text)
 
     #####Добавление "Заголовка"
 
-    inp_uk6 = page.find_element(By.XPATH, '(//input)[6]')
+        inp_eng6 = page.find_element(By.XPATH, '(//input)[6]')
 
-    visib_inp6 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[6]')))
+        visib_inp6 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[6]')))
 
-    visib_inp6.clear()
+        visib_inp6.clear()
 
-    inp_uk6.send_keys(inp_trans_text_4_uk.text)
+        inp_eng6.send_keys(inp_trans_text_4_eng.text)
 
-    page.find_element(By.XPATH, "//div[text()='Save']").click()
+        page.find_element(By.XPATH, "//div[text()='Save']").click()
 
-    time.sleep(15)
+        #####UK text add
+        page.refresh()
+
+        page.find_element(By.XPATH, "//div[text()='Settings of notifications']").click()
+
+        element = page.find_element(By.XPATH, f'(//div[@class="ant-collapse-header"])[{i}]')  # выбор уведомления для перевода
+
+        element.execute_script("arguments[0].scrollIntoView(true);", element)
+
+        element.click()
+
+        page.find_element(By.XPATH, "(//div[text()='UA'])[1]").click()
+
+        #####Добавление "Заголовка"
+
+        inp_uk5 = page.find_element(By.XPATH, '(//input)[5]')
+
+        visib_inp5 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[5]')))
+
+        visib_inp5.clear()
+
+        inp_uk5.send_keys(inp_trans_text_3_uk.text)
+
+        ######## Добавление "Текст краткого шаблона"
+
+        area_uk3 = page.find_element(By.XPATH, '(//textarea)[3]')
+
+        visib_area3 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[3]')))
+
+        visib_area3.clear()
+
+        area_uk3.send_keys(area_trans_text_1_uk.text)
+
+        ######## Добавление "Текст полного шаблона"
+
+        area_uk4 = page.find_element(By.XPATH, '(//textarea)[4]')
+
+        visib_area4 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//textarea)[4]')))
+
+        visib_area4.clear()
+
+        area_uk4.send_keys(area_trans_text_1_uk.text)
+
+        #####Добавление "Заголовка"
+
+        inp_uk6 = page.find_element(By.XPATH, '(//input)[6]')
+
+        visib_inp6 = WebDriverWait(page, 5).until(EC.visibility_of_element_located((By.XPATH, '(//input)[6]')))
+
+        visib_inp6.clear()
+
+        inp_uk6.send_keys(inp_trans_text_4_uk.text)
+
+        page.find_element(By.XPATH, "//div[text()='Save']").click()
+
+        time.sleep(5)
+
+        page.refresh()
+
+        page.find_element(By.XPATH, "//div[text()='Settings of notifications']").click()
 
     page.quit()
