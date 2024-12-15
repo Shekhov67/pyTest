@@ -6,10 +6,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
+from TestSuites.test_module import url
 
 workspace = "pytest"
 userLog = "t2@gmail.com"
-url = 'https://staging.connectable.site/'
+#url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
 class TestCreateDepartament:
@@ -19,7 +20,7 @@ class TestCreateDepartament:
 
     def create_dep(self):
 
-        global url
+        #global url
 
         global workspace
 

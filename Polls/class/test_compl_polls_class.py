@@ -5,12 +5,14 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
+from TestSuites.test_module import url
+from TestSuites.test_module import num_polls
 
-url = 'https://staging.connectable.site/'
+#url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
 '''num_polls - количество циклов прохождений опроса'''
-num_polls = 11
+#num_polls = 23
 
 class Polls:
     def __init__(self, type_polls):
@@ -18,11 +20,11 @@ class Polls:
 
     def test_completing_poll(self):
 
-        global num_polls
+        #global num_polls
 
         for i in range(1, num_polls):
 
-            global url
+            #global url
             driver = webdriver.Chrome()
             driver.implicitly_wait(5)
             driver.maximize_window()
