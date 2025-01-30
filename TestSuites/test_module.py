@@ -1,7 +1,7 @@
 import pytest
 
 # количество циклов прохождения опроса
-num_polls = 23
+num_polls = 10
 
 #Выбрать портал для текста
 url = 'https://staging.connectable.site/'

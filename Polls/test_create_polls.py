@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from random import randint
-#url = 'https://staging.connectable.site/'
+url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
 @pytest.fixture()
@@ -77,7 +77,7 @@ def test_open_poll(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//input[@type='radio'])[1]").click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='card col w-100 bg-white']")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='w-100 col f-grow-1 relative p4']")))
 
     page.find_element(By.XPATH, "(//input)[1]").clear()
 

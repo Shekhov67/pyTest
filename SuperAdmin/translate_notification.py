@@ -13,8 +13,9 @@ def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
     driver.maximize_window()
-    driver.get("https://staging.connectable.site/")
+    #driver.get("https://staging.connectable.site/")
     #driver.get("https://connectable.site/")
+    driver.get("https://intranetable.team/")
     driver.implicitly_wait(50)
     return driver
 
@@ -38,7 +39,7 @@ def test_create_notification(page):
 
     page.find_element(By.XPATH, "//div[text()='Настройки оповещений']").click()
 
-    for i in range(1, 5):
+    for i in range(1, 63):
 
         element = page.find_element(By.XPATH, f'(//div[@class="ant-collapse-header"])[{i}]')  # выбор уведомления для перевода
 

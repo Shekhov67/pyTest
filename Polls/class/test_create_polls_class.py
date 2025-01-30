@@ -64,7 +64,7 @@ class TestCreatePolls:
 
         page.find_element(By.XPATH, f"(//input[@type='radio'])[{self.type}]").click()
 
-        wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='card col w-100 bg-white']")))
+        wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='w-100 col f-grow-1 relative p4']")))
 
         page.find_element(By.XPATH, "(//input)[1]").clear()
 
