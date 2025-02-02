@@ -1,0 +1,5 @@
+Вы получили монеты
+Вы получили монеты
+Получено {amount} {curr}. {description}
+Получено {amount} {curr}. {description}
+amount: количество монет, curr: валюта компании, description: комментарий
