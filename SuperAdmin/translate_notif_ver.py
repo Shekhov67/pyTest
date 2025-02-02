@@ -7,8 +7,6 @@ import pytest
 import time
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
-from googletrans import Translator
-
 @pytest.fixture()
 def page():
     ''' Переход на страницу портала '''
