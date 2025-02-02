@@ -64,4 +64,7 @@ def test_create_notification(page):
 
         file = open('data/notific.txt', 'a')
         file.write(text_3 + '\n')
+        file.write(area_element_1 + '\n')
+        file.write(area_element_2 + '\n')
+        file.write(text_4 + '\n')
         file.close()
