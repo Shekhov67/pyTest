@@ -1,8 +1,10 @@
 import requests
 
 headers = {
-    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiX2lkIjoiNjcyNTBlMGZmMTY1MzYwMDFlMzZkOTFkIiwiY2xpZW50X2lkIjoidGVzdGluZzEiLCJlbWFpbCI6InQyQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6ItCQ0LTQvNC40L0iLCJsYXN0TmFtZSI6ItCi0LXRgdGCIiwicGljcyI6W10sImlzU3VwZXJBZG1pbiI6ZmFsc2V9LCJpYXQiOjE3MzkyMDgyMTQsImV4cCI6MTc0MTg4NjYxNH0.RPq_0HUViTpMDxcfAzewCoN1t8aZ0KLG9nWMBUv9I0E"
+    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiX2lkIjoiNjcyNTBlMGZmMTY1MzYwMDFlMzZkOTFkIiwiY2xpZW50X2lkIjoidGVzdGluZzEiLCJlbWFpbCI6InQyQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6ItCQ0LTQvNC40L0iLCJsYXN0TmFtZSI6ItCi0LXRgdGCIiwicGljcyI6W10sImlzU3VwZXJBZG1pbiI6ZmFsc2V9LCJpYXQiOjE3MzkyMTI5MDUsImV4cCI6MTc0MTg5MTMwNX0._jXiF3OuW9tJdHTUcolmqcT9pV6WG-e7ILU3khpx38A"
 }
-response = requests.get("https://ors.connectable.site/api/poll/67a9b6dfd73113001e472720/excel?uid=67250e0ff16536001e36d91d", headers=headers)
+
+response = requests.get("https://ors.connectable.site/api/poll/67a9b6dfd73113001e472720/excel?uid=67937b9a8060d4001e2c262c", headers=headers)
 
 print(response)
+
