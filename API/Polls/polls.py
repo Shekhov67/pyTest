@@ -10,8 +10,8 @@ print(response)
 
 response = requests.get(url, headers=headers, stream=True)
 
-with open('down.xlsx', 'wb') as file:
-    for chunk in response.iter_content(chunk_size=81920):
+with open('down.zip', 'wb') as file:
+    for chunk in response.iter_content(chunk_size=8192):
         file.write(chunk)
 
 
