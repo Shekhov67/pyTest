@@ -1,5 +1,4 @@
-import pyte
-st
+import pytest
 
 def func(num: int):
     return 1 / num
