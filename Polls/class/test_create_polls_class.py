@@ -8,6 +8,7 @@ from TestSuites.test_module import url
 #url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
+
 class TestCreatePolls:
 
     def __init__(self, type_polls, name_polls, polls_description):

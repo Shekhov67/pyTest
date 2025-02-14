@@ -6,9 +6,9 @@ import pytest
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
 
-#url = 'https://staging.connectable.site/'
+url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
-url = 'https://intranetable.team/'
+# = 'https://intranetable.team/'
 '''num_polls - количество циклов прохождений опроса'''
 num_polls = 30
 
@@ -83,7 +83,7 @@ def test_completing_poll_open():
 
         nxt.click()
 
-        (page.find_element(By.XPATH, '//textarea[@class="ant-input"]').
+        (page.find_element(By.XPATH, '//textarea').
          send_keys(f"Ответ на второй вопрос.Отвечал i{i}@gmail.com"))
 
         nxt.click()

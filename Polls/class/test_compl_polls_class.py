@@ -89,7 +89,7 @@ class Polls:
 
             nxt.click()
 
-            (page.find_element(By.XPATH, '//textarea[@class="ant-input"]').
+            (page.find_element(By.XPATH, '//textarea').
              send_keys(f"Ответ на второй вопрос.Отвечал i{i}@gmail.com"))
 
             nxt.click()
