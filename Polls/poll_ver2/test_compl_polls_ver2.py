@@ -129,7 +129,7 @@ def completing_poll(page, type_poll):
 
         page.find_element(By.XPATH, "//div[text()='Завершить']").click()
 
-        page.quit()
+        page.close()
 
 def test_open_poll(page):
     completing_poll(page, 'Открытый')

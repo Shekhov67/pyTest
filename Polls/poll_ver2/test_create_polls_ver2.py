@@ -17,15 +17,7 @@ def page():
     driver.get(url)
     return driver
 
-
-
 def create_polls(page,type_polls, name_polls, polls_description):
-
-    driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
-    driver.maximize_window()
-    driver.get(url)
-    page = driver
 
     wait = WebDriverWait(page, 5)
 
@@ -65,17 +57,17 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "//div[text()='Добавить опрос']").click()
 
-    page.find_element(By.XPATH, f"(//input[@type='radio'])[{self.type}]").click()
+    page.find_element(By.XPATH, f"(//input[@type='radio'])[{type_polls}]").click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='w-100 col f-grow-1 relative p4']")))
 
     page.find_element(By.XPATH, "(//input)[1]").clear()
 
-    page.find_element(By.XPATH, "(//input)[1]").send_keys(f'{self.name}')
+    page.find_element(By.XPATH, "(//input)[1]").send_keys(f'{name_polls}')
 
     page.find_element(By.XPATH, "//textarea").clear()
 
-    page.find_element(By.XPATH, "//textarea").send_keys(f'{self.description}')
+    page.find_element(By.XPATH, "//textarea").send_keys(f'{polls_description}')
     ##Кнопка добавления вопроса
     plus = page.find_element(By.XPATH, "//div[@class='abs']")
 
@@ -208,17 +200,12 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.close()
 
-    #def test_delete_poll(self):
 
+def test_create_open_polls(page):
+    create_polls(page, '1', 'Открытый опрос', 'Это описание открытого опроса на питонском автотесте')
 
+def test_create_close_polls(page):
+    create_polls(page, '2', 'Закрытый опрос', 'Это описание закрытого опроса на питонском автотесте')
 
-
-
-open_polls = TestCreatePolls('1', 'Открытый опрос', 'Это описание открытого опроса на питонском автотесте')
-open_polls.test_create_polls()
-
-close_polls = TestCreatePolls('2', 'Закрытый опрос', 'Это описание закрытого опроса на питонском автотесте')
-close_polls.test_create_polls()
-
-anonim_polls = TestCreatePolls('3', 'Анонимный опрос', 'Это описание анонимного опроса на питонском автотесте')
-anonim_polls.test_create_polls()
+def test_create_anon_polls(page):
+    create_polls(page, '3', 'Анонимный опрос', 'Это описание анонимного опроса на питонском автотесте')
