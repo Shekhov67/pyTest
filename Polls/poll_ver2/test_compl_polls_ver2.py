@@ -14,18 +14,27 @@ from TestSuites.test_module import num_polls
 #url = 'https://intranetable.team/'
 '''num_polls - количество циклов прохождений опроса'''
 #num_polls = 23
-@pytest.fixture()
-def page():
-    driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
-    driver.maximize_window()
-    driver.get(url)
-    return driver
+# @pytest.fixture()
+# def page():
+#     driver = webdriver.Chrome()
+#     driver.implicitly_wait(5)
+#     driver.maximize_window()
+#     driver.get(url)
+#     return driver
 
-
-def completing_poll(page, type_poll):
+def completing_poll(type_poll):
 
     for i in range(1, num_polls):
+
+        print(i)
+
+        driver = webdriver.Chrome()
+        driver.implicitly_wait(5)
+        driver.maximize_window()
+        driver.get(url)
+        # driver.get("https://staging.connectable.site/")
+
+        page = driver
 
         wait = WebDriverWait(page, 5)
 
@@ -131,9 +140,9 @@ def completing_poll(page, type_poll):
 
         page.close()
 
-def test_open_poll(page):
-    completing_poll(page, 'Открытый')
-def test_close_poll(page):
-    completing_poll(page, 'Закрытый')
-def test_anon_poll(page):
-    completing_poll(page, 'Анонимный')
+def test_open_poll():
+    completing_poll('Открытый')
+def test_close_poll():
+    completing_poll('Закрытый')
+def test_anon_poll():
+    completing_poll('Анонимный')
