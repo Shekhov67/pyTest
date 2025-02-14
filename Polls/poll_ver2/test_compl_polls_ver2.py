@@ -26,13 +26,10 @@ def completing_poll(type_poll):
 
     for i in range(1, num_polls):
 
-        print(i)
-
         driver = webdriver.Chrome()
         driver.implicitly_wait(5)
         driver.maximize_window()
         driver.get(url)
-        # driver.get("https://staging.connectable.site/")
 
         page = driver
 
