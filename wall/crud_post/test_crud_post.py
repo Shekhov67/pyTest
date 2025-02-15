@@ -480,7 +480,7 @@ def test_crudPostGratitudeNewsCompany(page, workspace, userLog, password):
     # wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='post-wrapper col py6 px4 gap4 greeting']")))
     #
     # wait.until(EC.presence_of_element_located((By.XPATH, "(//div[@class='post-wrapper-content']/div/a)[1]")))
-    #
+
     user = page.find_element(By.XPATH, '//a[@class="mention-link"]').text
     #
     # postNameUser = page.find_element(By.XPATH, "//div[@class='post-wrapper-content']").text
