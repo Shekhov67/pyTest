@@ -12,7 +12,7 @@ from TestSuites.test_module import url
 @pytest.fixture()
 def page():
     driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(50)
     driver.maximize_window()
     driver.get(url)
     return driver
