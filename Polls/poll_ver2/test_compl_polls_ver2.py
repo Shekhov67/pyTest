@@ -2,11 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import pytest
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
-from TestSuites.test_module import url
-from TestSuites.test_module import num_polls
+from TestSuites.smoke.test_module import url
+from TestSuites.smoke.test_module import num_polls
 
 
 #url = 'https://staging.connectable.site/'

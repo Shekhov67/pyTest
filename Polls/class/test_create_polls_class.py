@@ -2,9 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import pytest
 from random import randint
-from TestSuites.test_module import url
+from TestSuites.smoke.test_module import url
 #url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
