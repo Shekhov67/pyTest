@@ -1,14 +1,5 @@
 import requests
-
-header = {
-    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiX2"
-                     "lkIjoiNjVjZjBjNzVmMTNmMmYwMDFlMDJmMGY5IiwiY2xpZW50X2lkIjoidGVzdGluZzkiLCJlbWFpbCI6InQyQ"
-                     "GdtYWlsLmNvbSIsImZpcnN0TmFtZSI6ItCQ0LTQvNC40L0iLCJsYXN0TmFtZSI6ItCS0LDQtNC40LwiLCJwaWNzIjpbeyJ"
-                     "faWQiOiI2N2IxZjFlYjYxNTg0YjAwMWUxYThlMzIiLCJzcmMiOiJodHRwczovL3N0YWdpbmcuY29ubmVjdGFibGUuc2l0ZS9wdWJsaWMvdG"
-                     "VzdGluZzkvNzFmZTc0NTYtZDMzNC00MmJkLTk4ZTAtMWI1YzgwMjZhYjU3LmdpZiIsIm1pbmkiOiJodHRwczovL3N0YWdpbmcuY29ubmVjdGFib"
-                     "GUuc2l0ZS9wdWJsaWMvdGVzdGluZzkvYzZkZWRmNjYtZjgyMi00N2MwLTlhMWMtZDJiODQwYWIwZjNhLmdpZiJ9XSwiaXNTdXBlckFkbWluIjpmYWxzZX0"
-                     "sImlhdCI6MTc0MDQxOTk2MywiZXhwIjoxNzQzMDk4MzYzfQ.f25rDYT8NF_UVTy6KETM5qevkkFNHkoHcaZslbM-GDk"
-}
+from API.key_api import header
 
 # URL API для лайка
 API_URL = 'https://staging.connectable.site/api/post/like'
@@ -24,12 +15,15 @@ like_data = {
 }
 
 # Выполнение POST-запроса
-response = requests.post(API_URL, headers=header, json=like_data)
+response_like = requests.post(API_URL, headers=header, json=like_data)
 
-# Проверка статуса ответа
-if response.status_code == 200:
-    print("Лайк успешно поставлен!")
-    print("Ответ сервера:", response.json())  # Вывод тела ответа (если есть)
-else:
-    print(f"Ошибка: {response.status_code}")
-    print("Сообщение об ошибке:", response.text)  # Вывод сообщения об ошибке
+def test_like():
+    # Проверка статуса ответа
+    assert response_like.status_code == 200
+    print(f'код ответа:{response_like.status_code}')
+
+response_dislike = requests.post(API_URL, headers=header, json=like_data)
+
+def test_dislike():
+    assert response_dislike.status_code == 200
+    print(f'код ответа:{response_dislike.status_code}')
