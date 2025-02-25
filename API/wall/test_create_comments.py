@@ -3,7 +3,7 @@ from API.key_api import header
 
 
 API_URL = 'https://staging.connectable.site/api/comment'
-
+# Тело запроса для создания комментария в ленте событий
 comment_data_feed = {
     'author': '67be00a0e6e983001ee2847c',
     'author_name': 'Админ Тестов',
@@ -24,7 +24,7 @@ def test_create_comment_feed():
     assert response_create_comment_feed.status_code == 201
     print(f'код ответа:{response_create_comment_feed.status_code}')
 
-
+# Тело запроса для создания комментария в новостной ленте
 comment_data_company = {
     'author': '67be00a0e6e983001ee2847c',
     'author_name': 'Админ Тестов',

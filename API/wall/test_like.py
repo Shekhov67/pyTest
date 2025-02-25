@@ -2,7 +2,6 @@ import requests
 from API.key_api import header
 
 
-
 # URL API для лайка
 API_URL = 'https://staging.connectable.site/api/post/like'
 
@@ -24,7 +23,7 @@ def test_like_feed_post():
     assert response_like_feed_post.status_code == 200
     print(f'код ответа:{response_like_feed_post.status_code}')
 
-# Данные для запроса лайка в ленте событий
+# Данные для запроса лайка в новостной ленте
 like_data_company_post = {
     "emoji": "💪",
     "id": "67be00c5e6e983001ee287f9",
