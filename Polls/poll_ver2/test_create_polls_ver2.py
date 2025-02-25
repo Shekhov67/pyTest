@@ -74,14 +74,14 @@ def create_polls(page,type_polls, name_polls, polls_description):
     plus.click()
 
     (page.find_element(By.XPATH,
-                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос первый'))
+                       '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[1]').send_keys('Вопрос первый'))
 
     page.execute_script("arguments[0].scrollIntoView(true);", plus)
 
     plus.click()
 
     (page.find_element(By.XPATH,
-                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос второй'))
+                       '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[2]').send_keys('Вопрос второй'))
 
     page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[2]").click()
 
@@ -92,7 +92,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
     plus.click()
 
     (page.find_element(By.XPATH,
-                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос третий'))
+                       '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[3]').send_keys('Вопрос третий'))
 
     page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[3]").click()
 
@@ -105,7 +105,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
     plus.click()
 
     (page.find_element(By.XPATH,
-                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос четвертый'))
+                       '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[4]').send_keys('Вопрос четвертый'))
 
     page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[4]").click()
 
@@ -118,7 +118,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
     plus.click()
 
     (page.find_element(By.XPATH,
-                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос пятый'))
+                       '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[5]').send_keys('Вопрос пятый'))
 
     page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[5]").click()
 
@@ -131,7 +131,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
     plus.click()
 
     (page.find_element(By.XPATH,
-                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос шестой'))
+                       '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[6]').send_keys('Вопрос шестой'))
 
     page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[6]").click()
 
@@ -162,7 +162,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
     plus.click()
 
     (page.find_element(By.XPATH,
-                       '//input[@class="ant-input empty-input"]').send_keys('Вопрос седьмой'))
+                       '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[7]').send_keys('Вопрос седьмой'))
 
     page.find_element(By.XPATH, "(//span[@class='ant-select-arrow'])[7]").click()
 
