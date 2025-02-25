@@ -1,29 +1,42 @@
 import requests
 from API.key_api import header
 
+
+
 # URL API для лайка
 API_URL = 'https://staging.connectable.site/api/post/like'
 
-# Данные для запроса
-like_data = {
-    "emoji": "✊",
-    "id": "67b731b43116aa001f23d25c",
+# Данные для запроса лайка в ленте событий
+like_data_feed_post = {
+    "emoji": "❤️",
+    "id": "67be00bfe6e983001ee2875a",
     "like_type": "post",
-    "post_id": "67b731b43116aa001f23d25c",
-    "user_id": "65cf0c75f13f2f001e02f0f9",
-    "where": "company"
+    "post_id": "67be00bfe6e983001ee2875a",
+    "user_id": "67be00a0e6e983001ee2847c",
+    "where": "feed"
 }
 
 # Выполнение POST-запроса
-response_like = requests.post(API_URL, headers=header, json=like_data)
+response_like_feed_post = requests.post(API_URL, headers=header, json=like_data_feed_post)
 
-def test_like():
+def test_like_feed_post():
     # Проверка статуса ответа
-    assert response_like.status_code == 200
-    print(f'код ответа:{response_like.status_code}')
+    assert response_like_feed_post.status_code == 200
+    print(f'код ответа:{response_like_feed_post.status_code}')
 
-response_dislike = requests.post(API_URL, headers=header, json=like_data)
+# Данные для запроса лайка в ленте событий
+like_data_company_post = {
+    "emoji": "💪",
+    "id": "67be00c5e6e983001ee287f9",
+    "like_type": "post",
+    "post_id": "67be00c5e6e983001ee287f9",
+    "user_id": "67be00a0e6e983001ee2847c",
+    "where": "company"
+}
 
-def test_dislike():
-    assert response_dislike.status_code == 200
-    print(f'код ответа:{response_dislike.status_code}')
+response_like_company_post = requests.post(API_URL, headers=header, json=like_data_company_post)
+
+
+def test_like_comment_post():
+    assert response_like_company_post.status_code == 200
+    print(f'код ответа:{response_like_company_post.status_code}')
