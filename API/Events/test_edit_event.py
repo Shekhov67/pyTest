@@ -1,17 +1,18 @@
 import requests
 from API.key_api import header
+from API.Events.events import API_URL_EVENT
 
-API_URL = "https://staging.connectable.site/api/event/"
+#API_URL = "https://staging.connectable.site/api/event/67bf2c1f05350f001e24c942"
 
-day = "26"
+day = "28"
 mounth = "02"
 year = "2025"
 
 
 data_create_event = {
     "client_id": "api",
-    "color": "00d43f",
-    "comment": 'Коммент API',
+    "color": "#ff0000",
+    "comment": 'Коммент API редактирование',
     'created': f'{year}-{mounth}-{day}T08:54:16.157Z',
     "creator": "67be00a0e6e983001ee2847c",
     "date": f"{year}-{mounth}-{day}T13:00:00+03:00",
@@ -30,7 +31,7 @@ data_create_event = {
         }
     },
     "lang": "ru",
-    "name": "Тест API",
+    "name": "Тест API редактирование",
     "periodical": {
         "enabled": False,
     },
@@ -39,8 +40,8 @@ data_create_event = {
     "utcOffset": 180
 }
 
-respponse_create_event = requests.post(API_URL, headers=header, json=data_create_event)
+respponse_create_event = requests.put(API_URL_EVENT, headers=header, json=data_create_event)
 
 def test_create_event():
-    assert respponse_create_event.status_code == 201
+    assert respponse_create_event.status_code == 200
     print(f'код ответа:{respponse_create_event.status_code}')
