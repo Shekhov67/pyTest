@@ -14,10 +14,11 @@ count_posts = len(list_data['result'])
 print(count_posts)
 
 for i in range(count_posts - 1):
-    print(list_data['result'][i]['_id'])
-    API_URL_POSTS = f"https://staging.connectable.site/post/{list_data['result'][i]['_id']}"
+    num_post_company = 0
+    print(list_data['result'][num_post_company]['_id'])
+    API_URL_POSTS = f"https://staging.connectable.site/post/{list_data['result'][num_post_company]['_id']}"
     print(API_URL_POSTS)
-    posts_company_id = list_data['result'][i]['_id']
+    posts_company_id = list_data['result'][num_post_company]['_id']
 
 response_posts = requests.get(posts_feed, headers=header)
 
@@ -28,7 +29,8 @@ count_posts = len(list_data['result'])
 print(count_posts)
 
 for i in range(count_posts - 1):
-    print(list_data['result'][i]['_id'])
-    API_URL_POSTS = f"https://staging.connectable.site/post/{list_data['result'][i]['_id']}"
+    num_post_feed = 0
+    print(list_data['result'][num_post_feed]['_id'])
+    API_URL_POSTS = f"https://staging.connectable.site/post/{list_data['result'][num_post_feed]['_id']}"
     print(API_URL_POSTS)
-    posts_feed_id = list_data['result'][i]['_id']
+    posts_feed_id = list_data['result'][num_post_feed]['_id']

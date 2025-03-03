@@ -37,6 +37,6 @@ like_data_company_post = {
 response_like_company_post = requests.post(API_URL, headers=header, json=like_data_company_post)
 
 
-def test_like_comment_post():
+def test_like_company_post():
     assert response_like_company_post.status_code == 200
     print(f'код ответа:{response_like_company_post.status_code}')
