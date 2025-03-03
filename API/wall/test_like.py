@@ -1,5 +1,6 @@
 import requests
 from API.key_api import header
+from API.wall.posts import posts_company_id, posts_feed_id
 
 
 # URL API для лайка
@@ -8,9 +9,9 @@ API_URL = 'https://staging.connectable.site/api/post/like'
 # Данные для запроса лайка в ленте событий
 like_data_feed_post = {
     "emoji": "❤️",
-    "id": "67be00bfe6e983001ee2875a",
+    "id": f"{posts_feed_id}",
     "like_type": "post",
-    "post_id": "67be00bfe6e983001ee2875a",
+    "post_id": f"{posts_feed_id}",
     "user_id": "67be00a0e6e983001ee2847c",
     "where": "feed"
 }
@@ -26,9 +27,9 @@ def test_like_feed_post():
 # Данные для запроса лайка в новостной ленте
 like_data_company_post = {
     "emoji": "💪",
-    "id": "67be00c5e6e983001ee287f9",
+    "id": f"{posts_company_id}",
     "like_type": "post",
-    "post_id": "67be00c5e6e983001ee287f9",
+    "post_id": f"{posts_company_id}",
     "user_id": "67be00a0e6e983001ee2847c",
     "where": "company"
 }

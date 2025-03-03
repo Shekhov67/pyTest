@@ -16,7 +16,7 @@ count_events = len(list_data['result'])
 def test_delete_event():
 # Проходим по всем событиям и удаляем
     for i in range(count_events - 1):
-        print(list_data['result'][i]['_id'])
+        #print(list_data['result'][i]['_id'])
         API_URL = f"https://staging.connectable.site/api/event/{list_data['result'][i]['_id']}"
         response_delete_events = requests.delete(API_URL, headers=header)
         assert response_delete_events.status_code == 200
