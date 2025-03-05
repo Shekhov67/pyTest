@@ -25,8 +25,8 @@ for i in range(0, 3):
         'userEmail': "t2@gmail.com"
     }
 
-    response_create_group_open = requests.post(API_URL, headers=header, json=data_group)
+    response_create_group = requests.post(API_URL, headers=header, json=data_group)
 
-    def test_create_open_group():
-        assert response_create_group_open.status_code == 201
-        print(f'код ответа: {response_create_group_open}')
+    def test_create_group():
+        assert response_create_group.status_code == 201
+        print(f'код ответа: {response_create_group.status_code}')
