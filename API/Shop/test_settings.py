@@ -6,7 +6,7 @@ API_URL = 'https://staging.connectable.site/api/shop'
 data_settings_shop = {
     'client_id': "api",
     'coin': 'коины',
-    'coin_code': 'connectable',
+    'coin_code': 'con',
     'managers': ["67be00a0e6e983001ee2847c"],
     'name': 'АПИШНЫЙ',
     '__v': 0,
