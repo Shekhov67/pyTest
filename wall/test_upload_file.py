@@ -12,7 +12,7 @@ from TestSuites.smoke.test_module import url
 
 @pytest.fixture()
 def workspace():
-    client = 'pytest'
+    client = 'testing9'
     return client
 @pytest.fixture()
 def userLog():
@@ -27,7 +27,7 @@ def password():
 def page():
     ''' Переход на страницу портала '''
     driver = webdriver.Chrome()
-    driver.implicitly_wait(30)
+    driver.implicitly_wait(50)
     driver.maximize_window()
     driver.get(url)
     return driver
@@ -62,22 +62,23 @@ def test_upload(page, workspace, userLog, password):
     except:
         print('Муд блок не появился')
 
+    page.find_element(By.XPATH, "//*[contains(text(), 'Стена')]").click()
+
     try:
-        page.find_element(By.XPATH, "//*[contains(text(), 'Стена')]").click()
 
         page.find_element(By.XPATH, "//input[@accept]").send_keys('C:\\Users\\shehs\\PycharmProjects\\pyTest\\Load Files\\111.png')
 
-        page.find_element(By.XPATH, '//textarea[@id="inputField"]').send_keys('Тестовая загрузка файла в пост')
+        page.find_element(By.XPATH, '//textarea[@id="inputField"]').send_keys('Тестовая загрузка файла в пост 1')
 
         page.find_element(By.XPATH, "//div[text()='Опубликовать']").click()
 
+        page.refresh()
+
         page.find_element(By.XPATH, "//input[@accept]").send_keys('C:\\Users\\shehs\\PycharmProjects\\pyTest\\Load Files\\222.png')
 
-        page.find_element(By.XPATH, '//textarea[@id="inputField"]').send_keys('Тестовая загрузка файла в пост')
+        page.find_element(By.XPATH, '//textarea[@id="inputField"]').send_keys('Тестовая загрузка файла в пост 2')
 
         page.find_element(By.XPATH, "//div[text()='Опубликовать']").click()
 
     except:
         pytest.fail('Не грузит файл')
-
-    time.sleep(5)
