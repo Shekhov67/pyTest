@@ -128,9 +128,9 @@ def completing_poll(type_poll):
         while num == num2:
             num2 = randint(1, 5)
 
-        page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num}]').click()
+        page.find_element(By.XPATH, f'(//div[@class="radius p4 bg-light-blue pointer hov-blue"])[{num}]').click()
 
-        page.find_element(By.XPATH, f'(//input[@type="checkbox"])[{num2}]').click()
+        page.find_element(By.XPATH, f'(//div[@class="radius p4 bg-light-blue pointer hov-blue"])[{num2}]').click()
 
         page.find_element(By.XPATH, "//div[text()='Завершить']").click()
 
