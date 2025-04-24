@@ -3,8 +3,8 @@ from API.key_api import header
 
 API_URL = "https://staging.connectable.site/api/event/"
 
-day = "26"
-mounth = "02"
+day = "25"
+mounth = "04"
 year = "2025"
 
 
@@ -22,12 +22,7 @@ data_create_event = {
         "all": True,
         "all_heads": False,
         'depts': [],
-        "empls": {
-            "0": {
-                "id": "67be00a0e6e983001ee2847c",
-                "mode": "r",
-            }
-        }
+        "empls": []
     },
     "lang": "ru",
     "name": "Тест API",
@@ -36,7 +31,8 @@ data_create_event = {
     },
     "userEmail": "t2@gmail.com",
     "userId": "67be00a0e6e983001ee2847c",
-    "utcOffset": 180
+    "utcOffset": 180,
+    "zoom": "https://github.com/"
 }
 
 respponse_create_event = requests.post(API_URL, headers=header, json=data_create_event)

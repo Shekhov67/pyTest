@@ -5,18 +5,18 @@ import asyncio
 API_URL = 'https://staging.connectable.site/api/group/'
 
 data = {
-    'client_id': "ttu",
-    'creator': "67c6c81d4cde2e001ed4126d",
-    'creatorId': "67c6c81d4cde2e001ed4126d",
-    'description': f"Описание DDoS группы API",
+    'client_id': "api",
+    'creator': "67be00a0e6e983001ee2847c",
+    'creatorId': "67be00a0e6e983001ee2847c",
+    'description': f"Описание  группы API",
     'emailSend': False,
     'lang': "ru",
-    'name': f"Название DDoS группы API",
+    'name': f"Название  группы API",
     'type': f'1',
     'userEmail': "t2@gmail.com"
 }
 async def main():
-    for i in range(10):
+    for i in range(100):
         response1 = requests.post(API_URL, headers=header, json=data)
         response2 = requests.post(API_URL, headers=header, json=data)
         response3 = requests.post(API_URL, headers=header, json=data)

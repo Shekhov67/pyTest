@@ -5,7 +5,7 @@ from API.Events.events import API_URL_EVENT
 #API_URL = "https://staging.connectable.site/api/event/67bf2c1f05350f001e24c942"
 
 day = "28"
-mounth = "02"
+mounth = "04"
 year = "2025"
 
 
@@ -23,12 +23,7 @@ data_create_event = {
         "all": True,
         "all_heads": False,
         'depts': [],
-        "empls": {
-            "0": {
-                "id": "67be00a0e6e983001ee2847c",
-                "mode": "r",
-            }
-        }
+        "empls": []
     },
     "lang": "ru",
     "name": "Тест API редактирование",
