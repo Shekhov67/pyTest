@@ -15,7 +15,7 @@ def page():
     driver.maximize_window()
     driver.get("https://staging.connectable.site/")
     #driver.get("https://connectable.site/")
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(60)
     return driver
 
 
