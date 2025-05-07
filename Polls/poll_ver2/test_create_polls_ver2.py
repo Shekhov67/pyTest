@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from TestSuites.smoke.test_module import passw
 import pytest
 from random import randint
 from TestSuites.smoke.test_module import url
@@ -25,7 +26,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{passw}')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 

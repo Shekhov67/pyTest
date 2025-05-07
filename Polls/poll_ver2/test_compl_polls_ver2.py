@@ -6,7 +6,9 @@ from random import randint
 from selenium.webdriver.common.action_chains import ActionChains
 from TestSuites.smoke.test_module import url
 from TestSuites.smoke.test_module import num_polls
-
+from selenium import webdriver
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 #url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
@@ -25,10 +27,20 @@ def completing_poll(type_poll):
 
     for i in range(1, num_polls):
 
-        driver = webdriver.Chrome()
+        # Создаём объект настроек Chrome
+        chrome_options = Options()
+
+        # Добавляем параметры:
+        chrome_options.add_argument("--start-maximized")  # Открыть на весь экран
+        chrome_options.add_argument("--disable-notifications")  # Отключить уведомления
+        chrome_options.add_argument("--incognito")  # Режим инкогнито
+        chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Скрыть статус автоматизации
+
+        # Инициализируем драйвер с настройками
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.get(url)
         driver.implicitly_wait(5)
         driver.maximize_window()
-        driver.get(url)
 
         page = driver
 
@@ -38,7 +50,7 @@ def completing_poll(type_poll):
 
         page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'i{i}@gmail.com')
 
-        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'111111')
 
         page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 

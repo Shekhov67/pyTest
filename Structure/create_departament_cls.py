@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from random import randint
 from TestSuites.smoke.test_module import url
+from TestSuites.smoke.test_module import passw
 
 workspace = "pytest"
 userLog = "t2@gmail.com"
@@ -40,7 +41,7 @@ class TestCreateDepartament:
 
         page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
-        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys('111111')
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{passw}')
 
         page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 

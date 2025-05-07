@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from TestSuites.smoke.test_module import passw
 import pytest
 from random import randint
 
@@ -17,10 +18,10 @@ def workspace():
 def userLog():
     user = 't2@gmail.com'
     return user
-@pytest.fixture()
-def password():
-    passw = '111111'
-    return passw
+#@pytest.fixture()
+#def password():
+    #passw = '111111'
+    #return passw
 
 @pytest.fixture()
 def page():
@@ -39,7 +40,7 @@ def test_create(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{password}')
+    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{passw}')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
