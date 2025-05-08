@@ -38,7 +38,7 @@ def completing_poll(type_poll):
         # Инициализируем драйвер с настройками
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(50)
         driver.maximize_window()
 
         page = driver

@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -24,7 +26,7 @@ def page():
     # Инициализируем драйвер с настройками
     driver = webdriver.Chrome(options=chrome_options)
     driver.get(url)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(50)
     driver.maximize_window()
     return driver
 
@@ -79,6 +81,11 @@ def create_polls(page,type_polls, name_polls, polls_description):
     page.find_element(By.XPATH, "//textarea").clear()
 
     page.find_element(By.XPATH, "//textarea").send_keys(f'{polls_description}')
+
+    #Подвал портала элемент для скролла
+
+    footer = page.find_element(By.XPATH, '//div[@class="footer flex-between f-align-center py4"]')
+
     ##Кнопка добавления вопроса
     plus = page.find_element(By.XPATH, "//div[@class='abs']")
 
@@ -87,7 +94,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
     (page.find_element(By.XPATH,
                        '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[1]').send_keys('Вопрос первый'))
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -98,7 +105,10 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "//li[text()='Развернутый ответ текстом']").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    wait.until(EC.presence_of_element_located((By.XPATH, "//li[text()='Развернутый ответ текстом']")))
+
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
+
     ##Вопросы с диапазонами чисел
     plus.click()
 
@@ -109,9 +119,11 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[2]").click()
 
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[2]")))
+
     page.find_element(By.XPATH, "(//span[text()='от 1 до 5'])[1]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -122,9 +134,11 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[3]").click()
 
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[3]")))
+
     page.find_element(By.XPATH, "(//span[text()='от 1 до 10'])[2]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -135,9 +149,11 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[4]").click()
 
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[4]")))
+
     page.find_element(By.XPATH, "(//span[text()='от 1 до 100'])[3]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -148,27 +164,27 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Один вариант из списка'])[5]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -179,27 +195,27 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Несколько вариантов из списка'])[6]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, "(//button[@role='switch'])[7]").click()
 
