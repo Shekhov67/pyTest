@@ -1,11 +1,11 @@
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from random import randint
 from TestSuites.smoke.test_module import url
-from TestSuites.smoke.test_module import passw
 
 workspace = "pytest"
 userLog = "t2@gmail.com"
@@ -25,13 +25,20 @@ class TestCreateDepartament:
 
         global userLog
 
-        driver = webdriver.Chrome()
+        # Создаём объект настроек Chrome
+        chrome_options = Options()
 
-        driver.maximize_window()
+        # Добавляем параметры:
+        chrome_options.add_argument("--start-maximized")  # Открыть на весь экран
+        chrome_options.add_argument("--disable-notifications")  # Отключить уведомления
+        chrome_options.add_argument("--incognito")  # Режим инкогнито
+        chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Скрыть статус автоматизации
 
-        driver.implicitly_wait(50)
-
+        # Инициализируем драйвер с настройками
+        driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
+        driver.implicitly_wait(5)
+        driver.maximize_window()
 
         page = driver
 
@@ -41,7 +48,7 @@ class TestCreateDepartament:
 
         page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys(f'{userLog}')
 
-        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{passw}')
+        page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'111111')
 
         page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 

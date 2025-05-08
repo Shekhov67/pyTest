@@ -7,7 +7,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from TestSuites.smoke.test_module import url
 from TestSuites.smoke.test_module import num_polls
 from selenium import webdriver
-from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 #url = 'https://staging.connectable.site/'

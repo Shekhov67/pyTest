@@ -1,21 +1,31 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from TestSuites.smoke.test_module import passw
 import pytest
 from random import randint
 from TestSuites.smoke.test_module import url
+
 #url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
 
 @pytest.fixture()
 def page():
-    driver = webdriver.Chrome()
-    driver.implicitly_wait(50)
-    driver.maximize_window()
+        # Создаём объект настроек Chrome
+    chrome_options = Options()
+    # Добавляем параметры:
+    chrome_options.add_argument("--start-maximized")  # Открыть на весь экран
+    chrome_options.add_argument("--disable-notifications")  # Отключить уведомления
+    chrome_options.add_argument("--incognito")  # Режим инкогнито
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Скрыть статус автоматизации
+
+    # Инициализируем драйвер с настройками
+    driver = webdriver.Chrome(options=chrome_options)
     driver.get(url)
+    driver.implicitly_wait(5)
+    driver.maximize_window()
     return driver
 
 def create_polls(page,type_polls, name_polls, polls_description):
@@ -26,7 +36,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{passw}')
+    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'111111')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
