@@ -26,9 +26,9 @@ def test_create_idp_missing_title():
         "observer": "682c369aa724fb001e4529aa",
         "description": "Без заголовка"
     }
-    response_tittle = requests.post(API_URL, headers=header, json=body)
+    response = requests.post(API_URL, headers=header, json=body)
     assert response.status_code == 400 or response.status_code == 422
-    print(f"Отсутствует title: статус {response_tittle.status_code}, тело: {response_tittle.text}")
+    print(f"Отсутствует title: статус {response.status_code}, тело: {response.text}")
 
 #Поле creator с невалидным ID
 def test_create_idp_invalid_creator():
@@ -53,8 +53,8 @@ def test_create_idp_empty_body():
 #Неизвестный client_id
 def test_create_idp_unknown_client_id():
     body = {
-        "client_id": "unknown21",
-        "title": "Unknown Client12",
+        "client_id": "fdsfdfsd1234",
+        "title": "Неизвестный client_id",
         "creator": "682585ca0ac353001e5be714",
         "employee": "682ec044aea362001e1c937a",
         "observer": "682c369aa724fb001e4529aa",
