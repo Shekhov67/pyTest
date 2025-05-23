@@ -81,4 +81,4 @@ body = {
 url = 'https://staging.connectable.site/api/poll'
 response = requests.post(url, headers=header, json=body)
 
-print(response)
+print(response.status_code)
