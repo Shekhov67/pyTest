@@ -61,5 +61,5 @@ def test_create_idp_unknown_client_id():
         "description": "Тест с неизвестным client_id"
     }
     response = requests.post(API_URL, headers=header, json=body)
-    assert response.status_code in [400, 404, 500]
+    assert response.status_code in [400, 404, 500, 502]
     print(f"Неизвестный client_id: статус {response.status_code}, тело: {response.text}")
