@@ -23,13 +23,13 @@ def password():
 
 @pytest.fixture()
 def page():
-    ''' Переход на страницу портала '''
+    # Настройка браузера для отключения проверки безопастности паролей
     chrome_options = Options()
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument("--disable-notifications")
     chrome_options.add_argument("--incognito")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-
+    #''' Переход на страницу портала '''
     driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(10)
     driver.get(url)
