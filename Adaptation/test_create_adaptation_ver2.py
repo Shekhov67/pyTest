@@ -1,5 +1,6 @@
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -23,15 +24,21 @@ def password():
 @pytest.fixture()
 def page():
     ''' Переход на страницу портала '''
-    driver = webdriver.Chrome()
-    driver.implicitly_wait(50)
-    driver.maximize_window()
+    chrome_options = Options()
+    chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument("--disable-notifications")
+    chrome_options.add_argument("--incognito")
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.implicitly_wait(10)
     driver.get(url)
     return driver
 
+@pytest.mark.order(1)
 def test_create_adapt(page, workspace, userLog, password):
 
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, timeout=50)
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
@@ -99,6 +106,8 @@ def test_create_adapt(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[@class='btn f-centered pointer secondary icon text-center'])[1]").click()
 
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='HR-специалисты']")))
+
     page.find_element(By.XPATH, "//div[text()='HR-специалисты']").click()
 
     page.find_element(By.XPATH, "(//div[text() = 'Выберите сотрудников'])[2]").click()
@@ -115,7 +124,11 @@ def test_create_adapt(page, workspace, userLog, password):
 
     page.find_element(By.XPATH, "(//div[text()='Выберите из списка'])[1]").click()
 
+    page.find_element(By.XPATH, "//div[text()='Сохранить']").click()
+
     page.find_element(By.XPATH, '//li[@class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active"]').click()
+
+    wait.until(EC.element_to_be_clickable((By.XPATH, "(//div[text()='Выберите из списка'])[2]")))
 
     page.find_element(By.XPATH, "(//div[text()='Выберите из списка'])[2]").click()
 
@@ -125,9 +138,11 @@ def test_create_adapt(page, workspace, userLog, password):
 
     page.quit()
 
+@pytest.mark.order(2)
+@pytest.mark.parametrize("role", ["Новичок", "Руководитель", "Наставник"])
 def test_create_steps(page, workspace, userLog, password, role):
 
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, timeout=50)
 
     page.find_element(By.XPATH, '//input[@placeholder="Workspace"]').send_keys(f'{workspace}')
 
