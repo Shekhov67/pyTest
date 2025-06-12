@@ -1,21 +1,33 @@
+import time
+
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from TestSuites.smoke.test_module import passw
 import pytest
 from random import randint
 from TestSuites.smoke.test_module import url
+
 #url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
 
 @pytest.fixture()
 def page():
-    driver = webdriver.Chrome()
+        # Создаём объект настроек Chrome
+    chrome_options = Options()
+    # Добавляем параметры:
+    chrome_options.add_argument("--start-maximized")  # Открыть на весь экран
+    chrome_options.add_argument("--disable-notifications")  # Отключить уведомления
+    chrome_options.add_argument("--incognito")  # Режим инкогнито
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Скрыть статус автоматизации
+
+    # Инициализируем драйвер с настройками
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.get(url)
     driver.implicitly_wait(50)
     driver.maximize_window()
-    driver.get(url)
     return driver
 
 def create_polls(page,type_polls, name_polls, polls_description):
@@ -26,7 +38,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, '//input[@placeholder="E-mail"]').send_keys('t2@gmail.com')
 
-    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'{passw}')
+    page.find_element(By.XPATH, '//input[@placeholder="Password"]').send_keys(f'111111')
 
     page.find_element(By.XPATH, '//div[text()="Log in"]').click()
 
@@ -69,6 +81,11 @@ def create_polls(page,type_polls, name_polls, polls_description):
     page.find_element(By.XPATH, "//textarea").clear()
 
     page.find_element(By.XPATH, "//textarea").send_keys(f'{polls_description}')
+
+    #Подвал портала элемент для скролла
+
+    footer = page.find_element(By.XPATH, '//div[@class="footer flex-between f-align-center py4"]')
+
     ##Кнопка добавления вопроса
     plus = page.find_element(By.XPATH, "//div[@class='abs']")
 
@@ -77,7 +94,7 @@ def create_polls(page,type_polls, name_polls, polls_description):
     (page.find_element(By.XPATH,
                        '(//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"])[1]').send_keys('Вопрос первый'))
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -88,7 +105,10 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "//li[text()='Развернутый ответ текстом']").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    wait.until(EC.presence_of_element_located((By.XPATH, "//li[text()='Развернутый ответ текстом']")))
+
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
+
     ##Вопросы с диапазонами чисел
     plus.click()
 
@@ -99,9 +119,11 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[2]").click()
 
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[2]")))
+
     page.find_element(By.XPATH, "(//span[text()='от 1 до 5'])[1]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -112,9 +134,11 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[3]").click()
 
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[3]")))
+
     page.find_element(By.XPATH, "(//span[text()='от 1 до 10'])[2]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -125,9 +149,11 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[4]").click()
 
+    wait.until(EC.presence_of_element_located((By.XPATH, "(//li[text()='Выбор числа в диапазоне'])[4]")))
+
     page.find_element(By.XPATH, "(//span[text()='от 1 до 100'])[3]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -138,27 +164,27 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Один вариант из списка'])[5]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '//*[@class="ant-btn ant-btn-link"]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     plus.click()
 
@@ -169,27 +195,27 @@ def create_polls(page,type_polls, name_polls, polls_description):
 
     page.find_element(By.XPATH, "(//li[text()='Несколько вариантов из списка'])[6]").click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, '(//*[@class="ant-btn ant-btn-link"])[2]').click()
 
-    page.execute_script("arguments[0].scrollIntoView(true);", plus)
+    page.execute_script("arguments[0].scrollIntoView(true);", footer)
 
     page.find_element(By.XPATH, "(//button[@role='switch'])[7]").click()
 
