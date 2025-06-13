@@ -3,7 +3,7 @@ from random import randint
 from playwright.sync_api import sync_playwright
 
 url = "https://staging.connectable.site/"
-num_polls = 3  # количество пользователей
+num_polls = 25  # количество пользователей
 
 def completing_poll(page, type_poll, index):
     page.goto(url)
