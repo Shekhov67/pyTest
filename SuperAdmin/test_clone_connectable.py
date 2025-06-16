@@ -1,7 +1,5 @@
 import pytest
 from playwright.sync_api import Page, expect, sync_playwright
-#from SuperAdmin.conftest import page
-
 
 @pytest.mark.smoke
 def test_clone_and_login_as_user(page: Page):
