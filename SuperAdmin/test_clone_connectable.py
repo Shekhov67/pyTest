@@ -5,12 +5,15 @@ from playwright.sync_api import Page, expect, sync_playwright
 
 @pytest.mark.smoke
 def test_clone_and_login_as_user(page: Page):
+    #Открывает браузер
     page.goto("https://staging.connectable.site/login")
+    #Вход под супер админом
     page.get_by_role("textbox", name="E-mail").click()
     page.get_by_role("textbox", name="E-mail").fill("w.project.portal3@gmail.com")
     page.get_by_test_id("login-password").click()
     page.get_by_test_id("login-password").fill("111")
     page.get_by_text("Log in").click()
+    #Создание клона
     page.get_by_role("textbox", name="Find").click()
     page.get_by_role("textbox", name="Find").fill("testconn")
     page.get_by_role("table").locator("div").filter(has_text="testconn27 testconn27").first.click()
@@ -21,6 +24,7 @@ def test_clone_and_login_as_user(page: Page):
     page.get_by_role("dialog", name="Clone client").get_by_role("textbox").nth(1).click()
     page.get_by_role("dialog", name="Clone client").get_by_role("textbox").nth(1).fill("atc27")
     page.get_by_label("Clone client").get_by_text("Save").click()
+    #Проверка клонированных элементов
     page.get_by_text("OK").first.click()
     page.get_by_label("icon: check-circle").locator("svg").click()
     page.get_by_text("users: 91").click()
@@ -53,10 +57,12 @@ def test_clone_and_login_as_user(page: Page):
     page.get_by_text("desks:").click()
     page.get_by_text("post_comments:").click()
     page.get_by_text("posts:").click()
+    #Выход супер админа
     page.get_by_role("button", name="OK").click()
     page.get_by_role("button", name="Close").click()
     page.get_by_text("Админ Админович").click()
     page.get_by_text("Logout").click()
+    #Вод в клон админом клона
     page.get_by_role("textbox", name="Workspace").click()
     page.get_by_role("textbox", name="Workspace").fill("atc27")
     page.get_by_role("textbox", name="E-mail").click()
@@ -64,6 +70,7 @@ def test_clone_and_login_as_user(page: Page):
     page.get_by_test_id("login-password").click()
     page.get_by_test_id("login-password").fill("111111")
     page.get_by_text("Log in").click()
+    #Проверка клонирования "Стена"
     page.get_by_text("Стена").click()
     page.locator(".post-wrapper").first.click()
     page.get_by_role("img", name="img").click()
@@ -77,25 +84,30 @@ def test_clone_and_login_as_user(page: Page):
     page.get_by_text("@Наталья Русакова Спасибо большое за оказанную помощь в проекте!)").click()
     page.get_by_text("@Ксения Петрова , как дела?").click()
     page.get_by_text("@Никита Добрынин за помощь с коммуникацией и организацией").click()
+    #Просмотр отображения структуры
     page.get_by_text("Структура").click()
     page.get_by_role("img").filter(has_text="Главное управление Сергей Наумов Управляющий партнер Наталья Русакова Руководите").click()
+    #Просмотр отображения отпусков и дней рождений
     page.get_by_text("Адресная книга").click()
     page.get_by_text("Дни рождения").click()
     page.goto("https://staging.connectable.site/addressBook")
     page.get_by_text("График отпусков").click()
     page.goto("https://staging.connectable.site/addressBook")
+    #Проверка клонирования "Группы"
     page.get_by_text("Группы").click()
     page.get_by_text("Внутри HR").click()
     page.goto("https://staging.connectable.site/groups")
     page.get_by_text("Клуб путешественников 45 участников Открытая группа 39+").click()
     page.get_by_text("Клуб путешественников").click()
     page.get_by_text("Тест").click()
+    #Проверка клонирования "База знаний"
     page.get_by_text("База знаний").click()
     page.get_by_text("идей онлайн-тимбилдинга для компаний на удалёнке").click()
     page.locator("div:nth-child(3) > .body > span > div > div:nth-child(2) > .back-img").first.click()
     page.get_by_text("Лето — традиционная пора тимбилдингов и выездных корпоративов. Но только не лето").click()
     page.get_by_text("Многие компании оставили сотрудников работать из дома и после окончания самоизол").click()
     page.get_by_role("paragraph").filter(has_text="Мы собрали в этом обзоре 12").click()
+    #Проверка клонирования Сервисов
     page.get_by_text("Заявки").click()
     page.get_by_text("📝Справки").click()
     page.get_by_text("🖇️АХО").click()
@@ -107,7 +119,9 @@ def test_clone_and_login_as_user(page: Page):
     page.get_by_text("Добрый день!В этом разделе вы можете заказать справку, подтверждающую период раб").click()
     page.get_by_role("tab", name="Шаги").click()
     page.get_by_text("Для действующих сотрудников").click()
+    #Предложить идею заменить на "Вакансии"
     page.get_by_text("Предложить идею").click()
+    #Проверка клонирования магазина
     page.get_by_text("Геймификация").click()
     page.get_by_text("Термос").click()
     page.get_by_text("Кружка").click()
@@ -116,6 +130,7 @@ def test_clone_and_login_as_user(page: Page):
     page.get_by_text("Кепка").click()
     page.get_by_text("12").first.click()
     page.locator("div:nth-child(4) > div > .col > .flex-between > .f-align-center > .svg-icon > circle").click()
+    #Клонирование доски задач(смотрим склонировались ли задачи)
     page.get_by_text("Доска задач").click()
     page.get_by_text("Маркетинг Марина Бильдякова").click()
     page.get_by_text("Оценка задач 1 Продуктовый вебинар 5 Добавить карточку").click()
@@ -123,10 +138,12 @@ def test_clone_and_login_as_user(page: Page):
     page.get_by_text("Новые задачи 1 Поиск поставщика по \"Брендированию\" 1 0/4 Добавить карточку").click()
     page.get_by_text("Адаптация").click()
     page.get_by_text("Тут весь путь адаптация для сотрудников которые работают в департаментах продаж,").click()
+    #Проверка количества пользователй клона конектабл
     page.get_by_text("Администрирование").click()
     page.get_by_role("tab", name="Все сотрудники (91)").click()
     page.get_by_text("Админ Админовский").click()
     page.get_by_text("Выйти").click()
+    #Удаление суперадмином клона
     page.get_by_role("textbox", name="Код компании").click()
     page.get_by_role("textbox", name="Код компании").fill("")
     page.get_by_role("textbox", name="E-mail").click()
@@ -145,8 +162,6 @@ def test_clone_and_login_as_user(page: Page):
     page.get_by_role("button", name="OK").click()
     page.get_by_text("Админ Админович").click()
     page.get_by_text("Logout").click()
-    page.close()
-
     # ---------------------
     page.close()
 
