@@ -76,15 +76,26 @@ def completing_poll(page, type_poll, index):
     page.click('//div[text()="Следующий вопрос"]')
 
     # Слайдер
+    # Находим элемент-слайдер
     slider = page.locator('//div[@role="slider"]')
-    slider.hover()
-    bbox = slider.bounding_box()
-    if bbox:
-        page.mouse.move(bbox['x'], bbox['y'])
-        page.mouse.down()
-        page.mouse.move(bbox['x'] + randint(50, 300), bbox['y'], steps=5)
-        page.mouse.up()
-        print(f"[{index}] Слайдер пройден")
+
+    # Получаем его координаты и размер
+    box = slider.bounding_box()
+    if box is None:
+        raise Exception("❌ Не удалось получить bounding box слайдера")
+
+    # Генерируем случайное смещение по оси X
+    offset_x = randint(1, 338)
+
+    # Вычисляем стартовую точку
+    start_x = box["x"] + box["width"] / 2
+    start_y = box["y"] + box["height"] / 2
+
+    # Выполняем перемещение мыши
+    page.mouse.move(start_x, start_y)
+    page.mouse.down()
+    page.mouse.move(start_x + offset_x, start_y)
+    page.mouse.up()
     page.click('//div[text()="Следующий вопрос"]')
 
     page.click(f'(//input[@type="radio"])[{randint(1, 5)}]')
