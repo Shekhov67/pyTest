@@ -1,4 +1,6 @@
 import time
+
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -12,6 +14,7 @@ userLog = "t2@gmail.com"
 #url = 'https://staging.connectable.site/'
 #url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
+@pytest.mark.wall
 class TestCreateDepartament:
     def __init__(self, type_dep, name_dep):
         self.type = type_dep
