@@ -1,10 +1,9 @@
 import pytest
 from random import randint
 from playwright.sync_api import sync_playwright
+from TestSuites.smoke.test_module import url
 
-url = "https://staging.connectable.site/"
 passw = "111111"  # импортируй из test_module при необходимости
-
 
 def login(page):
     page.goto(url)
@@ -37,6 +36,7 @@ def create_poll(page, poll_type_index: int, name: str, description: str):
 
     # Добавление вопросов
     def add_question(q_text, q_type=None, range_text=None, options_count=0):
+        page.locator("//div[@class='abs']").scroll_into_view_if_needed()
         page.click("//div[@class='abs']")  # Кнопка +
         page.locator('//input[@placeholder="Например, знаете ли вы, чего от вас ожидает работодатель?"]').nth(-1).fill(q_text)
         if q_type:
@@ -46,7 +46,7 @@ def create_poll(page, poll_type_index: int, name: str, description: str):
             if range_text:
                 page.locator(f"(//span[text()='{range_text}'])").nth(-1).click()
         for _ in range(options_count):
-            page.locator('(//*[@class="ant-btn ant-btn-link"])').nth(-1).click()
+            page.locator('(//div[@class="btn f-centered pointer link text-center"])').nth(-1).click()
 
     add_question("Вопрос первый")
     add_question("Вопрос второй", "Развернутый ответ текстом")
@@ -57,7 +57,7 @@ def create_poll(page, poll_type_index: int, name: str, description: str):
     add_question("Вопрос седьмой", "Несколько вариантов из списка", options_count=5)
 
     # Сделать последний вопрос обязательным
-    page.locator("(//button[@role='switch'])").nth(-1).click()
+    page.locator("(//button[@role='switch'])[7]").click()
 
     # Сохранить опрос
     save_btn = page.locator("//div[text()='Сохранить']")

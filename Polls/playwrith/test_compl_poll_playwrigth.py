@@ -1,9 +1,8 @@
 import pytest
 from random import randint
 from playwright.sync_api import sync_playwright
-
-url = "https://staging.connectable.site/"
-num_polls = 25  # количество пользователей
+from TestSuites.smoke.test_module import url
+from TestSuites.smoke.test_module import num_polls
 
 def completing_poll(page, type_poll, index):
     page.goto(url)
