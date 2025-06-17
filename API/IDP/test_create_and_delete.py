@@ -1,8 +1,8 @@
 import requests
 from API.key_api import header
-
+from TestSuites.smoke.test_module import url
 def test_create_and_delete_idp():
-    API_URL = 'https://staging.connectable.site/api/idp'
+    API_URL = f'{url}api/idp'
 
     # Тело запроса на создание ИПР
     body = {

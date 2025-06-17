@@ -4,8 +4,8 @@ import pytest
 num_polls = 15
 
 #Выбрать портал для текста
-url = 'https://staging.connectable.site/'
-#url = 'https://connectable.site/'
+#url = 'https://staging.connectable.site/'
+url = 'https://connectable.site/'
 #url = 'https://intranetable.team/'
 
 def test_suite_polls():

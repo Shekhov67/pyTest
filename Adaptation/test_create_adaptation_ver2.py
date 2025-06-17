@@ -35,7 +35,7 @@ def page():
     driver.get(url)
     return driver
 
-@pytest.mark.order(1)
+@pytest.mark.adaptation
 def test_create_adapt(page, workspace, userLog, password):
 
     wait = WebDriverWait(page, timeout=50)
