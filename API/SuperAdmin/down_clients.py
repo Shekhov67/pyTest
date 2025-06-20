@@ -1,17 +1,18 @@
 import requests
 from API.key_api import header
 
-def test_dow_clients():
+def dow_clients(id, cod):
 
-    i = '67a063e938f437001f200f0e'
-    code_client = ('test')
+    id_client = id
+    code_client = cod
 
-    API_URL = f'https://staging.connectable.site/api/clients/export/{i}'
+    # ПОДКЛЮЧЕН ПРОД!
+    API_URL = f'https://connectable.site/api/clients/export/{id_client}'
 
     response = requests.get(API_URL, headers=header)
 
     assert response.status_code == 200
-    print('Клиент выгружен')
+    print('Клиент выгружен', response.status_code)
 
     # Определяем путь для сохранения файла
     file_path = f"{code_client}.zip"
@@ -21,3 +22,5 @@ def test_dow_clients():
         file.write(response.content)
 
     print(f'Файл сохранён: {file_path}')
+
+dow_clients('6513d95a54b7bd001e131037', 'testing3')
